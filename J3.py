@@ -16,34 +16,22 @@ for _ in range(N):
     while r < len(x):
         if x[r] == "-":
             isneg = True
-        if x[l].isnumeric():
-            while x[r].isnumeric() and r + 1 < len(x):
-                r += 1
-            if l - r > 0:
-                if isneg:
-                    total -= int(x[l:r])
-                    print("subtracting" + x[l:r])
-                    isneg = False
-                else:
-                    total += int(x[l:r])
-                    print("subtracting" + x[l:r])
-
-                    isneg = False
-            else:
-                if isneg:
-                    total -= int(x[r])
-                    print("subtracting" + x[r])
-                    isneg = False
-                else:
-                    total += int(x[r])
-                    print("subtracting" + x[r])
-
-                    isneg = False
+            r += 1
+            continue 
+        if r < len(x) and x[r].isnumeric():
             l = r
-        if x[r] == "-":
-            isneg = True
-        r += 1
-        l += 1
+            while r < len(x) and x[r].isnumeric():
+                r += 1
+            if isneg:
+                total -= int(x[l:r])
+                isneg = False
+            else:
+                total += int(x[l:r])
+
+                isneg = False
+            l = r
+        else:
+            r += 1
 
     vals.append(rstr + str(total))
 
