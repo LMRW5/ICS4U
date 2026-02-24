@@ -18,6 +18,17 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <p class="read-the-docs">
       Click on the Vite and TypeScript logos to learn more
     </p>
+    <form>
+    <label for="a">a:</label><br>
+    <input type="number" id = "a"></input><br>
+    <label for="b">b:</label><br>
+    <input type="number" id = "b"></input><br>
+    <label for="c">c:</label><br>
+    <input type="number" id = "c"></input><br>
+    <label for="d">d:</label><br>
+    <input type="number" id = "d"></input><br>
+    <input type="submit" value="Submit">
+    </form>
   </div>
 `
 
