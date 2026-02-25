@@ -6,11 +6,11 @@ export function cubicRoot(a:number,b:number,c:number,d:number) {
   let imaginary = Math.sqrt(-1)
   if (discriminant < 0){
     // Case A (3 real roots)
-    res = trigonomatricMethod(a,b,c,d,p,q)
+    res = trigonomatricMethod(a,b,p,q)
   }
   else if (discriminant > 0){
     // Case B (1 real root and 2 imaginary)
-    res[0] = cardanoMethod(a,b,c,d,p,q).toFixed(2)
+    res[0] = cardanoMethod(a,b,p,q).toFixed(2)
     res[1] = (-1 + imaginary*Math.sqrt(3))/2
     res[2] = (-1 - imaginary*Math.sqrt(3))/2
     
@@ -19,14 +19,14 @@ export function cubicRoot(a:number,b:number,c:number,d:number) {
   else{
     if (p == 0 && q == 0){
       // Case C (triple root)
-      res[0] = cardanoMethod(a,b,c,d,p,q).toFixed(2)
-      res[1] = cardanoMethod(a,b,c,d,p,q).toFixed(2)
-      res[2] = cardanoMethod(a,b,c,d,p,q).toFixed(2)
+      res[0] = cardanoMethod(a,b,p,q).toFixed(2)
+      res[1] = cardanoMethod(a,b,p,q).toFixed(2)
+      res[2] = cardanoMethod(a,b,c,q).toFixed(2)
 
     }
     else if (p != 0){
       // Case D (double root + single root)
-      res[0] = cardanoMethod(a,b,c,d,p,q).toFixed(2)
+      res[0] = cardanoMethod(a,b,p,q).toFixed(2)
       res[1] = (Math.cbrt(q/2)-(b/(3*a))).toFixed(2)
       res[2] = (Math.cbrt(q/2)-(b/(3*a))).toFixed(2)
     }
@@ -37,7 +37,7 @@ export function cubicRoot(a:number,b:number,c:number,d:number) {
   return res
 }
 
-function trigonomatricMethod(a:number,b: number,c: number,d: number,p: number,q: number){
+function trigonomatricMethod(a:number,b:number ,p: number,q: number){
   const rval = new Array()
   const theta = (1/3)*Math.acos(-q/(2*Math.sqrt(-(p/3)*(p/3)*(p/3))))
   rval[0] = (2*Math.sqrt((-p)/3)*Math.cos(theta)-(b/(3*a))).toFixed(2)
@@ -46,6 +46,6 @@ function trigonomatricMethod(a:number,b: number,c: number,d: number,p: number,q:
   return rval
 }
 
-function cardanoMethod(a:number,b: number,c: number,d: number,p: number,q: number){
+function cardanoMethod(a:number,b: number,p: number,q: number){
   return Math.cbrt((-q/2)+Math.sqrt((q/2)*(q/2)+(p/3)*(p/3)*(p/3))) + Math.cbrt((-q/2)-Math.sqrt((q/2)*(q/2)+(p/3)*(p/3)*(p/3))) - (b/(3*a))
 }

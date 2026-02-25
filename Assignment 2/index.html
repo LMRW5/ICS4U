@@ -1,47 +1,53 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>assignment-2</title>
-  </head>
-  <body>
-    <div id="app"></div>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>assignment-2</title>
+</head>
+
+<body>
+  <div>
+    <h1>Cubic Solver</h1>
     <div>
       <form>
-      <label for="a">a:</label><br>
-      <input type="number" id = "a" required></input><br>
-      <label for="b">b:</label><br>
-      <input type="number" id = "b" required></input><br>
-      <label for="c">c:</label><br>
-      <input type="number" id = "c" required></input><br>
-      <label for="d">d:</label><br>
-      <input type="number" id = "d" required></input><br>
-      <input type="submit" id = "submittedform" value="Submit">
+        <label for="a">a:</label><br>
+        <input type="number" id="a" required></input><br>
+        <label for="b">b:</label><br>
+        <input type="number" id="b" required></input><br>
+        <label for="c">c:</label><br>
+        <input type="number" id="c" required></input><br>
+        <label for="d">d:</label><br>
+        <input type="number" id="d" required></input><br>
+        <input type="submit" id="submittedform" value="Submit">
       </form>
     </div>
-    <table>
-      <tr>
-        <th>Root 1</th>
-        <th>Root 2</th>
-        <th>Root 3</th>
-        <th>P</th>
-        <th>Q</th>
-        <th>Discriminant</th>
+  </div>
+  <table>
+    <tr>
+      <th>Root 1</th>
+      <th>Root 2</th>
+      <th>Root 3</th>
+      <th>P</th>
+      <th>Q</th>
+      <th>Discriminant</th>
 
-      </tr>
-      <tr>
-        <td id = "Root1">1</td>
-        <td id="Root2">2</td>
-        <td id = "Root3">3</td>
-        <td id = "p">p</td>
-        <td id = "q">q</td>
-        <td id = "discriminant">discriminant</td>
+    </tr>
+    <tr>
+      <td id="Root1"></td>
+      <td id="Root2"></td>
+      <td id="Root3"></td>
+      <td id="p"></td>
+      <td id="q"></td>
+      <td id="discriminant"></td>
 
 
-      </tr>
-    </table>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+    </tr>
+  </table>
+  <canvas id="graph" width="600" height="400"></canvas>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
 </html>
