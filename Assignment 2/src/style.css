@@ -1,0 +1,168 @@
+/* Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #1e1e2f, #2a2a40);
+  color: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+/* Title */
+h1 {
+  margin-bottom: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* Form Card */
+form {
+  background: #2f2f48;
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  display: grid;
+  gap: 12px;
+  width: 280px;
+}
+
+/* Labels */
+label {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* Inputs */
+input[type="number"] {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: none;
+  background: #1f1f30;
+  color: white;
+  outline: none;
+  transition: 0.2s;
+}
+
+input[type="number"]:focus {
+  background: #252540;
+  box-shadow: 0 0 0 2px #5a67ff;
+}
+
+/* Submit button */
+input[type="submit"] {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  background: #5a67ff;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+input[type="submit"]:hover {
+  background: #4a54e1;
+}
+
+/* Table container */
+#results {
+  margin-top: 30px;
+  border-collapse: separate;
+  border-spacing: 0 10px; /* space between rows */
+  width: 400px;           /* make it wide */
+  background: #2f2f48;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  font-family: "Inter", sans-serif;
+}
+
+/* Header cells (labels) */
+#results th {
+  background: #3b3b5c;
+  color: #fff;
+  text-align: left;
+  padding: 12px 20px;
+  width: 150px; /* fixed width for labels */
+  font-weight: 600;
+}
+
+/* Data cells (values) */
+#results td {
+  background: #24243a;
+  color: #fff;
+  padding: 12px 20px;
+  text-align: right; /* values aligned to right */
+}
+
+/* Optional: alternate row shading */
+#results tr:nth-child(even) td {
+  background: #2a2a40;
+}
+
+/* Rounded corners for top & bottom cells */
+#results tr:first-child th {
+  border-top-left-radius: 12px;
+}
+#results tr:first-child td {
+  border-top-right-radius: 12px;
+}
+#results tr:last-child th {
+  border-bottom-left-radius: 12px;
+}
+#results tr:last-child td {
+  border-bottom-right-radius: 12px;
+}
+
+/* Canvas styling */
+canvas {
+  margin-top: 40px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+input[type="submit"]:disabled {
+  background: #555;
+  cursor: not-allowed;
+  opacity: 0.6;
+  box-shadow: none;
+}
+
+/* Wrap table and graph in a flex container */
+#results,
+#graph {
+  margin-bottom: 0; /* remove spacing for flex alignment */
+}
+
+.flex-container {
+  display: flex;
+  align-items: flex-start; /* align top edges */
+  justify-content: center;
+  gap: 40px; /* space between table and graph */
+  flex-wrap: wrap; /* allow wrapping on smaller screens */
+  margin-bottom: 30px;
+}
+
+/* Adjust widths */
+#results {
+  max-width: 300px; /* narrower to fit next to canvas */
+  width: 100%;
+}
+
+#graph {
+  width: 600px;
+  height: 400px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  background: white;
+}

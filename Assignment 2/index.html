@@ -21,32 +21,50 @@
         <input type="number" id="c" required></input><br>
         <label for="d">d:</label><br>
         <input type="number" id="d" required></input><br>
-        <input type="submit" id="submittedform" value="Submit">
+<input type="submit" id="submittedform" value="Submit" disabled>
       </form>
     </div>
   </div>
-  <table>
-    <tr>
-      <th>Root 1</th>
-      <th>Root 2</th>
-      <th>Root 3</th>
-      <th>P</th>
-      <th>Q</th>
-      <th>Discriminant</th>
+  <div class="flex-container">
+  <table id="results">
+  <tr>
+    <th>p</th>
+    <td id="p"></td>
+  </tr>
+  <tr>
+    <th>q</th>
+    <td id="q"></td>
+  </tr>
+  <tr>
+    <th>Discriminant</th>
+    <td id="discriminant"></td>
+  </tr>
+  <tr>
+    <th>Value</th>
+    <td>x</td>
+    <td>y</td>
 
-    </tr>
-    <tr>
-      <td id="Root1"></td>
-      <td id="Root2"></td>
-      <td id="Root3"></td>
-      <td id="p"></td>
-      <td id="q"></td>
-      <td id="discriminant"></td>
+  </tr>
+  <tr>
+    <th>Root 1</th>
+    <td id="Root1x"></td>
+    <td id="Root1y"></td>
+  </tr>
+  <tr>
+    <th>Root 2</th>
+    <td id="Root2x"></td>
+    <td id="Root2y"></td>
 
+  </tr>
+  <tr>
+    <th>Root 3</th>
+    <td id="Root3x"></td>
+    <td id="Root3y"></td>
 
-    </tr>
-  </table>
+  </tr>
+</table>
   <canvas id="graph" width="600" height="400"></canvas>
+  </div>
   <script type="module" src="/src/main.ts"></script>
 </body>
 
