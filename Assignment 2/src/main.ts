@@ -41,10 +41,45 @@ btn.addEventListener("click", (event)=>{
   (document.getElementById("p")as HTMLTableCellElement).textContent = roots[3];
   (document.getElementById("q")as HTMLTableCellElement).textContent = roots[4];
   (document.getElementById("discriminant")as HTMLTableCellElement).textContent = roots[5];
-  drawGraph(a,b,c,d)
+  drawGraph(a,b,c,d);
+  (document.getElementById("Function") as HTMLHeadingElement).textContent = `Solving For: ${findfunction(a,b,c,d)}`
 });
 
 
+function findfunction(a: number,b: number,c: number,d:number){
+  let terms: string[] = [];
+
+  function formatTerm(coef: number, variable: string) {
+    if (coef === 0) return;
+
+    const sign = coef > 0 ? "+" : "-";
+    const abs = Math.abs(coef);
+
+    let term = "";
+
+    if (terms.length === 0) {
+      // first term doesn't need leading +
+      if (coef < 0) term += "-";
+    } else {
+      term += ` ${sign} `;
+    }
+
+    if (abs !== 1 || variable === "") {
+      term += abs;
+    }
+
+    term += variable;
+
+    terms.push(term);
+  }
+
+  formatTerm(a, "x³");
+  formatTerm(b, "x²");
+  formatTerm(c, "x");
+  formatTerm(d, "");
+
+  return terms.join("");
+}
 
 function drawGraph(a: number,b: number,c: number,d:number){
   const canvas = document.getElementById("graph") as HTMLCanvasElement;

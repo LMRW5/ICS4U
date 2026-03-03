@@ -9,16 +9,17 @@ body {
 }
 
 .topPortion {
-  margin-top: 25px;
+  padding: 25px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background-color: beige;
 }
 
 .topPortion h1{
   font-size: 3rem;
-  color: orange
+  color: orange;
 }
 
 .inputForm {
@@ -71,7 +72,9 @@ input {
 
 #results tr td{
   background-color: rgb(236, 236, 236);
-  padding: 10px;  
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;  
 }
 
 #results tr th{
@@ -82,4 +85,18 @@ input {
 
 .topTable{
   width: 100%;
+}
+
+.flex-container{
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  width: fit-content;  
+  margin: 40px auto;   
+}
+
+#Function{
+  align-self: center;
+  width: fit-content;
+  text-align: center;
 }
