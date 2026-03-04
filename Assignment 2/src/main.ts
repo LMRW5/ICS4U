@@ -29,17 +29,17 @@ btn.addEventListener("click", (event) => {
   console.log(cubicRoot(a, b, c, d));
   const roots = cubicRoot(a, b, c, d);
   (document.getElementById("Root1x") as HTMLTableCellElement).textContent =
-    roots[0];
+  isFinite(roots[0]) ? roots[0] : "Complex";
   (document.getElementById("Root2x") as HTMLTableCellElement).textContent =
-    roots[1];
+  isFinite(roots[1]) ? roots[1] : "Complex";
   (document.getElementById("Root3x") as HTMLTableCellElement).textContent =
-    roots[2];
+  isFinite(roots[2]) ? roots[2] : "Complex";
   (document.getElementById("Root1y") as HTMLTableCellElement).textContent =
-    isFinite(roots[0]) ? "0" : "DNE";
+    isFinite(roots[0]) ? "0" : "Complex";
   (document.getElementById("Root2y") as HTMLTableCellElement).textContent =
-    isFinite(roots[1]) ? "0" : "DNE";
+    isFinite(roots[1]) ? "0" : "Complex";
   (document.getElementById("Root3y") as HTMLTableCellElement).textContent =
-    isFinite(roots[2]) ? "0" : "DNE";
+    isFinite(roots[2]) ? "0" : "Complex";
   (document.getElementById("p") as HTMLTableCellElement).textContent = roots[3];
   (document.getElementById("q") as HTMLTableCellElement).textContent = roots[4];
   (

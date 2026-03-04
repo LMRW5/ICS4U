@@ -100,3 +100,7 @@ input {
   width: fit-content;
   text-align: center;
 }
+
+#graph{
+  border: 1px solid black;
+}
