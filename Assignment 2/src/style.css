@@ -56,18 +56,14 @@ input {
   border: 2px solid black;
   border-radius: 10px;
   background-color: orange;
+}
+
+table {
   padding: 20px;
 }
 
-#results tr{
-  background-color: white;
-  padding: 15px;
-
-}
-
-#results tr{
-  padding: 15px;
-  
+th {
+  width: 115px;
 }
 
 #results tr td{
@@ -85,6 +81,33 @@ input {
 
 .topTable{
   width: 100%;
+}
+
+tbody {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  gap: 0.2em;
+}
+
+.lower-container {
+  display: flex;
+  gap: 0.2em;
+}
+
+tr {
+  display: flex;
+  gap: 0.2em;
+}
+
+th {
+  white-space: nowrap;
+}
+
+td {
+  flex: 1;
 }
 
 .flex-container{
