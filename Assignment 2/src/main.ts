@@ -119,7 +119,7 @@ function drawGraph(a: number, b: number, c: number, d: number) {
   ctx.strokeStyle = "gray";
 
   // draw the grid
-  for (let x = Math.ceil(xMin); x <= xMax; x++) {
+  for (let x = xMin; x <= xMax; x++) {
     const xPixel = (x - xMin) * xScale;
 
     ctx.beginPath();
@@ -127,7 +127,7 @@ function drawGraph(a: number, b: number, c: number, d: number) {
     ctx.lineTo(xPixel, canvas.height);
     ctx.stroke();
   }
-  for (let y = Math.ceil(yMin); y <= yMax; y++) {
+  for (let y = yMin; y <= yMax; y++) {
     const yPixel = canvas.height - (y - yMin) * yScale;
 
     ctx.beginPath();
