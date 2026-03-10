@@ -108,6 +108,7 @@ th {
 
 td {
   flex: 1;
+  text-align: center;
 }
 
 .flex-container{

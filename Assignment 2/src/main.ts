@@ -1,65 +1,81 @@
 import "./style.css";
 import { cubicRoot } from "./cubicsolver.ts";
 
-function f(a: number, b: number, c: number, d: number, x: number) {
+function f(a: number, b: number, c: number, d: number, x: number): number {
   return a * x ** 3 + b * x ** 2 + c * x + d;
 }
 
-const inputs = document.querySelectorAll<HTMLInputElement>(
-  "input[type='number']",
-);
-const submitBtn = document.getElementById("submittedform") as HTMLInputElement;
+const inputs: NodeListOf<HTMLInputElement> =
+  document.querySelectorAll<HTMLInputElement>("input[type='number']");
+
+const submitBtn: HTMLInputElement = document.getElementById(
+  "submittedform",
+) as HTMLInputElement;
 
 inputs.forEach((input) => {
   input.addEventListener("input", () => {
-    const allFilled = Array.from(inputs).every((input) => input.value !== "");
+    const allFilled: boolean = Array.from(inputs).every(
+      (input) => input.value !== "",
+    );
 
     submitBtn.disabled = !allFilled;
   });
 });
-const btn = document.getElementById("submittedform") as HTMLInputElement;
+
+const btn: HTMLInputElement = document.getElementById(
+  "submittedform",
+) as HTMLInputElement;
 
 btn.addEventListener("click", (event) => {
   event.preventDefault();
-  const a = Number((document.getElementById("a") as HTMLInputElement).value);
-  const b = Number((document.getElementById("b") as HTMLInputElement).value);
-  const c = Number((document.getElementById("c") as HTMLInputElement).value);
-  const d = Number((document.getElementById("d") as HTMLInputElement).value);
-  console.log(a);
-  console.log(cubicRoot(a, b, c, d));
-  const roots = cubicRoot(a, b, c, d);
+  const a: number = Number(
+    (document.getElementById("a") as HTMLInputElement).value,
+  );
+  const b: number = Number(
+    (document.getElementById("b") as HTMLInputElement).value,
+  );
+  const c: number = Number(
+    (document.getElementById("c") as HTMLInputElement).value,
+  );
+  const d: number = Number(
+    (document.getElementById("d") as HTMLInputElement).value,
+  );
+  const roots: Array<number> = cubicRoot(a, b, c, d);
+  console.log(roots);
   (document.getElementById("Root1x") as HTMLTableCellElement).textContent =
-  isFinite(roots[0]) ? roots[0] : "Complex";
+    isFinite(roots[0]) ? roots[0].toFixed(2) : "Complex";
   (document.getElementById("Root2x") as HTMLTableCellElement).textContent =
-  isFinite(roots[1]) ? roots[1] : "Complex";
+    isFinite(roots[1]) ? roots[1].toFixed(2) : "Complex";
   (document.getElementById("Root3x") as HTMLTableCellElement).textContent =
-  isFinite(roots[2]) ? roots[2] : "Complex";
+    isFinite(roots[2]) ? roots[2].toFixed(2) : "Complex";
   (document.getElementById("Root1y") as HTMLTableCellElement).textContent =
     isFinite(roots[0]) ? "0" : "Complex";
   (document.getElementById("Root2y") as HTMLTableCellElement).textContent =
     isFinite(roots[1]) ? "0" : "Complex";
   (document.getElementById("Root3y") as HTMLTableCellElement).textContent =
     isFinite(roots[2]) ? "0" : "Complex";
-  (document.getElementById("p") as HTMLTableCellElement).textContent = roots[3];
-  (document.getElementById("q") as HTMLTableCellElement).textContent = roots[4];
+  (document.getElementById("p") as HTMLTableCellElement).textContent =
+    roots[3].toFixed(2);
+  (document.getElementById("q") as HTMLTableCellElement).textContent =
+    roots[4].toFixed(2);
   (
     document.getElementById("discriminant") as HTMLTableCellElement
-  ).textContent = roots[5];
+  ).textContent = roots[5].toFixed(2);
   drawGraph(a, b, c, d);
   (document.getElementById("Function") as HTMLHeadingElement).textContent =
     `Solving For: ${findfunction(a, b, c, d)}`;
 });
 
-function findfunction(a: number, b: number, c: number, d: number) {
-  let terms: string[] = [];
+function findfunction(a: number, b: number, c: number, d: number): string {
+  let terms: Array<string> = new Array();
 
   function formatTerm(coef: number, variable: string) {
     if (coef === 0) return;
 
-    const sign = coef > 0 ? "+" : "-";
-    const abs = Math.abs(coef);
+    const sign: string = coef > 0 ? "+" : "-";
+    const abs: number = Math.abs(coef);
 
-    let term = "";
+    let term: string = "";
 
     if (terms.length === 0) {
       // first term doesn't need leading +
@@ -85,9 +101,11 @@ function findfunction(a: number, b: number, c: number, d: number) {
   return terms.join("");
 }
 
-function drawGraph(a: number, b: number, c: number, d: number) {
-  const canvas = document.getElementById("graph") as HTMLCanvasElement;
-  const ctx = canvas.getContext("2d");
+function drawGraph(a: number, b: number, c: number, d: number): void {
+  const canvas: HTMLCanvasElement = document.getElementById(
+    "graph",
+  ) as HTMLCanvasElement;
+  const ctx: CanvasRenderingContext2D | null = canvas.getContext("2d");
 
   if (!ctx) {
     return;
@@ -96,13 +114,13 @@ function drawGraph(a: number, b: number, c: number, d: number) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   // declare begining and end of the graph and then calculate for the scale
-  const xMin = -15;
-  const xMax = 15;
-  const yMin = -15;
-  const yMax = 15;
+  const xMin: number = -15;
+  const xMax: number = 15;
+  const yMin: number = -15;
+  const yMax: number = 15;
 
-  const xScale = canvas.width / (xMax - xMin);
-  const yScale = canvas.height / (yMax - yMin);
+  const xScale: number = canvas.width / (xMax - xMin);
+  const yScale: number = canvas.height / (yMax - yMin);
 
   // draw the axis
   ctx.beginPath();
@@ -120,7 +138,7 @@ function drawGraph(a: number, b: number, c: number, d: number) {
 
   // draw the grid
   for (let x = xMin; x <= xMax; x++) {
-    const xPixel = (x - xMin) * xScale;
+    const xPixel: number = (x - xMin) * xScale;
 
     ctx.beginPath();
     ctx.moveTo(xPixel, 0);
@@ -128,7 +146,7 @@ function drawGraph(a: number, b: number, c: number, d: number) {
     ctx.stroke();
   }
   for (let y = yMin; y <= yMax; y++) {
-    const yPixel = canvas.height - (y - yMin) * yScale;
+    const yPixel: number = canvas.height - (y - yMin) * yScale;
 
     ctx.beginPath();
     ctx.moveTo(0, yPixel);
@@ -139,11 +157,11 @@ function drawGraph(a: number, b: number, c: number, d: number) {
   // Begin drawing the function by calculating the values
   ctx.beginPath();
   ctx.strokeStyle = "red";
-  let starting = true;
+  let starting: boolean = true;
   for (let i = 0; i < canvas.width; i++) {
-    const x = xMin + i / xScale; // math to turn the pixel into the scale
-    const y = f(a, b, c, d, x); // fidn the y value for hte fucntion
-    const canvasY = canvas.height / 2 - y * yScale;
+    const x: number = xMin + i / xScale; // math to turn the pixel into the scale
+    const y: number = f(a, b, c, d, x); // fidn the y value for hte fucntion
+    const canvasY: number = canvas.height / 2 - y * yScale;
     if (starting) {
       ctx.moveTo(i, canvasY);
       starting = false;
@@ -153,16 +171,16 @@ function drawGraph(a: number, b: number, c: number, d: number) {
   }
   ctx.stroke();
 
-  // darken the roots
-  const roots = cubicRoot(a, b, c, d);
+  // darken the roots with circle
+  const roots: Array<number> = cubicRoot(a, b, c, d);
   console.log(roots);
   ctx.fillStyle = "blue";
 
   for (let i = 0; i < 3; i++) {
-    let r = roots[i];
-    const xPixel = (r - xMin) * xScale;
-    const yPixel = canvas.height / 2; // y = 0
-    if (!isFinite(r)) return;
+    let r: number = roots[i];
+    const xPixel: number = (r - xMin) * xScale;
+    const yPixel: number = canvas.height / 2; // y = 0
+    if (!isFinite(r)) continue;
     ctx.beginPath();
     ctx.arc(xPixel, yPixel, 5, 0, Math.PI * 2);
     ctx.fill();
