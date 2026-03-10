@@ -1,5 +1,5 @@
-export function cubicRoot(a: number, b: number, c: number, d: number): Array<number> {
-  let res: Array<number> = new Array();
+export function cubicRoot(a: number, b: number, c: number, d: number): number[] {
+  let res: number[] = [];
   const p: number = (3 * a * c - b * b) / (3 * a * a);
   const q: number =
     (27 * a * a * d - 9 * a * b * c + 2 * b * b * b) / (27 * a * a * a);
@@ -37,8 +37,8 @@ function trigonometricMethod(
   b: number,
   p: number,
   q: number,
-): Array<number> {
-  const rval: Array<number> = new Array();
+): number[] {
+  const rval: number[] = [];
   const theta: number =
     (1 / 3) * Math.acos(-q / (2 * Math.sqrt(-(p / 3) * (p / 3) * (p / 3))));
   rval[0] = 2 * Math.sqrt(-p / 3) * Math.cos(theta) - b / (3 * a);

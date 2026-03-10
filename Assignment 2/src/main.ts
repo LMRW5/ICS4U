@@ -40,7 +40,7 @@ btn.addEventListener("click", (event) => {
   const d: number = Number(
     (document.getElementById("d") as HTMLInputElement).value,
   );
-  const roots: Array<number> = cubicRoot(a, b, c, d);
+  const roots: number[] = cubicRoot(a, b, c, d);
   console.log(roots);
   (document.getElementById("Root1x") as HTMLTableCellElement).textContent =
     isFinite(roots[0]) ? roots[0].toFixed(2) : "Complex";
@@ -67,7 +67,7 @@ btn.addEventListener("click", (event) => {
 });
 
 function findfunction(a: number, b: number, c: number, d: number): string {
-  let terms: Array<string> = new Array();
+  let terms: string[] = [];
 
   function formatTerm(coef: number, variable: string) {
     if (coef === 0) return;
@@ -137,7 +137,7 @@ function drawGraph(a: number, b: number, c: number, d: number): void {
   ctx.strokeStyle = "gray";
 
   // draw the grid
-  for (let x = xMin; x <= xMax; x++) {
+  for (let x: number = xMin; x <= xMax; x++) {
     const xPixel: number = (x - xMin) * xScale;
 
     ctx.beginPath();
@@ -145,7 +145,7 @@ function drawGraph(a: number, b: number, c: number, d: number): void {
     ctx.lineTo(xPixel, canvas.height);
     ctx.stroke();
   }
-  for (let y = yMin; y <= yMax; y++) {
+  for (let y: number = yMin; y <= yMax; y++) {
     const yPixel: number = canvas.height - (y - yMin) * yScale;
 
     ctx.beginPath();
@@ -158,7 +158,7 @@ function drawGraph(a: number, b: number, c: number, d: number): void {
   ctx.beginPath();
   ctx.strokeStyle = "red";
   let starting: boolean = true;
-  for (let i = 0; i < canvas.width; i++) {
+  for (let i: number = 0; i < canvas.width; i++) {
     const x: number = xMin + i / xScale; // math to turn the pixel into the scale
     const y: number = f(a, b, c, d, x); // fidn the y value for hte fucntion
     const canvasY: number = canvas.height / 2 - y * yScale;
@@ -172,7 +172,7 @@ function drawGraph(a: number, b: number, c: number, d: number): void {
   ctx.stroke();
 
   // darken the roots with circle
-  const roots: Array<number> = cubicRoot(a, b, c, d);
+  const roots: number[] = cubicRoot(a, b, c, d);
   console.log(roots);
   ctx.fillStyle = "blue";
 
