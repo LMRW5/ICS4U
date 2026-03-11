@@ -1,10 +1,6 @@
 import "./style.css";
 import { cubicRoot } from "./cubicsolver.ts";
 
-function f(a: number, b: number, c: number, d: number, x: number): number {
-  return a * x ** 3 + b * x ** 2 + c * x + d;
-}
-
 const inputs: NodeListOf<HTMLInputElement> =
   document.querySelectorAll<HTMLInputElement>("input[type='number']");
 
@@ -22,11 +18,7 @@ inputs.forEach((input) => {
   });
 });
 
-const btn: HTMLInputElement = document.getElementById(
-  "submittedform",
-) as HTMLInputElement;
-
-btn.addEventListener("click", (event) => {
+submitBtn.addEventListener("click", (event) => {
   event.preventDefault();
   const a: number = Number(
     (document.getElementById("a") as HTMLInputElement).value,
@@ -41,32 +33,35 @@ btn.addEventListener("click", (event) => {
     (document.getElementById("d") as HTMLInputElement).value,
   );
   const roots: number[] = cubicRoot(a, b, c, d);
-  console.log(roots);
-  (document.getElementById("Root1x") as HTMLTableCellElement).textContent =
-    isFinite(roots[0]) ? roots[0].toFixed(2) : "Complex";
-  (document.getElementById("Root2x") as HTMLTableCellElement).textContent =
-    isFinite(roots[1]) ? roots[1].toFixed(2) : "Complex";
-  (document.getElementById("Root3x") as HTMLTableCellElement).textContent =
-    isFinite(roots[2]) ? roots[2].toFixed(2) : "Complex";
-  (document.getElementById("Root1y") as HTMLTableCellElement).textContent =
-    isFinite(roots[0]) ? "0" : "Complex";
-  (document.getElementById("Root2y") as HTMLTableCellElement).textContent =
-    isFinite(roots[1]) ? "0" : "Complex";
-  (document.getElementById("Root3y") as HTMLTableCellElement).textContent =
-    isFinite(roots[2]) ? "0" : "Complex";
+  for (let i = 0; i < 3; i++) {
+    const xCell = document.getElementById(
+      `Root${i + 1}x`,
+    ) as HTMLTableCellElement;
+    const yCell = document.getElementById(
+      `Root${i + 1}y`,
+    ) as HTMLTableCellElement;
+
+    if (isFinite(roots[i])) {
+      xCell.textContent = roots[i].toFixed(2);
+      yCell.textContent = "0";
+    } else {
+      xCell.textContent = "Complex";
+      yCell.textContent = "Complex";
+    }
+  }
   (document.getElementById("p") as HTMLTableCellElement).textContent =
-    roots[3].toFixed(2);
+    roots[3].toFixed(5);
   (document.getElementById("q") as HTMLTableCellElement).textContent =
-    roots[4].toFixed(2);
+    roots[4].toFixed(5);
   (
     document.getElementById("discriminant") as HTMLTableCellElement
-  ).textContent = roots[5].toFixed(2);
+  ).textContent = roots[5].toFixed(5);
   drawGraph(a, b, c, d);
   (document.getElementById("Function") as HTMLHeadingElement).textContent =
-    `Solving For: ${findfunction(a, b, c, d)}`;
+    `Solving For: ${nameFunction(a, b, c, d)}`;
 });
 
-function findfunction(a: number, b: number, c: number, d: number): string {
+function nameFunction(a: number, b: number, c: number, d: number): string {
   let terms: string[] = [];
 
   function formatTerm(coef: number, variable: string) {
@@ -160,7 +155,7 @@ function drawGraph(a: number, b: number, c: number, d: number): void {
   let starting: boolean = true;
   for (let i: number = 0; i < canvas.width; i++) {
     const x: number = xMin + i / xScale; // math to turn the pixel into the scale
-    const y: number = f(a, b, c, d, x); // fidn the y value for hte fucntion
+    const y: number = a * x ** 3 + b * x ** 2 + c * x + d; // fidn the y value for hte fucntion
     const canvasY: number = canvas.height / 2 - y * yScale;
     if (starting) {
       ctx.moveTo(i, canvasY);
@@ -177,7 +172,7 @@ function drawGraph(a: number, b: number, c: number, d: number): void {
   ctx.fillStyle = "blue";
 
   for (let i = 0; i < 3; i++) {
-    let r: number = roots[i];
+    const r: number = roots[i];
     const xPixel: number = (r - xMin) * xScale;
     const yPixel: number = canvas.height / 2; // y = 0
     if (!isFinite(r)) continue;

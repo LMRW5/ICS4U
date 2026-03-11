@@ -128,3 +128,16 @@ td {
 #graph{
   border: 1px solid black;
 }
+
+#submittedform:disabled {
+  background-color: rgb(200, 200, 200);
+  color: rgb(120, 120, 120);
+  cursor: not-allowed;
+  transform: none;
+  opacity: 0.7;
+}
+
+#submittedform:disabled:hover {
+  background-color: rgb(200, 200, 200);
+  transform: none;
+}
