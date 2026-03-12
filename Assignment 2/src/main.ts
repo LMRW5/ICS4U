@@ -2,16 +2,16 @@ import "./style.css";
 import { cubicRoot } from "./cubicsolver.ts";
 
 const inputs: NodeListOf<HTMLInputElement> =
-  document.querySelectorAll<HTMLInputElement>("input[type='number']");
+  document.querySelectorAll<HTMLInputElement>("input");
 
 const submitBtn: HTMLInputElement = document.getElementById(
   "submittedform",
 ) as HTMLInputElement;
 
-inputs.forEach((input) => {
-  input.addEventListener("input", () => {
+inputs.forEach((imp) => {
+  imp.addEventListener("input", () => {
     const allFilled: boolean = Array.from(inputs).every(
-      (input) => input.value !== "",
+      (imp) => imp.value !== "",
     );
 
     submitBtn.disabled = !allFilled;
@@ -33,6 +33,7 @@ submitBtn.addEventListener("click", (event) => {
     (document.getElementById("d") as HTMLInputElement).value,
   );
   const roots: number[] = cubicRoot(a, b, c, d);
+
   for (let i = 0; i < 3; i++) {
     const xCell = document.getElementById(
       `Root${i + 1}x`,
@@ -47,8 +48,9 @@ submitBtn.addEventListener("click", (event) => {
     } else {
       xCell.textContent = "Complex";
       yCell.textContent = "Complex";
-    }
-  }
+    };
+  };
+
   (document.getElementById("p") as HTMLTableCellElement).textContent =
     roots[3].toFixed(5);
   (document.getElementById("q") as HTMLTableCellElement).textContent =
@@ -94,7 +96,7 @@ function nameFunction(a: number, b: number, c: number, d: number): string {
   formatTerm(d, "");
 
   return terms.join("");
-}
+};
 
 function drawGraph(a: number, b: number, c: number, d: number): void {
   const canvas: HTMLCanvasElement = document.getElementById(
@@ -104,7 +106,7 @@ function drawGraph(a: number, b: number, c: number, d: number): void {
 
   if (!ctx) {
     return;
-  }
+  };
   // wipe canvas to maek sure its claer
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -139,7 +141,8 @@ function drawGraph(a: number, b: number, c: number, d: number): void {
     ctx.moveTo(xPixel, 0);
     ctx.lineTo(xPixel, canvas.height);
     ctx.stroke();
-  }
+  };
+
   for (let y: number = yMin; y <= yMax; y++) {
     const yPixel: number = canvas.height - (y - yMin) * yScale;
 
@@ -147,37 +150,42 @@ function drawGraph(a: number, b: number, c: number, d: number): void {
     ctx.moveTo(0, yPixel);
     ctx.lineTo(canvas.width, yPixel);
     ctx.stroke();
-  }
+  };
 
   // Begin drawing the function by calculating the values
   ctx.beginPath();
   ctx.strokeStyle = "red";
   let starting: boolean = true;
+
   for (let i: number = 0; i < canvas.width; i++) {
     const x: number = xMin + i / xScale; // math to turn the pixel into the scale
     const y: number = a * x ** 3 + b * x ** 2 + c * x + d; // fidn the y value for hte fucntion
     const canvasY: number = canvas.height / 2 - y * yScale;
+
     if (starting) {
       ctx.moveTo(i, canvasY);
       starting = false;
     } else {
       ctx.lineTo(i, canvasY);
-    }
-  }
+    };
+  };
+
   ctx.stroke();
 
   // darken the roots with circle
   const roots: number[] = cubicRoot(a, b, c, d);
   console.log(roots);
-  ctx.fillStyle = "blue";
+  ctx.fillStyle = "black";
 
   for (let i = 0; i < 3; i++) {
     const r: number = roots[i];
     const xPixel: number = (r - xMin) * xScale;
     const yPixel: number = canvas.height / 2; // y = 0
-    if (!isFinite(r)) continue;
+    if (!isFinite(r)) {
+      continue;
+    };
     ctx.beginPath();
     ctx.arc(xPixel, yPixel, 5, 0, Math.PI * 2);
     ctx.fill();
-  }
-}
+  };
+};

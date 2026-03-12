@@ -3,7 +3,8 @@ export function cubicRoot(a: number, b: number, c: number, d: number): number[] 
   const p: number = (3 * a * c - b * b) / (3 * a * a);
   const q: number =
     (27 * a * a * d - 9 * a * b * c + 2 * b * b * b) / (27 * a * a * a);
-  const discriminant: number = (q / 2) * (q / 2) + (p / 3) * (p / 3) * (p / 3);
+  const discriminant: number = Number(((q / 2) * (q / 2) + (p / 3) * (p / 3) * (p / 3)).toFixed(10));
+
   if (discriminant < 0) {
     // Case A (3 real roots)
     res = trigonometricMethod(a, b, p, q);
@@ -24,7 +25,7 @@ export function cubicRoot(a: number, b: number, c: number, d: number): number[] 
       res[1] = Math.cbrt(q / 2) - b / (3 * a);
       res[2] = Math.cbrt(q / 2) - b / (3 * a);
     }
-  }
+  };
   res = res.sort().reverse();
   res[3] = p;
   res[4] = q;
