@@ -1,0 +1,36 @@
+export function cubicEquation(a: number, b: number, c: number, d: number) {
+    let terms: string[] = [];
+
+    function formatTerm(coef: number, variable: string) {
+        if (coef === 0) return;
+
+        const sign: string = coef > 0 ? "+" : "-";
+        const abs: number = Math.abs(coef);
+
+        let term: string = "";
+
+        if (terms.length === 0) {
+            // first term doesn't need leading +
+            if (coef < 0) term += "-";
+        } else {
+            term += ` ${sign} `;
+        }
+
+        if (abs !== 1 || variable === "") {
+            term += abs;
+        }
+
+        term += variable;
+
+        terms.push(term);
+    }
+
+    formatTerm(a, "x³");
+    formatTerm(b, "x²");
+    formatTerm(c, "x");
+    formatTerm(d, "");
+
+    return <>
+        <h2>{terms.join("")}</h2>
+    </>;
+}
