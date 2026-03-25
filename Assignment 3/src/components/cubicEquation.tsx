@@ -1,4 +1,6 @@
-export function cubicEquation(a: number, b: number, c: number, d: number) {
+import type { equationProps } from "../types";
+
+export function CubicEquation({a, b, c, d}:equationProps) {
     let terms: string[] = [];
 
     function formatTerm(coef: number, variable: string) {
