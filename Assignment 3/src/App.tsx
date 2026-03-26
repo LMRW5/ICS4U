@@ -21,7 +21,7 @@ function App() {
         history={history}
       />
       <CubicEquation a={a} b={b} c={c} d={d} />
-      <CubicHistory history = {history}/>
+      <CubicHistory historyList = {history}/>
     </>
   );
 }

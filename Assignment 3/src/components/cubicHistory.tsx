@@ -1,6 +1,6 @@
-import type { historyObject } from "../types";
+import type { historyProps } from "../types";
 
-export function CubicHistory(history: historyObject[]) {
+export function CubicHistory({ historyList }: historyProps) {
   return (
     <>
       <table>
@@ -11,7 +11,7 @@ export function CubicHistory(history: historyObject[]) {
           <th>d</th>
         </thead>
         <tbody>
-          {history.map((element) => (
+          {historyList.map((element) => (
             <tr>
               <td>{element.a}</td>
               <td>{element.b}</td>

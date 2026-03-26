@@ -18,3 +18,7 @@ export interface equationProps{
   c: number;
   d: number;
 }
+
+export interface historyProps{
+  historyList: historyObject[];
+}
