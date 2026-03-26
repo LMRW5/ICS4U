@@ -1,8 +1,8 @@
 import { useState } from "react";
 import type { historyObject } from "./types";
-import { CubicInput } from "./components/cubicInput";
-import { CubicEquation } from "./components/cubicEquation";
-import { CubicHistory } from "./components/cubicHistory";
+import { CubicInput } from "./components/CubicInput";
+import { CubicEquation } from "./components/CubicEquation";
+import { CubicHistory } from "./components/CubicHistory";
 
 function App() {
   const [a, setA] = useState<number>(1);

@@ -33,7 +33,7 @@ export function CubicInput({
       <form
         className="inputForm"
         onSubmit={(event) => {
-          event.preventDefault;
+          event.preventDefault();
           handleSubmit();
         }}
       >
@@ -76,7 +76,7 @@ export function CubicInput({
             setD(Number(event.currentTarget.value));
           }}
         ></input>
-        <input type="submit" id="submittedform" value="Submit" disabled />
+        <input type="submit" id="submittedform" value="Submit" />
       </form>
     </>
   );

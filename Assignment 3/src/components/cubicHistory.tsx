@@ -5,18 +5,20 @@ export function CubicHistory({ historyList }: historyProps) {
     <>
       <table>
         <thead>
-          <th>a</th>
-          <th>b</th>
-          <th>c</th>
-          <th>d</th>
+          <tr>
+            <th>a</th>
+            <th>b</th>
+            <th>c</th>
+            <th>d</th>
+          </tr>
         </thead>
         <tbody>
-          {historyList.map((element) => (
+          {historyList.map((element, i) => (
             <tr>
-              <td>{element.a}</td>
-              <td>{element.b}</td>
-              <td>{element.c}</td>
-              <td>{element.d}</td>
+              <td key={"a" + i}>{element.a}</td>
+              <td key={"b" + i}>{element.b}</td>
+              <td key={"c" + i}>{element.c}</td>
+              <td key={"d" + i}>{element.d}</td>
             </tr>
           ))}
         </tbody>
