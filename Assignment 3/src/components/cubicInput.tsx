@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import type { historyObject, inputProps } from "../types";
+import type { equationProps, inputProps } from "../types";
 
 export function CubicInput({
   setA,
@@ -18,7 +18,7 @@ export function CubicInput({
     if (!aRef.current || !bRef.current || !cRef.current || !dRef.current) {
       return;
     }
-    const nextTerm: historyObject = {
+    const nextTerm: equationProps = {
       a: Number(aRef.current.value),
       b: Number(bRef.current.value),
       c: Number(cRef.current.value),
