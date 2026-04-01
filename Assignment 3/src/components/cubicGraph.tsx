@@ -97,5 +97,8 @@ export function CubicGraph({ a, b, c, d }: equationProps) {
     }
   }, [a, b, c, d]);
 
-  return <canvas ref={canvasRef} width={600} height={400} />;
+  return<><canvas ref={canvasRef} width={600} height={400} /> 
+  <input type="number"></input>
+  <input type="number"></input>
+  </>;
 }
