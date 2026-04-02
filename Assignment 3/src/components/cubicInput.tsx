@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import type { equationProps, inputProps } from "../types";
+import type { equationProps, inputProps } from "../utils/types";
 
 export function CubicInput({
   setA,
@@ -76,7 +76,7 @@ export function CubicInput({
             setD(Number(event.currentTarget.value));
           }}
         ></input>
-        <input type="submit" id="submittedform" value="Submit" />
+        <input type="submit" id="submittedform" value="Save" />
       </form>
     </>
   );

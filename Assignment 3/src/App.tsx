@@ -1,10 +1,11 @@
 import { useState } from "react";
-import type { equationProps } from "./types";
-import { CubicInput } from "./components/cubicInput";
-import { CubicEquation } from "./components/cubicEquation";
-import { CubicHistory } from "./components/cubicHistory";
-import { CubicTable } from "./components/cubicTable";
-import { CubicGraph } from "./components/cubicGraph";
+import type { equationProps } from "./utils/types";
+import { CubicInput } from "./components/CubicInput";
+import { CubicEquation } from "./components/CubicEquation";
+import { CubicHistory } from "./components/CubicHistory";
+import { CubicTable } from "./components/CubicTable";
+import { CubicGraph } from "./components/CubicGraph";
+import { TurningPoints } from "./components/TurningPoints";
 
 function App() {
   const [a, setA] = useState<number>(1);
@@ -25,7 +26,8 @@ function App() {
       <CubicEquation a={a} b={b} c={c} d={d} />
       <CubicTable a={a} b={b} c={c} d={d} />
       <CubicGraph a={a} b={b} c={c} d={d} />
-      <CubicHistory historyList = {history}/>
+      <CubicHistory historyList={history} />
+      <TurningPoints a={a} b={b} c={c} d={d} />
     </>
   );
 }

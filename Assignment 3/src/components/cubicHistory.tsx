@@ -1,4 +1,4 @@
-import type { historyProps } from "../types";
+import type { historyProps } from "../utils/types";
 
 export function CubicHistory({ historyList }: historyProps) {
   return (

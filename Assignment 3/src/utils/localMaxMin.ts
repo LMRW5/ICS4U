@@ -4,10 +4,13 @@ export function localMaxMin(a:number,b:number,c:number,d:number){
     if (discriminant > 0) {
         const x1 = (-b1 + Math.sqrt(discriminant)) / (2*a1);
         const x2 = (-b1 - Math.sqrt(discriminant)) / (2*a1);
-        return [{x: x1, y: evaluate(a,b,c,d,x1)}, {x: x2, y: evaluate(a,b,c,d,x2)}];
-    } else if (discriminant === 0) {
-        const x = -b1 / (2*a1);
-        return [{x: x, y: evaluate(a,b,c,d,x)}, {x: x, y: evaluate(a,b,c,d,x)}];
+        const y1 = evaluate(a,b,c,d,x1);
+        const y2 = evaluate(a,b,c,d,x2);
+        if (y1 < y2){
+            return [{x: x1, y: y1}, {x: x2, y: y2}];
+        } else{
+            return [{x: x1, y: y2}, {x: x2, y: y1}];
+        }
     } else {
         return [{x: NaN, y: NaN}, {x: NaN, y: NaN}];
     }

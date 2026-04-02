@@ -1,4 +1,4 @@
-import type { equationProps } from "../types";
+import type { equationProps } from "../utils/types";
 
 export function CubicEquation({a, b, c, d}:equationProps) {
     let terms: string[] = [];

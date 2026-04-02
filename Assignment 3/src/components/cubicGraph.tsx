@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
-import { cubicRoot } from "../cubicsolver";
-import type { equationProps } from "../types";
+import { cubicRoot } from "../utils/cubicsolver";
+import type { equationProps } from "../utils/types";
+import { localMaxMin } from "../utils/localMaxMin";
 
 export function CubicGraph({ a, b, c, d }: equationProps) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -11,7 +12,7 @@ export function CubicGraph({ a, b, c, d }: equationProps) {
 
     const ctx = canvas.getContext("2d");
     if (!ctx) {
-        return;
+      return;
     }
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -95,10 +96,24 @@ export function CubicGraph({ a, b, c, d }: equationProps) {
       ctx.arc(xPixel, yPixel, 5, 0, Math.PI * 2);
       ctx.fill();
     }
+    // roots
+    const minmax = localMaxMin(a, b, c, d);
+    ctx.fillStyle = "blue";
+
+    for (let i = 0; i < 2; i++) {
+      const px = minmax[i].x;
+      const py = minmax[i].y;
+      if (!isFinite(px) || !isFinite(py)) {
+        continue;
+      }
+
+      const xPixel = (px - xMin) * xScale;
+      const yPixel = -(py-yMax) * yScale;
+      ctx.beginPath();
+      ctx.arc(xPixel, yPixel, 5, 0, Math.PI * 2);
+      ctx.fill();
+    }
   }, [a, b, c, d]);
 
-  return<><canvas ref={canvasRef} width={600} height={400} /> 
-  <input type="number"></input>
-  <input type="number"></input>
-  </>;
+  return <canvas ref={canvasRef} width={500} height={500} />;
 }
