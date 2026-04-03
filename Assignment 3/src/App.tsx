@@ -8,10 +8,10 @@ import { CubicGraph } from "./components/CubicGraph";
 import { TurningPoints } from "./components/TurningPoints";
 
 function App() {
-  const [a, setA] = useState<number>(1);
-  const [b, setB] = useState<number>(1);
-  const [c, setC] = useState<number>(1);
-  const [d, setD] = useState<number>(1);
+  const [a, setA] = useState<number>(0);
+  const [b, setB] = useState<number>(0);
+  const [c, setC] = useState<number>(0);
+  const [d, setD] = useState<number>(0);
   const [history, setHistory] = useState<equationProps[]>([]);
   return (
     <>
@@ -24,10 +24,23 @@ function App() {
         history={history}
       />
       <CubicEquation a={a} b={b} c={c} d={d} />
-      <CubicTable a={a} b={b} c={c} d={d} />
-      <CubicGraph a={a} b={b} c={c} d={d} />
-      <CubicHistory historyList={history} />
-      <TurningPoints a={a} b={b} c={c} d={d} />
+      <div className="flex justify-center items-start gap-10 mt-5 mb-5">
+        {/* LEFT COLUMN: Table + Turning Points */}
+        <div className="flex flex-col items-center gap-6">
+          <CubicTable a={a} b={b} c={c} d={d} />
+          <TurningPoints a={a} b={b} c={c} d={d} />
+        </div>
+
+        {/* MIDDLE COLUMN: Graph */}
+        <div className="flex justify-center">
+          <CubicGraph a={a} b={b} c={c} d={d} />
+        </div>
+
+        {/* RIGHT COLUMN: History */}
+        <div className="flex justify-center">
+          <CubicHistory historyList={history} />
+        </div>
+      </div>
     </>
   );
 }

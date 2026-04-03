@@ -15,69 +15,66 @@ export function CubicInput({
   const dRef = useRef<HTMLInputElement | null>(null);
 
   function handleSubmit() {
-    if (!aRef.current || !bRef.current || !cRef.current || !dRef.current) {
+    if (!aRef.current || !bRef.current || !cRef.current || !dRef.current)
       return;
-    }
+
     const nextTerm: equationProps = {
       a: Number(aRef.current.value),
       b: Number(bRef.current.value),
       c: Number(cRef.current.value),
       d: Number(dRef.current.value),
     };
+
     setHistory([...history, nextTerm]);
   }
 
   return (
-    <>
-      <h1>Cubic Solver</h1>
+    <div className="w-full flex flex-col items-center justify-center mt-6">
+
+      {/* Title */}
+      <h1 className="text-3xl font-bold text-gray-700 mb-4">
+        Cubic Solver
+      </h1>
+
+      {/* Form */}
       <form
-        className="inputForm"
+        className="flex items-end gap-4 bg-white border border-gray-300 p-4 rounded-xl shadow-sm"
         onSubmit={(event) => {
           event.preventDefault();
           handleSubmit();
         }}
       >
-        <label htmlFor="a">a:</label>
-        <input
-          type="number"
-          ref={aRef}
-          id="a"
-          onChange={(event) => {
-            setA(Number(event.currentTarget.value));
-          }}
-        ></input>
-        <label htmlFor="b">b:</label>
-        <input
-          type="number"
-          ref={bRef}
-          id="b"
-          onChange={(event) => {
-            setB(Number(event.currentTarget.value));
-          }}
-          required
-        ></input>
-        <label htmlFor="c">c:</label>
-        <input
-          type="number"
-          ref={cRef}
-          id="c"
-          required
-          onChange={(event) => {
-            setC(Number(event.currentTarget.value));
-          }}
-        ></input>
-        <label htmlFor="d">d:</label>
-        <input
-          type="number"
-          ref={dRef}
-          id="d"
-          required
-          onChange={(event) => {
-            setD(Number(event.currentTarget.value));
-          }}
-        ></input>
-        <input type="submit" id="submittedform" value="Save" />
+        {/* Input group */}
+        {[
+          { label: "a-value:", ref: aRef, setter: setA },
+          { label: "b-value:", ref: bRef, setter: setB },
+          { label: "c-value:", ref: cRef, setter: setC },
+          { label: "d-value:", ref: dRef, setter: setD },
+        ].map((item, i) => (
+          <div key={i} className="flex flex-col">
+            <label className="text-gray-600 mb-1 text-sm">{item.label}</label>
+            <input
+              type="number"
+              ref={item.ref}
+              defaultValue={0}
+              className="w-24 px-2 py-1 rounded-md border border-gray-300 bg-gray-50 
+                         focus:outline-none focus:ring-2 focus:ring-gray-400"
+              onChange={(e) => item.setter(Number(e.currentTarget.value))}
+            />
+          </div>
+        ))}
+
+        {/* Button */}
+        <button
+          type="submit"
+          className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold 
+             px-4 py-2 rounded-lg transition-transform duration-150 
+             hover:-translate-y-1 focus:outline-none 
+             focus:ring-2 focus:ring-gray-400"
+        >
+          Save
+        </button>
       </form>
-    </>
+    </div>
   );
 }

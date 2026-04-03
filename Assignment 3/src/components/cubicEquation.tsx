@@ -33,6 +33,6 @@ export function CubicEquation({a, b, c, d}:equationProps) {
     formatTerm(d, "");
 
     return <>
-        <h2>{terms.join("")}</h2>
+        <h2 className="text-xl font-bold text-black-500 mt-8 text-center mt-[10px]">Solving For: {terms.join("")}</h2>
     </>;
 }
