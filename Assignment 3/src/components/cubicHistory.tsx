@@ -6,7 +6,6 @@ export function CubicHistory({ historyList }: historyProps) {
       <h2 className="text-center font-semibold text-lg mb-2">History</h2>
 
       <div className="border-2 border-gray-400 rounded-xl bg-black-400 p-3">
-        {/* Header stays fixed */}
         <table className="w-full">
           <thead>
             <tr className="bg-gray-400 text-center rounded-md">
@@ -18,7 +17,6 @@ export function CubicHistory({ historyList }: historyProps) {
           </thead>
         </table>
 
-        {/* Scrollable body with fixed height even when empty */}
         <div className="bg-white rounded-md h-[350px] overflow-y-auto">
           <table className="w-full">
             <tbody>

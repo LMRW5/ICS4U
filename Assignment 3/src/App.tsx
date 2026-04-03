@@ -25,18 +25,15 @@ function App() {
       />
       <CubicEquation a={a} b={b} c={c} d={d} />
       <div className="flex justify-center items-start gap-10 mt-5 mb-5">
-        {/* LEFT COLUMN: Table + Turning Points */}
         <div className="flex flex-col items-center gap-6">
           <CubicTable a={a} b={b} c={c} d={d} />
           <TurningPoints a={a} b={b} c={c} d={d} />
         </div>
 
-        {/* MIDDLE COLUMN: Graph */}
         <div className="flex justify-center">
           <CubicGraph a={a} b={b} c={c} d={d} />
         </div>
 
-        {/* RIGHT COLUMN: History */}
         <div className="flex justify-center">
           <CubicHistory historyList={history} />
         </div>

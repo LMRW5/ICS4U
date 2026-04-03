@@ -69,8 +69,7 @@ export function CubicInput({
           type="submit"
           className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold 
              px-4 py-2 rounded-lg transition-transform duration-150 
-             hover:-translate-y-1 focus:outline-none 
-             focus:ring-2 focus:ring-gray-400"
+             hover:-translate-y-1 cursor-pointer"
         >
           Save
         </button>

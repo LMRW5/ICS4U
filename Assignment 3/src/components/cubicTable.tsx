@@ -5,13 +5,12 @@ export function CubicTable({ a, b, c, d }: equationProps) {
   const roots = cubicRoot(a, b, c, d);
 
   return (
-    <div className="inline-block mt-4">
+    <div className="inline-block">
       <div className="flex gap-4 items-start justify-start">
 
-        <table className="w-[400px] border-2 border-gray rounded-xl bg-orange-400 p-1">
-          <tbody className="flex flex-col bg-white p-1 rounded-md gap-1">
+        <table className="w-[400px] border-2 border-gray-400 rounded-xl p-3">
+          <tbody className="flex flex-col bg-white p-2 rounded-md gap-2">
 
-            {/* Top section */}
             <tr className="flex gap-1">
               <th className="flex-1 bg-gray-400 py-1 rounded-md text-center">
                 p
@@ -39,7 +38,6 @@ export function CubicTable({ a, b, c, d }: equationProps) {
               </td>
             </tr>
 
-            {/* Header row */}
             <tr className="flex gap-1 mt-1">
               <th className="flex-1 bg-gray-400 py-1 rounded-md text-center">
                 Value
@@ -52,7 +50,6 @@ export function CubicTable({ a, b, c, d }: equationProps) {
               </th>
             </tr>
 
-            {/* Roots */}
             {[0, 1, 2].map((i) => (
               <tr key={i} className="flex gap-1">
                 <th className="flex-1 bg-gray-400 py-1 rounded-md text-center">
