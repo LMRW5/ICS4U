@@ -31,12 +31,10 @@ export function CubicInput({
   return (
     <div className="w-full flex flex-col items-center justify-center mt-6">
 
-      {/* Title */}
       <h1 className="text-3xl font-bold text-gray-700 mb-4">
         Cubic Solver
       </h1>
 
-      {/* Form */}
       <form
         className="flex items-end gap-4 bg-white border border-gray-300 p-4 rounded-xl shadow-sm"
         onSubmit={(event) => {
@@ -44,27 +42,54 @@ export function CubicInput({
           handleSubmit();
         }}
       >
-        {/* Input group */}
-        {[
-          { label: "a-value:", ref: aRef, setter: setA },
-          { label: "b-value:", ref: bRef, setter: setB },
-          { label: "c-value:", ref: cRef, setter: setC },
-          { label: "d-value:", ref: dRef, setter: setD },
-        ].map((item, i) => (
-          <div key={i} className="flex flex-col">
-            <label className="text-gray-600 mb-1 text-sm">{item.label}</label>
-            <input
-              type="number"
-              ref={item.ref}
-              defaultValue={0}
-              className="w-24 px-2 py-1 rounded-md border border-gray-300 bg-gray-50 
-                         focus:outline-none focus:ring-2 focus:ring-gray-400"
-              onChange={(e) => item.setter(Number(e.currentTarget.value))}
-            />
-          </div>
-        ))}
+        <div className="flex flex-col">
+          <label className="text-gray-600 mb-1 text-sm">a-value:</label>
+          <input
+            type="number"
+            ref={aRef}
+            defaultValue={0}
+            className="w-24 px-2 py-1 rounded-md border border-gray-300 bg-gray-50 
+                       focus:outline-none focus:ring-2 focus:ring-gray-400"
+            onChange={(e) => setA(Number(e.currentTarget.value))}
+          />
+        </div>
 
-        {/* Button */}
+        <div className="flex flex-col">
+          <label className="text-gray-600 mb-1 text-sm">b-value:</label>
+          <input
+            type="number"
+            ref={bRef}
+            defaultValue={0}
+            className="w-24 px-2 py-1 rounded-md border border-gray-300 bg-gray-50 
+                       focus:outline-none focus:ring-2 focus:ring-gray-400"
+            onChange={(e) => setB(Number(e.currentTarget.value))}
+          />
+        </div>
+
+        <div className="flex flex-col">
+          <label className="text-gray-600 mb-1 text-sm">c-value:</label>
+          <input
+            type="number"
+            ref={cRef}
+            defaultValue={0}
+            className="w-24 px-2 py-1 rounded-md border border-gray-300 bg-gray-50 
+                       focus:outline-none focus:ring-2 focus:ring-gray-400"
+            onChange={(e) => setC(Number(e.currentTarget.value))}
+          />
+        </div>
+
+        <div className="flex flex-col">
+          <label className="text-gray-600 mb-1 text-sm">d-value:</label>
+          <input
+            type="number"
+            ref={dRef}
+            defaultValue={0}
+            className="w-24 px-2 py-1 rounded-md border border-gray-300 bg-gray-50 
+                       focus:outline-none focus:ring-2 focus:ring-gray-400"
+            onChange={(e) => setD(Number(e.currentTarget.value))}
+          />
+        </div>
+
         <button
           type="submit"
           className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold 

@@ -2,7 +2,7 @@ import { cubicRoot } from "../utils/cubicsolver";
 import type { equationProps } from "../utils/types";
 
 export function CubicTable({ a, b, c, d }: equationProps) {
-  const roots = cubicRoot(a, b, c, d);
+  const roots: number[] = cubicRoot(a, b, c, d);
 
   return (
     <div className="inline-block">
