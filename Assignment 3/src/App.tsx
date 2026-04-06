@@ -25,7 +25,7 @@ function App() {
       />
       <CubicEquation a={a} b={b} c={c} d={d} />
       <div className="flex justify-center items-start gap-10 mt-5 mb-5">
-        <div className="flex flex-col items-center gap-6">
+        <div className="flex flex-col items-center gap-6 mt-auto mb-auto">
           <CubicTable a={a} b={b} c={c} d={d} />
           <TurningPoints a={a} b={b} c={c} d={d} />
         </div>
