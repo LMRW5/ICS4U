@@ -8,7 +8,9 @@ export function CubicGraph({ a, b, c, d }: equationProps) {
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!canvas) {
+      return
+    };
 
     const ctx = canvas.getContext("2d");
     if (!ctx) {

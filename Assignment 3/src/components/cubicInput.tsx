@@ -15,9 +15,9 @@ export function CubicInput({
   const dRef = useRef<HTMLInputElement | null>(null);
 
   function handleSubmit() {
-    if (!aRef.current || !bRef.current || !cRef.current || !dRef.current)
+    if (!aRef.current || !bRef.current || !cRef.current || !dRef.current){
       return;
-
+    }
     const nextTerm: equationProps = {
       a: Number(aRef.current.value),
       b: Number(bRef.current.value),
