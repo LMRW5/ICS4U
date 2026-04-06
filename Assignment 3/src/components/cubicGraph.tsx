@@ -81,7 +81,7 @@ export function CubicGraph({ a, b, c, d }: equationProps) {
 
     // roots
     const roots = cubicRoot(a, b, c, d);
-    ctx.fillStyle = "black";
+    ctx.fillStyle = "#000000";
 
     for (let i = 0; i < 3; i++) {
       const r = roots[i];
@@ -93,10 +93,10 @@ export function CubicGraph({ a, b, c, d }: equationProps) {
       const yPixel = canvas.height / 2;
 
       ctx.beginPath();
-      ctx.arc(xPixel, yPixel, 5, 0, Math.PI * 2);
+      ctx.arc(xPixel, yPixel, 4, 0, Math.PI * 2);
       ctx.fill();
     }
-    // roots
+    // Turning Points
     const minmax = localMaxMin(a, b, c, d);
     ctx.fillStyle = "blue";
 
@@ -110,7 +110,7 @@ export function CubicGraph({ a, b, c, d }: equationProps) {
       const xPixel = (px - xMin) * xScale;
       const yPixel = -(py-yMax) * yScale;
       ctx.beginPath();
-      ctx.arc(xPixel, yPixel, 5, 0, Math.PI * 2);
+      ctx.arc(xPixel, yPixel, 4, 0, Math.PI * 2);
       ctx.fill();
     }
   }, [a, b, c, d]);

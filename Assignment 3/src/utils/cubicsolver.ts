@@ -3,7 +3,7 @@ export function cubicRoot(a: number, b: number, c: number, d: number): number[] 
     const p: number = (3 * a * c - b * b) / (3 * a * a);
     const q: number =
       (27 * a * a * d - 9 * a * b * c + 2 * b * b * b) / (27 * a * a * a);
-    const discriminant: number = Number(((q / 2) * (q / 2) + (p / 3) * (p / 3) * (p / 3)).toFixed(10));
+const discriminant: number = Number(((q / 2) * (q / 2) + (p / 3) * (p / 3) * (p / 3)).toFixed(6))
   
     if (discriminant < 0) {
       // Case A (3 real roots)
@@ -50,15 +50,14 @@ export function cubicRoot(a: number, b: number, c: number, d: number): number[] 
     return rval;
   }
   
-  function cardanoMethod(a: number, b: number, p: number, q: number): number {
-    return (
-      Math.cbrt(
-        -q / 2 + Math.sqrt((q / 2) * (q / 2) + (p / 3) * (p / 3) * (p / 3)),
-      ) +
-      Math.cbrt(
-        -q / 2 - Math.sqrt((q / 2) * (q / 2) + (p / 3) * (p / 3) * (p / 3)),
-      ) -
-      b / (3 * a)
-    );
-  }
-  
+function cardanoMethod(a: number, b: number, p: number, q: number): number {
+    const discriminant = (q / 2) * (q / 2) + (p / 3) * (p / 3) * (p / 3);
+    
+    // If discriminant is slightly negative due to precision, treat as 0
+    const sqrtD = Math.sqrt(Math.max(0, discriminant)); 
+    
+    const u = Math.cbrt(-q / 2 + sqrtD);
+    const v = Math.cbrt(-q / 2 - sqrtD);
+    
+    return u + v - b / (3 * a);
+}
