@@ -27,23 +27,13 @@ export function CubicGraph({ a, b, c, d }: equationProps) {
     const xScale: number = canvas.width / (xMax - xMin);
     const yScale: number = canvas.height / (yMax - yMin);
 
-    // axes
-    ctx.beginPath();
-    ctx.strokeStyle = "black";
 
-    ctx.moveTo(0, canvas.height / 2);
-    ctx.lineTo(canvas.width, canvas.height / 2);
-
-    ctx.moveTo(canvas.width / 2, 0);
-    ctx.lineTo(canvas.width / 2, canvas.height);
-
-    ctx.stroke();
 
     // grid
     ctx.strokeStyle = "gray";
-
+    ctx.lineWidth = 1;
     for (let x: number = xMin; x <= xMax; x++) {
-      const xPixel:number = (x - xMin) * xScale;
+      const xPixel: number = (x - xMin) * xScale;
 
       ctx.beginPath();
       ctx.moveTo(xPixel, 0);
@@ -59,9 +49,20 @@ export function CubicGraph({ a, b, c, d }: equationProps) {
       ctx.lineTo(canvas.width, yPixel);
       ctx.stroke();
     }
-
-    // function
+    // axis
     ctx.beginPath();
+    ctx.strokeStyle = "black";
+
+    ctx.moveTo(0, canvas.height / 2);
+    ctx.lineTo(canvas.width, canvas.height / 2);
+
+    ctx.moveTo(canvas.width / 2, 0);
+    ctx.lineTo(canvas.width / 2, canvas.height);
+
+    ctx.stroke();
+    ctx.lineWidth = 3;
+    // function
+    ctx.beginPath(); ctx.lineWidth = 1;
     ctx.strokeStyle = "red";
 
     let starting: boolean = true;

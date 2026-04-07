@@ -22,6 +22,7 @@ function App() {
         setD={setD}
         setHistory={setHistory}
         history={history}
+        a={a} b={b} c={c} d={d}
       />
       <CubicEquation a={a} b={b} c={c} d={d} />
       <div className="flex justify-center items-start gap-10 mt-5 mb-5">
