@@ -4,8 +4,9 @@ export function CubicEquation({a, b, c, d}:EquationProps) {
     let terms: string[] = [];
 
     function formatTerm(coef: number, variable: string) {
-        if (coef === 0) return;
-
+        if (coef === 0) {
+            return;
+        }
         const sign: string = coef > 0 ? "+" : "-";
         const abs: number = Math.abs(coef);
 
