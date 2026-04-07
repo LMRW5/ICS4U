@@ -1,4 +1,4 @@
-import type { historyProps } from "../utils/types";
+import type { equationProps, historyProps } from "../utils/types";
 
 export function CubicHistory({ historyList }: historyProps) {
   return (
@@ -20,7 +20,7 @@ export function CubicHistory({ historyList }: historyProps) {
         <div className="bg-white rounded-md h-[350px] overflow-y-auto">
           <table className="w-full table-fixed"> 
             <tbody>
-              {historyList.map((element, i) => (
+              {historyList.map((element:equationProps, i: number) => (
                 <tr
                   key={i}
                   className="text-center border-b last:border-none border-gray-300"

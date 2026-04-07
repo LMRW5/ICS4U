@@ -9,8 +9,8 @@ export function CubicGraph({ a, b, c, d }: equationProps) {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) {
-      return
-    };
+      return;
+    }
 
     const ctx = canvas.getContext("2d");
     if (!ctx) {
@@ -19,13 +19,13 @@ export function CubicGraph({ a, b, c, d }: equationProps) {
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    const xMin = -15;
-    const xMax = 15;
-    const yMin = -15;
-    const yMax = 15;
+    const xMin: number = -15;
+    const xMax: number = 15;
+    const yMin: number = -15;
+    const yMax: number = 15;
 
-    const xScale = canvas.width / (xMax - xMin);
-    const yScale = canvas.height / (yMax - yMin);
+    const xScale: number = canvas.width / (xMax - xMin);
+    const yScale: number = canvas.height / (yMax - yMin);
 
     // axes
     ctx.beginPath();
@@ -42,8 +42,8 @@ export function CubicGraph({ a, b, c, d }: equationProps) {
     // grid
     ctx.strokeStyle = "gray";
 
-    for (let x = xMin; x <= xMax; x++) {
-      const xPixel = (x - xMin) * xScale;
+    for (let x: number = xMin; x <= xMax; x++) {
+      const xPixel:number = (x - xMin) * xScale;
 
       ctx.beginPath();
       ctx.moveTo(xPixel, 0);
@@ -52,7 +52,7 @@ export function CubicGraph({ a, b, c, d }: equationProps) {
     }
 
     for (let y = yMin; y <= yMax; y++) {
-      const yPixel = canvas.height - (y - yMin) * yScale;
+      const yPixel: number = canvas.height - (y - yMin) * yScale;
 
       ctx.beginPath();
       ctx.moveTo(0, yPixel);
@@ -64,12 +64,12 @@ export function CubicGraph({ a, b, c, d }: equationProps) {
     ctx.beginPath();
     ctx.strokeStyle = "red";
 
-    let starting = true;
+    let starting: boolean = true;
 
     for (let i = 0; i < canvas.width; i++) {
-      const x = xMin + i / xScale;
-      const y = a * x ** 3 + b * x ** 2 + c * x + d;
-      const canvasY = canvas.height / 2 - y * yScale;
+      const x: number = xMin + i / xScale;
+      const y: number = a * x ** 3 + b * x ** 2 + c * x + d;
+      const canvasY: number = canvas.height / 2 - y * yScale;
 
       if (starting) {
         ctx.moveTo(i, canvasY);
@@ -82,17 +82,17 @@ export function CubicGraph({ a, b, c, d }: equationProps) {
     ctx.stroke();
 
     // roots
-    const roots = cubicRoot(a, b, c, d);
+    const roots: number[] = cubicRoot(a, b, c, d);
     ctx.fillStyle = "#000000";
 
     for (let i = 0; i < 3; i++) {
-      const r = roots[i];
+      const r: number = roots[i];
       if (!isFinite(r)) {
         continue;
       }
 
-      const xPixel = (r - xMin) * xScale;
-      const yPixel = canvas.height / 2;
+      const xPixel: number = (r - xMin) * xScale;
+      const yPixel: number = canvas.height / 2;
 
       ctx.beginPath();
       ctx.arc(xPixel, yPixel, 4, 0, Math.PI * 2);
@@ -103,14 +103,14 @@ export function CubicGraph({ a, b, c, d }: equationProps) {
     ctx.fillStyle = "blue";
 
     for (let i = 0; i < 2; i++) {
-      const px = minmax[i].x;
-      const py = minmax[i].y;
+      const px: number = minmax[i].x;
+      const py: number = minmax[i].y;
       if (!isFinite(px) || !isFinite(py)) {
         continue;
       }
 
-      const xPixel = (px - xMin) * xScale;
-      const yPixel = -(py-yMax) * yScale;
+      const xPixel: number = (px - xMin) * xScale;
+      const yPixel: number = -(py - yMax) * yScale;
       ctx.beginPath();
       ctx.arc(xPixel, yPixel, 4, 0, Math.PI * 2);
       ctx.fill();

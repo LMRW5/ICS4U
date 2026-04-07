@@ -15,7 +15,7 @@ export function CubicInput({
   const dRef = useRef<HTMLInputElement | null>(null);
 
   function handleSubmit() {
-    if (!aRef.current || !bRef.current || !cRef.current || !dRef.current){
+    if (!aRef.current || !bRef.current || !cRef.current || !dRef.current) {
       return;
     }
     const nextTerm: equationProps = {
@@ -30,10 +30,7 @@ export function CubicInput({
 
   return (
     <div className="w-full flex flex-col items-center justify-center mt-6">
-
-      <h1 className="text-3xl font-bold text-gray-700 mb-4">
-        Cubic Solver
-      </h1>
+      <h1 className="text-3xl font-bold text-gray-700 mb-4">Cubic Solver</h1>
 
       <form
         className="flex items-end gap-4 bg-white border border-gray-300 p-4 rounded-xl shadow-sm"
@@ -50,7 +47,9 @@ export function CubicInput({
             defaultValue={0}
             className="w-24 px-2 py-1 rounded-md border border-gray-300 bg-gray-50 
                        focus:outline-none focus:ring-2 focus:ring-gray-400"
-            onChange={(e) => setA(Number(e.currentTarget.value))}
+            onChange={(e) => {
+              setA(Number(e.currentTarget.value));
+            }}
           />
         </div>
 
@@ -62,7 +61,9 @@ export function CubicInput({
             defaultValue={0}
             className="w-24 px-2 py-1 rounded-md border border-gray-300 bg-gray-50 
                        focus:outline-none focus:ring-2 focus:ring-gray-400"
-            onChange={(e) => setB(Number(e.currentTarget.value))}
+            onChange={(e) => {
+              setB(Number(e.currentTarget.value));
+            }}
           />
         </div>
 
@@ -74,7 +75,9 @@ export function CubicInput({
             defaultValue={0}
             className="w-24 px-2 py-1 rounded-md border border-gray-300 bg-gray-50 
                        focus:outline-none focus:ring-2 focus:ring-gray-400"
-            onChange={(e) => setC(Number(e.currentTarget.value))}
+            onChange={(e) => {
+              setC(Number(e.currentTarget.value));
+            }}
           />
         </div>
 
@@ -86,7 +89,9 @@ export function CubicInput({
             defaultValue={0}
             className="w-24 px-2 py-1 rounded-md border border-gray-300 bg-gray-50 
                        focus:outline-none focus:ring-2 focus:ring-gray-400"
-            onChange={(e) => setD(Number(e.currentTarget.value))}
+            onChange={(e) => {
+              setD(Number(e.currentTarget.value));
+            }}
           />
         </div>
 
