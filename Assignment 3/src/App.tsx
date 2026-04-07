@@ -35,7 +35,10 @@ function App() {
         </div>
 
         <div className="flex justify-center">
-          <CubicHistory historyList={history} />
+          <CubicHistory historyList={history} setA={setA}
+        setB={setB}
+        setC={setC}
+        setD={setD} />
         </div>
       </div>
     </>

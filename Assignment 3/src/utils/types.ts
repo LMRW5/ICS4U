@@ -16,4 +16,9 @@ export type equationProps = {
 
 export type historyProps = {
   historyList: equationProps[];
+  setA: (value: number) => void; 
+  setB: (value: number) => void; 
+  setC: (value: number) => void; 
+  setD: (value: number) => void;
+
 }

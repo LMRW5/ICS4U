@@ -1,6 +1,6 @@
 import type { equationProps, historyProps } from "../utils/types";
 
-export function CubicHistory({ historyList }: historyProps) {
+export function CubicHistory({ historyList, setA, setB, setC, setD }: historyProps) {
   return (
     <div className="w-[400px] mt-6">
       <h2 className="text-center font-semibold text-lg mb-2">History</h2>
@@ -23,8 +23,13 @@ export function CubicHistory({ historyList }: historyProps) {
               {historyList.map((element:equationProps, i: number) => (
                 <tr
                   key={i}
-                  className="text-center border-b last:border-none border-gray-300"
-                >
+                  className="text-center border-b last:border-none border-gray-300 hover:bg-gray-200 cursor-pointer"
+                  onClick={()=>{
+                    setA(element.a)
+                    setB(element.b)
+                    setC(element.c)
+                    setD(element.d)
+                  }}>
                   <td className="w-1/4 py-2">{element.a}</td>
                   <td className="w-1/4 py-2">{element.b}</td>
                   <td className="w-1/4 py-2">{element.c}</td>
