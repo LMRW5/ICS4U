@@ -1,4 +1,4 @@
-export interface inputProps{
+export type inputProps = {
   setA: (value: number) => void; 
   setB: (value: number) => void; 
   setC: (value: number) => void; 
@@ -7,13 +7,13 @@ export interface inputProps{
   history: equationProps[];
 }
 
-export interface equationProps{
+export type equationProps = {
   a: number;
   b: number;
   c: number;
   d: number;
 }
 
-export interface historyProps{
+export type historyProps = {
   historyList: equationProps[];
 }
