@@ -1,9 +1,9 @@
 import { useEffect, useRef } from "react";
 import { cubicRoot } from "../utils/cubicsolver";
-import type { equationProps } from "../utils/types";
+import type { EquationProps } from "../utils/types";
 import { localMaxMin } from "../utils/localMaxMin";
 
-export function CubicGraph({ a, b, c, d }: equationProps) {
+export function CubicGraph({ a, b, c, d }: EquationProps) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {

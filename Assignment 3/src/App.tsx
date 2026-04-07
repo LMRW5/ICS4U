@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { equationProps } from "./utils/types";
+import type { EquationProps } from "./utils/types";
 import { CubicInput } from "./components/CubicInput";
 import { CubicEquation } from "./components/CubicEquation";
 import { CubicHistory } from "./components/CubicHistory";
@@ -12,7 +12,7 @@ function App() {
   const [b, setB] = useState<number>(0);
   const [c, setC] = useState<number>(0);
   const [d, setD] = useState<number>(0);
-  const [history, setHistory] = useState<equationProps[]>([]);
+  const [history, setHistory] = useState<EquationProps[]>([]);
   return (
     <>
       <CubicInput

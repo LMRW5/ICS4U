@@ -1,7 +1,7 @@
 import { cubicRoot } from "../utils/cubicsolver";
-import type { equationProps } from "../utils/types";
+import type { EquationProps } from "../utils/types";
 
-export function CubicTable({ a, b, c, d }: equationProps) {
+export function CubicTable({ a, b, c, d }: EquationProps) {
   const roots: number[] = cubicRoot(a, b, c, d);
 
   return (

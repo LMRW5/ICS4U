@@ -1,6 +1,6 @@
 import { useRef } from "react";
-import type { equationProps, inputProps } from "../utils/types";
-type CubicInputProps = inputProps & equationProps;
+import type { EquationProps, InputProps } from "../utils/types";
+type CubicInputProps = InputProps & EquationProps;
 
 export function CubicInput({
   setA,
@@ -22,7 +22,7 @@ export function CubicInput({
     if (!aRef.current || !bRef.current || !cRef.current || !dRef.current) {
       return;
     }
-    const nextTerm: equationProps = {
+    const nextTerm: EquationProps = {
       a: Number(aRef.current.value),
       b: Number(bRef.current.value),
       c: Number(cRef.current.value),
