@@ -1,5 +1,6 @@
 import { useRef } from "react";
-import type { equationProps, inputProps } from "../utils/types";
+import type { EquationProps, InputProps } from "../utils/types";
+type CubicInputProps = InputProps & EquationProps;
 
 export function CubicInput({
   setA,
@@ -8,7 +9,10 @@ export function CubicInput({
   setD,
   setHistory,
   history,
-}: inputProps) {
+  a,
+  b,
+  c,
+  d }: CubicInputProps) {
   const aRef = useRef<HTMLInputElement | null>(null);
   const bRef = useRef<HTMLInputElement | null>(null);
   const cRef = useRef<HTMLInputElement | null>(null);
@@ -18,7 +22,7 @@ export function CubicInput({
     if (!aRef.current || !bRef.current || !cRef.current || !dRef.current) {
       return;
     }
-    const nextTerm: equationProps = {
+    const nextTerm: EquationProps = {
       a: Number(aRef.current.value),
       b: Number(bRef.current.value),
       c: Number(cRef.current.value),
@@ -44,6 +48,7 @@ export function CubicInput({
           <input
             type="number"
             ref={aRef}
+            value={a}
             defaultValue={0}
             className="w-24 px-2 py-1 rounded-md border border-gray-300 bg-gray-50 
                        focus:outline-none focus:ring-2 focus:ring-gray-400"
@@ -56,6 +61,7 @@ export function CubicInput({
         <div className="flex flex-col">
           <label className="text-gray-600 mb-1 text-sm">b-value:</label>
           <input
+            value={b}
             type="number"
             ref={bRef}
             defaultValue={0}
@@ -70,6 +76,7 @@ export function CubicInput({
         <div className="flex flex-col">
           <label className="text-gray-600 mb-1 text-sm">c-value:</label>
           <input
+            value={c}
             type="number"
             ref={cRef}
             defaultValue={0}
@@ -84,6 +91,7 @@ export function CubicInput({
         <div className="flex flex-col">
           <label className="text-gray-600 mb-1 text-sm">d-value:</label>
           <input
+            value={d}
             type="number"
             ref={dRef}
             defaultValue={0}

@@ -1,11 +1,12 @@
-import type { equationProps } from "../utils/types";
+import type { EquationProps } from "../utils/types";
 
-export function CubicEquation({a, b, c, d}:equationProps) {
+export function CubicEquation({ a, b, c, d }: EquationProps) {
     let terms: string[] = [];
 
     function formatTerm(coef: number, variable: string) {
-        if (coef === 0) return;
-
+        if (coef === 0) {
+            return;
+        }
         const sign: string = coef > 0 ? "+" : "-";
         const abs: number = Math.abs(coef); 
 
@@ -13,7 +14,9 @@ export function CubicEquation({a, b, c, d}:equationProps) {
 
         if (terms.length === 0) {
             // first term doesn't need leading +
-            if (coef < 0) term += "-";
+            if (coef < 0) {
+                term += "-";
+            }
         } else {
             term += ` ${sign} `;
         }

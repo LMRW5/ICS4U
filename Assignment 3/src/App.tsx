@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { equationProps } from "./utils/types";
+import type { EquationProps } from "./utils/types";
 import { CubicInput } from "./components/CubicInput";
 import { CubicEquation } from "./components/CubicEquation";
 import { CubicHistory } from "./components/CubicHistory";
@@ -12,7 +12,7 @@ function App() {
   const [b, setB] = useState<number>(0);
   const [c, setC] = useState<number>(0);
   const [d, setD] = useState<number>(0);
-  const [history, setHistory] = useState<equationProps[]>([]);
+  const [history, setHistory] = useState<EquationProps[]>([]);
   return (
     <>
       <CubicInput
@@ -22,6 +22,7 @@ function App() {
         setD={setD}
         setHistory={setHistory}
         history={history}
+        a={a} b={b} c={c} d={d}
       />
       <CubicEquation a={a} b={b} c={c} d={d} />
       <div className="flex justify-center items-start gap-10 mt-5 mb-5">
@@ -35,7 +36,10 @@ function App() {
         </div>
 
         <div className="flex justify-center">
-          <CubicHistory historyList={history} />
+          <CubicHistory historyList={history} setA={setA}
+            setB={setB}
+            setC={setC}
+            setD={setD} />
         </div>
       </div>
     </>

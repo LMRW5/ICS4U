@@ -1,7 +1,7 @@
-import type { equationProps } from "../utils/types";
+import type { EquationProps } from "../utils/types";
 import { localMaxMin } from "../utils/localMaxMin";
 
-export function TurningPoints({ a, b, c, d }: equationProps) {
+export function TurningPoints({ a, b, c, d }: EquationProps) {
   const points = localMaxMin(a, b, c, d);
 
   return (

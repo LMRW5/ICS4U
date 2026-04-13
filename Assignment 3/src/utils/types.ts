@@ -1,19 +1,24 @@
-export type inputProps = {
+export type InputProps = {
   setA: (value: number) => void; 
   setB: (value: number) => void; 
   setC: (value: number) => void; 
   setD: (value: number) => void;
-  setHistory: (value: equationProps[]) => void;
-  history: equationProps[];
+  setHistory: (value: EquationProps[]) => void;
+  history: EquationProps[];
 }
 
-export type equationProps = {
+export type EquationProps = {
   a: number;
   b: number;
   c: number;
   d: number;
 }
 
-export type historyProps = {
-  historyList: equationProps[];
+export type HistoryProps = {
+  historyList: EquationProps[];
+  setA: (value: number) => void; 
+  setB: (value: number) => void; 
+  setC: (value: number) => void; 
+  setD: (value: number) => void;
+
 }
