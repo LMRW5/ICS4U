@@ -7,7 +7,7 @@ export function CubicEquation({a, b, c, d}:equationProps) {
         if (coef === 0) return;
 
         const sign: string = coef > 0 ? "+" : "-";
-        const abs: number = Math.abs(coef);
+        const abs: number = Math.abs(coef); 
 
         let term: string = "";
 
