@@ -4,7 +4,7 @@ export default function Navbar() {
     return (<>
         <nav>
             <Navlink to="/">Home</Navlink>
-            <Navlink to="/now-playing">Now Playing</Navlink>
+            <Navlink to="/movies">Movies</Navlink>
 
         </nav>
     </>)
