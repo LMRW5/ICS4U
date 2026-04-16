@@ -4,20 +4,20 @@ import { Navlink } from "../components/Navlink";
 import Pagination from "../components/Pagination";
 import { useTmdb } from "../hooks/useTMDBdata";
 
-type Movie = {
+type TV = {
   id: number;
-  title: string;
+  name: string;
   poster_path: string;
 };
 
-type MovieResponse = {
-  results: Movie[];
+type TVResponse = {
+  results: TV[];
   total_pages: number;
 };
 
-export default function MoviesView() {
+export default function TelevisionView() {
   const [page, setPage] = useState<number>(1);
-  const [activeName, setActiveName] = useState<string>("Now Playing");
+  const [activeName, setActiveName] = useState<string>("Airing Today");
 
   const params = useParams();
   const activeChoice = params.type;
@@ -26,8 +26,8 @@ export default function MoviesView() {
     setPage(1);
   }, [activeChoice]);
 
-  const movieData = useTmdb<MovieResponse>(
-    `https://api.themoviedb.org/3/movie/${activeChoice}`,
+  const TVData = useTmdb<TVResponse>(
+    `https://api.themoviedb.org/3/tv/${activeChoice}`,
     {
       language: "en-US",
       page: page,
@@ -38,28 +38,28 @@ export default function MoviesView() {
   return (
     <div>
       <Navlink
-        to="/movies/category/now_playing"
-        whenClicked={() => setActiveName("Now Playing")}
+        to="/tv/category/airring_today"
+        whenClicked={() => setActiveName("Airring Today")}
       >
-        Now Playing
+        Airring Today
       </Navlink>
 
       <Navlink
-        to="/movies/category/upcoming"
-        whenClicked={() => setActiveName("Upcoming")}
+        to="/tv/category/on_the_air"
+        whenClicked={() => setActiveName("On The Air")}
       >
-        Upcoming
+        On The Air
       </Navlink>
 
       <Navlink
-        to="/movies/category/top_rated"
+        to="/tv/category/top_rated"
         whenClicked={() => setActiveName("Top Rated")}
       >
         Top Rated
       </Navlink>
 
       <Navlink
-        to="/movies/category/popular"
+        to="/tv/category/popular"
         whenClicked={() => setActiveName("Popular")}
       >
         Popular
@@ -67,22 +67,22 @@ export default function MoviesView() {
 
       <h1>{activeName}</h1>
 
-      {movieData &&
-        movieData.results.map((movie) => (
-          <div key={movie.id}>
-            <h2>{movie.title}</h2>
+      {TVData &&
+        TVData.results.map((tv) => (
+          <div key={tv.id}>
+            <h2>{tv.name}</h2>
             <img
-              src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-              alt={movie.title}
+              src={`https://image.tmdb.org/t/p/w200${tv.poster_path}`}
+              alt={tv.name}
             />
           </div>
         ))}
 
-      {movieData && (
+      {TVData && (
         <Pagination
           setPage={setPage}
           page={page}
-          totalPages={Math.min(500, movieData.total_pages)}
+          totalPages={Math.min(500, TVData.total_pages)}
         />
       )}
     </div>

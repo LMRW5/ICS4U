@@ -1,0 +1,34 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+
+export function useTmdb<T>(url: string, params: Record<string, any>, deps: any[]) {
+  const [data, setData] = useState<T | null>(null);
+  const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+  useEffect(() => {
+    const controller = new AbortController();
+
+    const fetchData = async () => {
+      try {
+        const response = await axios.get<T>(url, {
+          params: {
+            api_key: API_KEY,
+            ...params,
+          },
+          signal: controller.signal,
+        });
+
+        setData(response.data);
+      } catch (err) {
+        if (!axios.isCancel(err)) {
+          console.error(err);
+        }
+      }
+    };
+
+    fetchData();
+
+    return () => controller.abort();
+  }, deps);
+
+  return { data };
+}

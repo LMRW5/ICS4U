@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-export default function Errorview() {
+export default function ErrorView() {
     const navigate = useNavigate()
     return (<>
         <h1>404</h1>
