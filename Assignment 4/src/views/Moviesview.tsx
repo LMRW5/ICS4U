@@ -1,6 +1,4 @@
-import axios from "axios"
-import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useState } from "react"
 import Moviegenre from "./Moviegenre"
 import { Navlink } from "../components/Navlink"
 
@@ -9,23 +7,27 @@ type Movie = {
   title: string
   poster_path: string
 }
-type MovieResponse = {
-  results: Movie[]
-  total_pages: number
-}
+
 
 
 export default function Moviesview() {
-    const [activeChoice, setActiveChoice] = useState<string>("now_playing")
     const [activeName, setActiveName] = useState<string>("Now Playing")
 
 
     return (<div>
-      <Navlink to=""></Navlink>
-      <Navlink />
-      <Navlink />
-      <Navlink />
-      <Moviegenre activeChoice={activeChoice} activeName={activeName}/>
+      <Navlink to="/movies/category/now_playing" whenClicked={()=>{
+        setActiveName("Now Playing")
+      }} >Now Playing</Navlink>
+      <Navlink to="/movies/category/upcoming" whenClicked={()=>{
+        setActiveName("Upcoming")
+      }}>Upcoming</Navlink>
+      <Navlink to="/movies/category/top_rated" whenClicked={()=>{
+        setActiveName("Top Rated")
+      }}>Top Rated</Navlink>
+      <Navlink to="/movies/category/popular" whenClicked={()=>{
+        setActiveName("Popular")
+      }}>Popular</Navlink>
+      <Moviegenre activeName={activeName}/>
       </div>
     )
   }

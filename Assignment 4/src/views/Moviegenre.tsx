@@ -1,6 +1,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
+import Pagination from "../components/Pagination"
 
 type Movie = {
   id: number
@@ -13,14 +14,15 @@ type MovieResponse = {
 }
 
 type MovieGenreProps = {
-    activeChoice: string,
     activeName: string
 }
 
 
-export default function Moviegenre({activeChoice, activeName}: MovieGenreProps) {
+export default function Moviegenre({ activeName}: MovieGenreProps) {
     const [movieData, setMovieData] = useState<MovieResponse | null>(null)
     const [page,setPage] = useState<number>(1)
+    const params = useParams()
+    const activeChoice = params.type
 
 
     const API_KEY = import.meta.env.VITE_TMDB_API_KEY
@@ -56,12 +58,7 @@ export default function Moviegenre({activeChoice, activeName}: MovieGenreProps) 
 
       })}
       {movieData && (
-        <>
-    <button onClick={()=>setPage(1)}>First</button>
-    <button onClick={()=>setPage(Math.max(1,page - 1))}>Prev</button>
-    <h2>Page {page}/{movieData?.total_pages}</h2>
-    <button onClick={()=>setPage(Math.min(movieData!.total_pages,page + 1))}>Next</button>
-    <button onClick={()=>setPage(movieData!.total_pages)}>Last</button>
-    </>)}
+        <Pagination setPage={setPage} page={page} totalPages={movieData!.total_pages} />)}
     </>)
 }
+

@@ -5,14 +5,16 @@ type LinkProps = {
   children: ReactNode;
   to: string;
   match?: string;
+  whenClicked?: ()=>void;
 };
 
-export const Navlink = ({ children, to, match }: LinkProps) => {
+export const Navlink = ({ children, to, match, whenClicked }: LinkProps) => {
   const matched = match ? useMatch(match) : null;
 
   return (
     <NavLink
       to={to}
+      onClick={whenClicked}
       className={({ isActive }) =>
         `px-4 py-2 rounded-md transition-all duration-200 border ${
           isActive || !!matched
