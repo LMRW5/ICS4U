@@ -38,8 +38,8 @@ export default function TelevisionView() {
   return (
     <div>
       <Navlink
-        to="/tv/category/airring_today"
-        whenClicked={() => setActiveName("Airring Today")}
+        to="/tv/category/airing_today"
+        whenClicked={() => setActiveName("Airing Today")}
       >
         Airring Today
       </Navlink>

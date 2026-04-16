@@ -3,7 +3,8 @@ import { MainLayout } from "./layouts/Mainlayout";
 import ErrorView from "./views/Errorview";
 import HomeView from "./views/Homeview";
 import MoviesView from "./views/Moviesview";
-import TelevisionView from "./views/Televisionview";
+import TelevisionView from "./views/TelevisionView";
+import TrendingView from "./views/Trendingview";
 
 export default function App() {
   return (
@@ -19,7 +20,12 @@ export default function App() {
             <Route index element={<Navigate to="category/airing_today" replace />} />
             <Route path="category/:type" element={<TelevisionView />} />
           </Route>
+          <Route path="/trending">
+            <Route index element={<Navigate to="movie" replace />} />
+            <Route path=":type" element={<TrendingView />} />
+          </Route>
         </Route>
+
         <Route path="*" element={<ErrorView />} />
       </Routes>
     </BrowserRouter>
