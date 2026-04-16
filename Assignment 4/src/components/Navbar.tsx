@@ -7,7 +7,7 @@ export default function Navbar() {
             <Navlink to="/movies">Movies</Navlink>
             <Navlink to="/tv">TV</Navlink>
             <Navlink to="/trending">Trending</Navlink>
-
+            <Navlink to="/genre">Genre</Navlink>
         </nav>
     </>)
 }

@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Imagegrid } from "../components/ImageGrid";
 import { Navlink } from "../components/Navlink";
 import Pagination from "../components/Pagination";
 import { useTmdb } from "../hooks/useTMDBdata";
@@ -37,53 +38,29 @@ export default function TelevisionView() {
 
   return (
     <div>
-      <Navlink
-        to="/tv/category/airing_today"
-        whenClicked={() => setActiveName("Airing Today")}
-      >
+      <Navlink to="/tv/category/airing_today" whenClicked={() => setActiveName("Airing Today")}>
         Airring Today
       </Navlink>
 
-      <Navlink
-        to="/tv/category/on_the_air"
-        whenClicked={() => setActiveName("On The Air")}
-      >
+      <Navlink to="/tv/category/on_the_air" whenClicked={() => setActiveName("On The Air")}>
         On The Air
       </Navlink>
 
-      <Navlink
-        to="/tv/category/top_rated"
-        whenClicked={() => setActiveName("Top Rated")}
-      >
+      <Navlink to="/tv/category/top_rated" whenClicked={() => setActiveName("Top Rated")}>
         Top Rated
       </Navlink>
 
-      <Navlink
-        to="/tv/category/popular"
-        whenClicked={() => setActiveName("Popular")}
-      >
+      <Navlink to="/tv/category/popular" whenClicked={() => setActiveName("Popular")}>
         Popular
       </Navlink>
 
       <h1>{activeName}</h1>
 
-      {TVData &&
-        TVData.results.map((tv) => (
-          <div key={tv.id}>
-            <h2>{tv.name}</h2>
-            <img
-              src={`https://image.tmdb.org/t/p/w200${tv.poster_path}`}
-              alt={tv.name}
-            />
-          </div>
-        ))}
-
       {TVData && (
-        <Pagination
-          setPage={setPage}
-          page={page}
-          totalPages={Math.min(500, TVData.total_pages)}
-        />
+        <>
+          <Imagegrid data={TVData?.results} />
+          <Pagination setPage={setPage} page={page} totalPages={Math.min(500, TVData.total_pages)} />
+        </>
       )}
     </div>
   );

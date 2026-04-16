@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { Imagegrid } from "../components/ImageGrid";
 import { Navlink } from "../components/Navlink";
 import Pagination from "../components/Pagination";
 import { useTmdb } from "../hooks/useTMDBdata";
@@ -18,7 +19,7 @@ type MovieResponse = {
 export default function MoviesView() {
   const [page, setPage] = useState<number>(1);
   const [activeName, setActiveName] = useState<string>("Now Playing");
-
+  const navigate = useNavigate()
   const params = useParams();
   const activeChoice = params.type;
 
@@ -37,53 +38,29 @@ export default function MoviesView() {
 
   return (
     <div>
-      <Navlink
-        to="/movies/category/now_playing"
-        whenClicked={() => setActiveName("Now Playing")}
-      >
+      <Navlink to="/movies/category/now_playing" whenClicked={() => setActiveName("Now Playing")}>
         Now Playing
       </Navlink>
 
-      <Navlink
-        to="/movies/category/upcoming"
-        whenClicked={() => setActiveName("Upcoming")}
-      >
+      <Navlink to="/movies/category/upcoming" whenClicked={() => setActiveName("Upcoming")}>
         Upcoming
       </Navlink>
 
-      <Navlink
-        to="/movies/category/top_rated"
-        whenClicked={() => setActiveName("Top Rated")}
-      >
+      <Navlink to="/movies/category/top_rated" whenClicked={() => setActiveName("Top Rated")}>
         Top Rated
       </Navlink>
 
-      <Navlink
-        to="/movies/category/popular"
-        whenClicked={() => setActiveName("Popular")}
-      >
+      <Navlink to="/movies/category/popular" whenClicked={() => setActiveName("Popular")}>
         Popular
       </Navlink>
 
       <h1>{activeName}</h1>
 
-      {movieData &&
-        movieData.results.map((movie) => (
-          <div key={movie.id}>
-            <h2>{movie.title}</h2>
-            <img
-              src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-              alt={movie.title}
-            />
-          </div>
-        ))}
-
       {movieData && (
-        <Pagination
-          setPage={setPage}
-          page={page}
-          totalPages={Math.min(500, movieData.total_pages)}
-        />
+        <>
+          <Imagegrid data={movieData?.results} whenClicked={(id) => navigate(`/movies/${id}`)} />
+          <Pagination setPage={setPage} page={page} totalPages={Math.min(500, movieData.total_pages)} />
+        </>
       )}
     </div>
   );
