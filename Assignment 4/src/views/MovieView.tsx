@@ -1,4 +1,4 @@
-import { Outlet, useNavigate, useParams } from "react-router-dom"
+import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom"
 import { useTmdb } from "../hooks/useTMDBdata"
 import { Navlink } from "../components/Navlink";
 
@@ -14,7 +14,10 @@ export default function MovieView(){
     const params = useParams()
     const navigate = useNavigate()
     const mediaID = params.id
-    const tmdbData = useTmdb<movieData>(`https://api.themoviedb.org/3/movie/${mediaID}`, {}, []).data
+    const location = useLocation()
+    const mediaType = location.pathname.startsWith("/tv") ? "tv" : "movie";
+
+    const tmdbData = useTmdb<movieData>(`https://api.themoviedb.org/3/${mediaType}/${mediaID}`, {}, []).data
     return <>
     {tmdbData&& <>
     <div>
@@ -29,8 +32,11 @@ export default function MovieView(){
     <Navlink to="credits">Credits</Navlink>
     <Navlink to="trailers">Trailers</Navlink>
     <Navlink to="reviews">Reviews</Navlink>
+    {mediaType == "tv" && (
+        <Navlink to="seasons">Seasons</Navlink>
+    )}
 
-    <button onClick={()=> {navigate(-1)}}>Back</button>
+    <button onClick={()=> {navigate(`/${mediaType}`)}}>Back</button>
     <Outlet />
     </>
     }

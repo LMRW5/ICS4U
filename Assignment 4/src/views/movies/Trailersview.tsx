@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useTmdb } from "../../hooks/useTMDBdata";
 
 type TrailerProps = {
@@ -15,7 +15,9 @@ type TrailerProps = {
 export default function Trailersview() {
   const params = useParams();
   const id = params.id;
-  const tmdbData = useTmdb<TrailerProps>(`https://api.themoviedb.org/3/movie/${id}/videos`, {}, []).data?.results;
+  const location = useLocation();
+  const mediaType = location.pathname.startsWith("/tv") ? "tv" : "movie";
+  const tmdbData = useTmdb<TrailerProps>(`https://api.themoviedb.org/3/${mediaType}/${id}/videos`, {}, []).data?.results;
   const trailerVideos =
     tmdbData?.filter((v) => {
       return v.site == "YouTube" && v.official == true && v.type == "Trailer";
@@ -23,15 +25,20 @@ export default function Trailersview() {
     tmdbData?.filter((v) => {
       return v.site == "YouTube" && v.type == "Trailer";
     });
-  return (
-    <>
-      {trailerVideos?.map((video) => {
-        return (
-          <div key={video.id}>
-            <iframe src={`https://www.youtube.com/embed/${video.key}`} title={video.name} allowFullScreen></iframe>
-          </div>
-        );
-      })}
-    </>
-  );
+  if (trailerVideos && trailerVideos.length != 0) {
+    return (
+      <>
+        {trailerVideos.map((video) => {
+          return (
+            <div key={video.id}>
+              <iframe src={`https://www.youtube.com/embed/${video.key}`} title={video.name} allowFullScreen></iframe>
+            </div>
+          );
+        })}
+      </>
+    );
+  } else {
+    return <h2>No Trailers Found</h2>
+  }
+
 }

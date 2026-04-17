@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Imagegrid } from "../components/ImageGrid";
 import { Navlink } from "../components/Navlink";
 import Pagination from "../components/Pagination";
@@ -19,6 +19,7 @@ type TVResponse = {
 export default function TelevisionView() {
   const [page, setPage] = useState<number>(1);
   const [activeName, setActiveName] = useState<string>("Airing Today");
+  const navigate = useNavigate()
 
   const params = useParams();
   const activeChoice = params.type;
@@ -58,7 +59,7 @@ export default function TelevisionView() {
 
       {TVData && (
         <>
-          <Imagegrid data={TVData?.results} />
+          <Imagegrid data={TVData?.results} whenClicked={(id)=>navigate(`/tv/${id}`)} />
           <Pagination setPage={setPage} page={page} totalPages={Math.min(500, TVData.total_pages)} />
         </>
       )}

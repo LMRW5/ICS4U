@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+import { useLocation, useParams } from "react-router-dom"
 import { useTmdb } from "../../hooks/useTMDBdata"
 
 type CreditsProps = {
@@ -13,7 +13,9 @@ type CreditsProps = {
 export default function Creditsview(){
     const params = useParams()
     const id = params.id
-    const tmdbData = useTmdb<CreditsProps>(`https://api.themoviedb.org/3/movie/${id}/credits`, {}, []).data?.cast
+    const location = useLocation();
+    const mediaType = location.pathname.startsWith("/tv") ? "tv" : "movie";
+    const tmdbData = useTmdb<CreditsProps>(`https://api.themoviedb.org/3/${mediaType}/${id}/credits`, {}, []).data?.cast
     return <>
     {tmdbData?.map((person)=>{
         return <div key={person.id}>
