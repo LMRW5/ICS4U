@@ -16,6 +16,8 @@ export default function MovieView(){
     const mediaID = params.id
     const location = useLocation()
     const mediaType = location.pathname.startsWith("/tv") ? "tv" : "movie";
+    const returnType = location.pathname.startsWith("/tv") ? "tv" : "movies";
+
 
     const tmdbData = useTmdb<movieData>(`https://api.themoviedb.org/3/${mediaType}/${mediaID}`, {}, []).data
     return <>
@@ -36,7 +38,7 @@ export default function MovieView(){
         <Navlink to="seasons">Seasons</Navlink>
     )}
 
-    <button onClick={()=> {navigate(`/${mediaType}`)}}>Back</button>
+    <button onClick={()=> {navigate(`/${returnType}`)}}>Back</button>
     <Outlet />
     </>
     }

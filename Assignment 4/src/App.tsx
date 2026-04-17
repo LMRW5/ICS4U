@@ -1,15 +1,17 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { MainLayout } from "./layouts/Mainlayout";
-import ErrorView from "./views/Errorview";
-import HomeView from "./views/Homeview";
+import ErrorView from "./views/ErrorView";
+import HomeView from "./views/HomeView";
 import MoviesView from "./views/Moviesview";
 import TelevisionView from "./views/TelevisionView";
 import TrendingView from "./views/Trendingview";
 import Genreview from "./views/Genreview";
 import MovieView from "./views/MovieView";
-import Creditsview from "./views/movies/Creditsview";
-import Trailersview from "./views/movies/Trailersview";
-import Reviewsview from "./views/movies/Reviewsview";
+import Creditsview from "./views/subfiles/Creditsview";
+import Trailersview from "./views/subfiles/Trailersview";
+import Reviewsview from "./views/subfiles/Reviewsview";
+import SeasonsView from "./views/subfiles/Seasonsview";
+import EpisodeView from "./views/subfiles/EpisodeView";
 
 export default function App() {
   return (
@@ -34,6 +36,8 @@ export default function App() {
                 <Route path="credits" element = {<Creditsview/>}/>
                 <Route path="trailers" element={<Trailersview />}/>
                 <Route path="reviews" element={<Reviewsview />}/>
+                <Route path="seasons" element={<SeasonsView />}/>
+                <Route path="seasons/:seasonNumber" element={<EpisodeView />}/>
             </Route>
           </Route>
           <Route path="/trending">
