@@ -7,6 +7,8 @@ import TelevisionView from "./views/TelevisionView";
 import TrendingView from "./views/Trendingview";
 import Genreview from "./views/Genreview";
 import MovieView from "./views/MovieView";
+import Creditsview from "./views/movies/Creditsview";
+import Trailersview from "./views/movies/Trailersview";
 
 export default function App() {
   return (
@@ -17,7 +19,12 @@ export default function App() {
           <Route path="/movies">
             <Route index element={<Navigate to="category/now_playing" replace />} />
             <Route path="category/:type" element={<MoviesView />} />
-            <Route path=":id" element = {<MovieView/>}/>
+            <Route path=":id" element = {<MovieView/>}>
+                <Route path="credits" element = {<Creditsview/>}/>
+                <Route path="trailers" element={<Trailersview />}/>
+                <Route path="reviews" />
+            </Route>
+
           </Route>
           <Route path="/tv">
             <Route index element={<Navigate to="category/airing_today" replace />} />

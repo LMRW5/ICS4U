@@ -1,5 +1,6 @@
-import { useNavigate, useParams } from "react-router-dom"
+import { Outlet, useNavigate, useParams } from "react-router-dom"
 import { useTmdb } from "../hooks/useTMDBdata"
+import { Navlink } from "../components/Navlink";
 
 type movieData = {
     title: string;
@@ -25,7 +26,12 @@ export default function MovieView(){
         <p>{tmdbData.release_date}</p>
         <p>{tmdbData.overview}</p>
     </div>
+    <Navlink to="credits">Credits</Navlink>
+    <Navlink to="trailers">Trailers</Navlink>
+    <Navlink to="reviews">Reviews</Navlink>
+
     <button onClick={()=> {navigate(-1)}}>Back</button>
+    <Outlet />
     </>
     }
     </>
