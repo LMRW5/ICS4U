@@ -16,7 +16,8 @@ export default function Creditsview(){
     const location = useLocation();
     const mediaType = location.pathname.startsWith("/tv") ? "tv" : "movie";
     const tmdbData = useTmdb<CreditsProps>(`https://api.themoviedb.org/3/${mediaType}/${id}/credits`, {}, []).data?.cast
-    return <>
+    if (tmdbData && tmdbData.length != 0) {
+        return <>
     {tmdbData?.map((person)=>{
         return <div key={person.id}>
             <img src={`https://image.tmdb.org/t/p/w500/${person.profile_path}`}></img>
@@ -25,4 +26,8 @@ export default function Creditsview(){
         </div>
     })}
     </>
+      }else{
+        return <h2>No Credits Found</h2>
+      }
+    
 }
