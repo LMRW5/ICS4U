@@ -1,6 +1,7 @@
 import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom"
 import { useTmdb } from "../hooks/useTMDBdata"
 import { Navlink } from "../components/Navlink";
+import { Modal } from "../components/Modal";
 
 type movieData = {
     title: string;
@@ -16,11 +17,10 @@ export default function MovieView(){
     const mediaID = params.id
     const location = useLocation()
     const mediaType = location.pathname.startsWith("/tv") ? "tv" : "movie";
-    const returnType = location.pathname.startsWith("/tv") ? "tv" : "movies";
 
 
     const tmdbData = useTmdb<movieData>(`https://api.themoviedb.org/3/${mediaType}/${mediaID}`, {}, []).data
-    return <>
+    return <Modal onClose={()=>{navigate(-1)}}>
     {tmdbData&& <>
     <div>
         <img src={`https://image.tmdb.org/t/p/original/${tmdbData.backdrop_path}`}></img>
@@ -38,9 +38,8 @@ export default function MovieView(){
         <Navlink to="seasons">Seasons</Navlink>
     )}
 
-    <button onClick={()=> {navigate(`/${returnType}`)}}>Back</button>
     <Outlet />
     </>
     }
-    </>
+    </Modal>
 }
