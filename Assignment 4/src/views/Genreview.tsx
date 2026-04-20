@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Imagegrid } from "../components/ImageGrid";
 import { Navlink } from "../components/Navlink";
 import Pagination from "../components/Pagination";
@@ -16,10 +16,12 @@ type MediaGenres = {
 
 export default function Genreview() {
   const [page, setPage] = useState<number>(1);
-
   const params = useParams();
   const activeChoice = params.type;
   const activeGenre = params.mediaGenre;
+  const chosen = activeChoice == "movie" ? "movies" : "tv"
+  const navigate = useNavigate()
+
   const MOVIE_GENRES = [
     { name: "Action", id: 28 },
     { name: "Adventure", id: 12 },
@@ -78,7 +80,7 @@ export default function Genreview() {
       </div>
       {tmdbData && (
         <>
-          <Imagegrid data={tmdbData.results} />
+          <Imagegrid data={tmdbData.results} whenClicked={(id)=>{navigate(`/${chosen}/${id}`)}}/>
           <Pagination setPage={setPage} page={page} totalPages={Math.min(500, tmdbData.total_pages)} />
         </>
       )}

@@ -12,12 +12,17 @@ import Trailersview from "./views/subfiles/Trailersview";
 import Reviewsview from "./views/subfiles/Reviewsview";
 import SeasonsView from "./views/subfiles/Seasonsview";
 import EpisodeView from "./views/subfiles/EpisodeView";
+import Searchview from "./views/Searchview";
+import Personview from "./views/subfiles/Personview";
+import CareerView from "./views/subfiles/CareerView";
+import ImagesView from "./views/subfiles/ImagesView";
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomeView />} />
+        <Route path="/search" element={<Searchview/>} />
         <Route element={<MainLayout />}>
           <Route path="/movies">
             <Route index element={<Navigate to="category/now_playing" replace />} />
@@ -47,6 +52,10 @@ export default function App() {
           <Route path="/genre">
             <Route index element={<Navigate to="movie/action" replace />} />
             <Route path=":type/:mediaGenre" element={<Genreview />} />
+          </Route>
+          <Route path="/person/:id" element={<Personview />}>
+          <Route path="career" element={<CareerView />} />
+          <Route path="images" element={<ImagesView />}/>
           </Route>
         </Route>
 

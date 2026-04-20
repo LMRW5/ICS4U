@@ -31,6 +31,7 @@ export default function EpisodeView(){
     <p>{tmdbData.air_date}</p>
     <p>{tmdbData.overview}</p>
     <button onClick={()=>navigate(-1)}>Return</button>
+    <h1>Episodes:</h1>
     {tmdbData.episodes.map((episode) => {
       return (
 
