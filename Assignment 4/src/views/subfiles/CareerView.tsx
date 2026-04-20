@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useTmdb } from "../../hooks/useTMDBdata";
 
 type CareerProps = {
@@ -13,6 +13,7 @@ type CareerProps = {
 export default function CareerView() {
   const params = useParams();
   const id = params.id;
+  const navigate = useNavigate()
   const tmdbData = useTmdb<CareerProps>(
     `https://api.themoviedb.org/3/person/${id}/movie_credits
 `,
@@ -24,7 +25,7 @@ export default function CareerView() {
       <>
         {tmdbData.map((movie) => {
           return (
-            <div key={movie.id}>
+            <div key={movie.id} onClick={() => navigate(`/movies/${movie.id}`)}>
               <img src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}></img>
               <h2>{movie.title}</h2>
               <p>{movie.character}</p>

@@ -1,7 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { MainLayout } from "./layouts/Mainlayout";
-import ErrorView from "./views/ErrorView";
-import HomeView from "./views/HomeView";
+import ErrorView from "./views/Errorview";
+import HomeView from "./views/Homeview";
 import MoviesView from "./views/Moviesview";
 import TelevisionView from "./views/TelevisionView";
 import TrendingView from "./views/Trendingview";
@@ -22,8 +22,8 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomeView />} />
-        <Route path="/search" element={<Searchview/>} />
         <Route element={<MainLayout />}>
+          <Route path="/search" element={<Searchview query="" type="movie"/>} />
           <Route path="/movies">
             <Route index element={<Navigate to="category/now_playing" replace />} />
             <Route path="category/:type" element={<MoviesView />} />

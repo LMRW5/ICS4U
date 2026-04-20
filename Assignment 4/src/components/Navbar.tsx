@@ -1,13 +1,36 @@
+import { useState } from "react";
 import { Navlink } from "./Navlink";
+import { Querybutton } from "./Querybutton";
+import Searchview from "../views/Searchview";
 
 export default function Navbar() {
+    const [query, setQuery] = useState("");
+    const [type, setType] = useState("movie");
+
     return (<>
-        <nav>
-            <Navlink to="/">Home</Navlink>
-            <Navlink to="/movies">Movies</Navlink>
-            <Navlink to="/tv">TV</Navlink>
-            <Navlink to="/trending">Trending</Navlink>
-            <Navlink to="/genre">Genre</Navlink>
+        <nav className="relative">
+            <Navlink to="/" whenClicked={() => setQuery("")}>Home</Navlink>
+            <Navlink to="/movies" whenClicked={() => setQuery("")}>Movies</Navlink>
+            <Navlink to="/tv" whenClicked={() => setQuery("")}>TV</Navlink>
+            <Navlink to="/trending" whenClicked={() => setQuery("")}>Trending</Navlink>
+            <Navlink to="/genre" whenClicked={() => setQuery("")}>Genre</Navlink>
+            <input
+                type="text"
+                placeholder="Search..."
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                className="ml-4 px-2 py-1 bg-gray-800 text-white border border-gray-600 rounded"
+            />
+            <Querybutton to="" whenClicked={() => setType("movie")} matchParams={{ type: "movie" }}>
+                Movie
+            </Querybutton>
+            <Querybutton to="" whenClicked={() => setType("tv")} matchParams={{ type: "tv" }}>
+                TV
+            </Querybutton>
+            <Querybutton to="" whenClicked={() => setType("person")} matchParams={{ type: "person" }}>
+                Person
+            </Querybutton>
         </nav>
+        {query && <Searchview query={query} type={type} />}
     </>)
 }

@@ -1,4 +1,4 @@
-import { Outlet, useNavigate, useParams } from "react-router-dom"
+import { Outlet, useParams } from "react-router-dom"
 import { useTmdb } from "../../hooks/useTMDBdata";
 import { Navlink } from "../../components/Navlink";
 
@@ -12,7 +12,6 @@ type personProps = {
 
 export default function Personview(){
     const params = useParams()
-    const navigate = useNavigate()
     const personID = params.id
     const tmdbData = useTmdb<personProps>(`https://api.themoviedb.org/3/person/${personID}`, {}, []).data
     return <>

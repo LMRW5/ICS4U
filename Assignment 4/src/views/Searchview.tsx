@@ -1,42 +1,56 @@
 import { useEffect, useState } from "react";
-import { Querybutton } from "../components/Querybutton";
+import { useNavigate } from "react-router-dom";
+import { Imagegrid } from "../components/ImageGrid";
+import Pagination from "../components/Pagination";
 import { useDebounce } from "../hooks/useDebounce";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useTmdb } from "../hooks/useTMDBdata";
 
-export default function Searchview() {
- const [searchParams] = useSearchParams();
-  
-  const [query, setQuery] = useState(searchParams.get("q") || "");
-  const [type, setType] = useState(searchParams.get("type") || "movie");
-  
+type SearchProps = {
+  results: [];
+  total_pages: number;
+}
+type SearchViewParams = {
+  query: string;
+  type: string;
+}
+
+export default function Searchview({query, type}: SearchViewParams) {
+  const [page, setPage] = useState(1);
+
+
   const debouncedQuery = useDebounce(query, 500);
   const navigate = useNavigate();
+  const tmdbData = useTmdb<SearchProps>(`https://api.themoviedb.org/3/search/${type}`, { query: debouncedQuery, page:page }, [debouncedQuery, type, page]).data;
 
   useEffect(() => {
-      navigate(`/search?q=${query}&type=${type}`);
-
+    navigate(`/search?q=${query}&type=${type}`);
   }, [query, type]);
-  
+
+  if (!tmdbData) {
+    return <h1>No Results Found</h1>;
+  }
 
   return (
     <>
-      <h1>{query}</h1>
-      <input
-        onChange={(e) => {
-          setQuery(e.currentTarget.value);
-        }}
-        placeholder="Search..."
-      />
-      <Querybutton to="" whenClicked={()=>setType("movie")} matchParams={{ type: "movie" }}>
-        Movie
-      </Querybutton>
-
-      <Querybutton  to="" whenClicked={()=>setType("tv")} matchParams={{ type: "tv" }}>
-        TV
-      </Querybutton>
-            <Querybutton  to =""whenClicked={()=>setType("person") }matchParams={{ type: "person" }}>
-        Person
-      </Querybutton>
+      
+      {type == "movie" && (
+        <>
+          <Imagegrid data={tmdbData.results} whenClicked={(id) => navigate(`/movies/${id}`)} />
+          <Pagination setPage={setPage} page={page} totalPages={Math.min(500, tmdbData.total_pages)} />
+        </>
+      )}
+      {type == "tv" && (
+        <>
+          <Imagegrid data={tmdbData?.results} whenClicked={(id) => navigate(`/tv/${id}`)} />
+          <Pagination setPage={setPage} page={page} totalPages={Math.min(500, tmdbData.total_pages)} />
+        </>
+      )}
+      {type == "person" && (
+        <>
+          <Imagegrid data={tmdbData?.results} whenClicked={(id) => navigate(`/person/${id}`)} />
+          <Pagination setPage={setPage} page={page} totalPages={Math.min(500, tmdbData.total_pages)} />
+        </>
+      )}
     </>
   );
 }
