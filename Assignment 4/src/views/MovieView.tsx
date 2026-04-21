@@ -31,13 +31,13 @@ export default function MovieView(){
         <p>{tmdbData.release_date}</p>
         <p>{tmdbData.overview}</p>
     </div>
-    <Navlink to="credits">Credits</Navlink>
-    <Navlink to="trailers">Trailers</Navlink>
-    <Navlink to="reviews">Reviews</Navlink>
     {mediaType == "tv" && (
-        <Navlink to="seasons">Seasons</Navlink>
+        <Navlink to="seasons" replace={true}>Seasons</Navlink>
     )}
-
+    <Navlink to="credits" replace={true}>Credits</Navlink>
+    <Navlink to="trailers" replace={true}>Trailers</Navlink>
+    <Navlink to="reviews" replace={true}>Reviews</Navlink>
+    
     <Outlet />
     </>
     }

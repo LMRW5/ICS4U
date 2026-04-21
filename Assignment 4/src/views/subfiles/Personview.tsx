@@ -21,8 +21,8 @@ export default function Personview(){
     <p>{tmdbData?.biography}</p>
     <img src={`https://image.tmdb.org/t/p/w200${tmdbData?.profile_path}`}></img>
     <button onClick={()=>navigate(-1)}>Back</button>
-    <Navlink to={`/person/${personID}/career`}>Career</Navlink>
-    <Navlink to={`/person/${personID}/images`}>Images</Navlink>
+    <Navlink to={`/person/${personID}/career`} replace={true}>Career</Navlink>
+    <Navlink to={`/person/${personID}/images`} replace={true}>Images</Navlink>
     <Outlet />
     </>
 }

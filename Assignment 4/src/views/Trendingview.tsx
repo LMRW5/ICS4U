@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { Imagegrid } from "../components/ImageGrid";
 import { Navlink } from "../components/Navlink";
-import { Querybutton } from "../components/Querybutton";
+import {  QueryButton } from "../components/Querybutton";
 import { useTmdb } from "../hooks/useTMDBdata";
 
 type Media = {
@@ -50,13 +50,13 @@ export default function TrendingView() {
         TV
       </Navlink>
 
-      <Querybutton to={`/trending/${activeChoice}?interval=day`} matchParams={{ interval: "day" }}>
+      <QueryButton to={`/trending/${activeChoice}?interval=day`} matchParams={{ interval: "day" }}>
         Today
-      </Querybutton>
+      </QueryButton>
 
-      <Querybutton to={`/trending/${activeChoice}?interval=week`} matchParams={{ interval: "week" }}>
+      <QueryButton to={`/trending/${activeChoice}?interval=week`} matchParams={{ interval: "week" }}>
         Week
-      </Querybutton>
+      </QueryButton>
 
       <h1>{activeName}</h1>
       {mediaData && <Imagegrid data={mediaData?.results} whenClicked={(id)=>{navigate(`/${chosen}/${id}`)}}/>}

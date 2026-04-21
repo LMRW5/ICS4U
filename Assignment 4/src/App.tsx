@@ -23,11 +23,12 @@ export default function App() {
       <Routes>
         <Route path="/" element={<HomeView />} />
         <Route element={<MainLayout />}>
-          <Route path="/search" element={<Searchview query="" type="movie"/>} />
+          <Route path="/search" element={<Searchview/>} />
           <Route path="/movies">
             <Route index element={<Navigate to="category/now_playing" replace />} />
             <Route path="category/:type" element={<MoviesView />} />
             <Route path=":id" element = {<MovieView/>}>
+              <Route index element={<Navigate to="credits" replace />} />
                 <Route path="credits" element = {<Creditsview/>}/>
                 <Route path="trailers" element={<Trailersview />}/>
                 <Route path="reviews" element={<Reviewsview />}/>
@@ -38,6 +39,7 @@ export default function App() {
             <Route index element={<Navigate to="category/airing_today" replace />} />
             <Route path="category/:type" element={<TelevisionView />} />
               <Route path=":id" element = {<MovieView/>}>
+              <Route index element={<Navigate to="seasons" replace />} />
                 <Route path="credits" element = {<Creditsview/>}/>
                 <Route path="trailers" element={<Trailersview />}/>
                 <Route path="reviews" element={<Reviewsview />}/>
@@ -54,6 +56,7 @@ export default function App() {
             <Route path=":type/:mediaGenre" element={<Genreview />} />
           </Route>
           <Route path="/person/:id" element={<Personview />}>
+          <Route index element={<Navigate to="career" replace />} />
           <Route path="career" element={<CareerView />} />
           <Route path="images" element={<ImagesView />}/>
           </Route>

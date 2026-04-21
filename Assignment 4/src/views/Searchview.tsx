@@ -12,9 +12,10 @@ type SearchProps = {
 
 export default function Searchview() {
   const [page, setPage] = useState(1);
-  const [params, setSearchParams] = useSearchParams()
+  const [params, _setSearchParams] = useSearchParams()
   const query = params.get("q")
   const type = params.get("type")
+  const chosen = type === "movie"? "movies" : type
   const debouncedQuery = useDebounce(query, 500);
   const navigate = useNavigate();
   const tmdbData = useTmdb<SearchProps>(`https://api.themoviedb.org/3/search/${type}`, { query: debouncedQuery, page:page }, [debouncedQuery, type, page]).data;
@@ -24,27 +25,9 @@ export default function Searchview() {
 
   return (
     <>
-      {type == "movie" && (
-        <>
-          <Imagegrid data={tmdbData.results} whenClicked={(id) => navigate(`/movies/${id}`)} />
-          <Pagination setPage={setPage} page={page} totalPages={Math.min(500, tmdbData.total_pages)} />
+      <Imagegrid data={tmdbData.results} whenClicked={(id) => navigate(`/${chosen}/${id}`)}/>
+      
+      <Pagination setPage={setPage} page={page} totalPages={Math.min(500, tmdbData.total_pages)} />
         </>
-      )}
-      {type == "tv" && (
-        <>
-          <Imagegrid data={tmdbData?.results} whenClicked={(id) => navigate(`/tv/${id}`)} />
-          <Pagination setPage={setPage} page={page} totalPages={Math.min(500, tmdbData.total_pages)} />
-        </>
-      )}
-      {type == "person" && (
-        <>
-          <Imagegrid data={tmdbData?.results} whenClicked={(id) => {
-            setSearchParams("")
-            navigate(`/person/${id}`)
-            }} />
-          <Pagination setPage={setPage} page={page} totalPages={Math.min(500, tmdbData.total_pages)} />
-        </>
-      )}
-    </>
   );
 }
