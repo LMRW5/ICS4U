@@ -1,19 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Navlink } from "./Navlink";
 import { Querybutton } from "./Querybutton";
-import Searchview from "../views/Searchview";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
     const [query, setQuery] = useState("");
     const [type, setType] = useState("movie");
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (query) {
+            navigate(`/search?q=${query}&type=${type}`);
+        }
+    }, [query, type]);
 
     return (<>
         <nav className="relative">
-            <Navlink to="/" whenClicked={() => setQuery("")}>Home</Navlink>
-            <Navlink to="/movies" whenClicked={() => setQuery("")}>Movies</Navlink>
-            <Navlink to="/tv" whenClicked={() => setQuery("")}>TV</Navlink>
-            <Navlink to="/trending" whenClicked={() => setQuery("")}>Trending</Navlink>
-            <Navlink to="/genre" whenClicked={() => setQuery("")}>Genre</Navlink>
+            <Navlink to="/">Home</Navlink>
+            <Navlink to="/movies">Movies</Navlink>
+            <Navlink to="/tv">TV</Navlink>
+            <Navlink to="/trending">Trending</Navlink>
+            <Navlink to="/genre">Genre</Navlink>
             <input
                 type="text"
                 placeholder="Search..."
@@ -31,6 +38,5 @@ export default function Navbar() {
                 Person
             </Querybutton>
         </nav>
-        {query && <Searchview query={query} type={type} />}
     </>)
 }
