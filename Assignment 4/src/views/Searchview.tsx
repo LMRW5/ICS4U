@@ -25,6 +25,7 @@ export default function Searchview() {
 
   return (
     <>
+    <h1>Search for: {query}</h1>
       <Imagegrid data={tmdbData.results} whenClicked={(id) => navigate(`/${chosen}/${id}`)}/>
       
       <Pagination setPage={setPage} page={page} totalPages={Math.min(500, tmdbData.total_pages)} />

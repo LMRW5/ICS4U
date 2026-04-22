@@ -18,7 +18,6 @@ type MovieResponse = {
 
 export default function MoviesView() {
   const [page, setPage] = useState<number>(1);
-  const [activeName, setActiveName] = useState<string>("Now Playing");
   const navigate = useNavigate()
   const params = useParams();
   const activeChoice = params.type;
@@ -38,23 +37,21 @@ export default function MoviesView() {
 
   return (
     <div>
-      <Navlink to="/movies/category/now_playing" whenClicked={() => setActiveName("Now Playing")}>
+      <Navlink to="/movies/category/now_playing">
         Now Playing
       </Navlink>
 
-      <Navlink to="/movies/category/upcoming" whenClicked={() => setActiveName("Upcoming")}>
+      <Navlink to="/movies/category/upcoming" >
         Upcoming
       </Navlink>
 
-      <Navlink to="/movies/category/top_rated" whenClicked={() => setActiveName("Top Rated")}>
+      <Navlink to="/movies/category/top_rated" >
         Top Rated
       </Navlink>
 
-      <Navlink to="/movies/category/popular" whenClicked={() => setActiveName("Popular")}>
+      <Navlink to="/movies/category/popular">
         Popular
       </Navlink>
-
-      <h1>{activeName}</h1>
 
       {movieData && (
         <>

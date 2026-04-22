@@ -18,7 +18,6 @@ type TVResponse = {
 
 export default function TelevisionView() {
   const [page, setPage] = useState<number>(1);
-  const [activeName, setActiveName] = useState<string>("Airing Today");
   const navigate = useNavigate()
 
   const params = useParams();
@@ -39,23 +38,21 @@ export default function TelevisionView() {
 
   return (
     <div>
-      <Navlink to="/tv/category/airing_today" whenClicked={() => setActiveName("Airing Today")}>
+      <Navlink to="/tv/category/airing_today">
         Airring Today
       </Navlink>
 
-      <Navlink to="/tv/category/on_the_air" whenClicked={() => setActiveName("On The Air")}>
+      <Navlink to="/tv/category/on_the_air">
         On The Air
       </Navlink>
 
-      <Navlink to="/tv/category/top_rated" whenClicked={() => setActiveName("Top Rated")}>
+      <Navlink to="/tv/category/top_rated" >
         Top Rated
       </Navlink>
 
-      <Navlink to="/tv/category/popular" whenClicked={() => setActiveName("Popular")}>
+      <Navlink to="/tv/category/popular" >
         Popular
       </Navlink>
-
-      <h1>{activeName}</h1>
 
       {TVData && (
         <>

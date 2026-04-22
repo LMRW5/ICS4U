@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { Imagegrid } from "../components/ImageGrid";
 import { Navlink } from "../components/Navlink";
@@ -18,7 +18,6 @@ type MediaResponse = {
 };
 
 export default function TrendingView() {
-  const [activeName, setActiveName] = useState<string>("Now Playing");
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate()
   const params = useParams();
@@ -42,14 +41,17 @@ export default function TrendingView() {
 
   return (
     <div>
-      <Navlink to={`/trending/movie?interval=${interval}`} whenClicked={() => setActiveName("Trending Movies")}>
-        Movies
+      <div className="flex items-center justify-between">
+        <div className="flex gap-6">
+      <Navlink to={`/trending/movie?interval=${interval}`}>
+      Movies
       </Navlink>
 
-      <Navlink to={`/trending/tv?interval=${interval}`} whenClicked={() => setActiveName("Trending TV")}>
+      <Navlink to={`/trending/tv?interval=${interval}`}>
         TV
       </Navlink>
-
+      </div>
+      <div className="flex gap-3">
       <QueryButton to={`/trending/${activeChoice}?interval=day`} matchParams={{ interval: "day" }}>
         Today
       </QueryButton>
@@ -57,8 +59,8 @@ export default function TrendingView() {
       <QueryButton to={`/trending/${activeChoice}?interval=week`} matchParams={{ interval: "week" }}>
         Week
       </QueryButton>
-
-      <h1>{activeName}</h1>
+      </div>
+      </div>
       {mediaData && <Imagegrid data={mediaData?.results} whenClicked={(id)=>{navigate(`/${chosen}/${id}`)}}/>}
     </div>
   );
