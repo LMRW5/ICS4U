@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Imagegrid } from "../components/ImageGrid";
-import { Navlink } from "../components/Navlink";
+import { ImageGrid } from "../components/ImageGrid";
+import LinkGroup from "../components/LinkGroup";
 import Pagination from "../components/Pagination";
 import { useTmdb } from "../hooks/useTMDBdata";
 
@@ -18,7 +18,7 @@ type TVResponse = {
 
 export default function TelevisionView() {
   const [page, setPage] = useState<number>(1);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const params = useParams();
   const activeChoice = params.type;
@@ -38,25 +38,18 @@ export default function TelevisionView() {
 
   return (
     <div>
-      <Navlink to="/tv/category/airing_today">
-        Airring Today
-      </Navlink>
-
-      <Navlink to="/tv/category/on_the_air">
-        On The Air
-      </Navlink>
-
-      <Navlink to="/tv/category/top_rated" >
-        Top Rated
-      </Navlink>
-
-      <Navlink to="/tv/category/popular" >
-        Popular
-      </Navlink>
+      <LinkGroup
+        links={[
+          { label: "Airing Today", to: "/tv/category/airing_today" },
+          { label: "On The Air", to: "/tv/category/on_the_air" },
+          { label: "Top Rated", to: "/tv/category/top_rated" },
+          { label: "Popular", to: "/tv/category/popular" },
+        ]}
+      />
 
       {TVData && (
         <>
-          <Imagegrid data={TVData?.results} whenClicked={(id)=>navigate(`/tv/${id}`)} />
+          <ImageGrid data={TVData?.results} whenClicked={(id) => navigate(`/tv/${id}`)} />
           <Pagination setPage={setPage} page={page} totalPages={Math.min(500, TVData.total_pages)} />
         </>
       )}

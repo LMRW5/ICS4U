@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
-import LinkGroup from "./LinkGroup";
-import { QueryButton } from "./Querybutton";
 import ButtonGroup from "./ButtonGroup";
+import LinkGroup from "./LinkGroup";
 
 export default function Navbar() {
   const [searchParams, _setSearchParams] = useSearchParams();
@@ -38,75 +37,43 @@ export default function Navbar() {
               }}
               className="ml-4 px-2 py-1 bg-gray-800 text-white border border-gray-600 rounded"
             />
-            <div className="flex gap-3">
-              <QueryButton
-                whenClicked={() => {
-                  setType("movie");
-                  if (location.pathname === "/search") navigate(`/search?q=${query}&type=movie`);
-                }}
-                matchParams={{ type: "movie" }}
-                active={type === "movie"}
-              >
-                Movie
-              </QueryButton>
-              <QueryButton
-                whenClicked={() => {
-                  setType("tv");
-                  if (location.pathname === "/search") navigate(`/search?q=${query}&type=tv`);
-                }}
-                matchParams={{ type: "tv" }}
-                active={type === "tv"}
-              >
-                TV
-              </QueryButton>
-              <QueryButton
-                whenClicked={() => {
-                  setType("person");
-                  if (location.pathname === "/search") navigate(`/search?q=${query}&type=person`);
-                }}
-                matchParams={{ type: "person" }}
-                active={type === "person"}
-              >
-                Person
-              </QueryButton>
-            </div>
-            <ButtonGroup buttons={<ButtonGroup
-  buttons={[
-    {
-      label: "Movie",
-      matchParams: { type: "movie" },
-      active: type === "movie",
-      whenClicked: () => {
-        setType("movie");
-        if (location.pathname === "/search") {
-          navigate(`/search?q=${query}&type=movie`);
-        }
-      },
-    },
-    {
-      label: "TV",
-      matchParams: { type: "tv" },
-      active: type === "tv",
-      whenClicked: () => {
-        setType("tv");
-        if (location.pathname === "/search") {
-          navigate(`/search?q=${query}&type=tv`);
-        }
-      },
-    },
-    {
-      label: "Person",
-      matchParams: { type: "person" },
-      active: type === "person",
-      whenClicked: () => {
-        setType("person");
-        if (location.pathname === "/search") {
-          navigate(`/search?q=${query}&type=person`);
-        }
-      },
-    },
-  ]}
-/>}/>
+            <ButtonGroup
+              buttons={[
+                {
+                  label: "Movie",
+                  matchParams: { type: "movie" },
+                  active: type === "movie",
+                  whenClicked: () => {
+                    setType("movie");
+                    if (location.pathname === "/search") {
+                      navigate(`/search?q=${query}&type=movie`);
+                    }
+                  },
+                },
+                {
+                  label: "TV",
+                  matchParams: { type: "tv" },
+                  active: type === "tv",
+                  whenClicked: () => {
+                    setType("tv");
+                    if (location.pathname === "/search") {
+                      navigate(`/search?q=${query}&type=tv`);
+                    }
+                  },
+                },
+                {
+                  label: "Person",
+                  matchParams: { type: "person" },
+                  active: type === "person",
+                  whenClicked: () => {
+                    setType("person");
+                    if (location.pathname === "/search") {
+                      navigate(`/search?q=${query}&type=person`);
+                    }
+                  },
+                },
+              ]}
+            />
           </div>
         </div>
       </nav>

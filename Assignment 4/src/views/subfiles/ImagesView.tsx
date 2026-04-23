@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import { ImageGrid } from "../../components/ImageGrid";
 import { useTmdb } from "../../hooks/useTMDBdata";
 
 type ImageProps = {
@@ -15,17 +16,11 @@ export default function ImagesView() {
 `,
     {},
     []
-  ).data?.profiles;
-  if (tmdbData && tmdbData.length != 0) {
+  ).data;
+  if (tmdbData && tmdbData.profiles.length != 0) {
     return (
       <>
-        {tmdbData.map((profile) => {
-          return (
-            <div key={profile.file_path}>
-              <img src={`https://image.tmdb.org/t/p/w200${profile.file_path}`}></img>
-            </div>
-          );
-        })}
+        <ImageGrid data={tmdbData.profiles} />
       </>
     );
   } else {

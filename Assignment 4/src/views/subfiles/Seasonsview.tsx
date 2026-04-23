@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useTmdb } from "../../hooks/useTMDBdata";
+import { ImageGrid } from "../../components/ImageGrid";
 
 type SeasonsProps = {
   number_of_seasons: number;
@@ -21,17 +22,8 @@ export default function SeasonsView() {
   }
   return (
     <>
-      {tmdbData.seasons.map((season) => {
-        return (
-          season.season_number > 0 && (
-            <div key={season.id} onClick={()=> navigate(`/tv/${id}/seasons/${season.season_number}`)}>
-              <img src={`https://image.tmdb.org/t/p/w500/${season.poster_path}`}></img>
-              <p>{season.name}</p>
-              <p>{season.air_date}</p>
-            </div>
-          )
-        );
-      })}
+    <ImageGrid data={tmdbData.seasons} whenClicked={(id)=>{navigate(`/tv/${id}/seasons/${season.season_number}`)}}/>
+      
     </>
   );
 }

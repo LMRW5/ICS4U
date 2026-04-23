@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Imagegrid } from "../components/ImageGrid";
-import { Navlink } from "../components/Navlink";
+import { ImageGrid } from "../components/ImageGrid";
+import LinkGroup from "../components/LinkGroup";
 import Pagination from "../components/Pagination";
 import { useTmdb } from "../hooks/useTMDBdata";
 
@@ -18,7 +18,7 @@ type MovieResponse = {
 
 export default function MoviesView() {
   const [page, setPage] = useState<number>(1);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const params = useParams();
   const activeChoice = params.type;
 
@@ -37,25 +37,18 @@ export default function MoviesView() {
 
   return (
     <div>
-      <Navlink to="/movies/category/now_playing">
-        Now Playing
-      </Navlink>
-
-      <Navlink to="/movies/category/upcoming" >
-        Upcoming
-      </Navlink>
-
-      <Navlink to="/movies/category/top_rated" >
-        Top Rated
-      </Navlink>
-
-      <Navlink to="/movies/category/popular">
-        Popular
-      </Navlink>
+      <LinkGroup
+        links={[
+          { label: "Now Playing", to: "/movies/category/now_playing" },
+          { label: "Upcoming", to: "/movies/category/upcoming" },
+          { label: "Top Rated", to: "/movies/category/top_rated" },
+          { label: "Popular", to: "/movies/category/popular" },
+        ]}
+      />
 
       {movieData && (
         <>
-          <Imagegrid data={movieData?.results} whenClicked={(id) => navigate(`/movies/${id}`)} />
+          <ImageGrid data={movieData?.results} whenClicked={(id) => navigate(`/movies/${id}`)} />
           <Pagination setPage={setPage} page={page} totalPages={Math.min(500, movieData.total_pages)} />
         </>
       )}

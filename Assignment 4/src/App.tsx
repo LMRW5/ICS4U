@@ -1,7 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { MainLayout } from "./layouts/Mainlayout";
-import ErrorView from "./views/Errorview";
-import HomeView from "./views/Homeview";
+import ErrorView from "./views/ErrorView";
+import HomeView from "./views/HomeView";
 import MoviesView from "./views/Moviesview";
 import TelevisionView from "./views/TelevisionView";
 import TrendingView from "./views/Trendingview";

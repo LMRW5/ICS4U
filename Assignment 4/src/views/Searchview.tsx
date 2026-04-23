@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { Imagegrid } from "../components/ImageGrid";
+import { ImageGrid } from "../components/ImageGrid";
 import Pagination from "../components/Pagination";
 import { useDebounce } from "../hooks/useDebounce";
 import { useTmdb } from "../hooks/useTMDBdata";
@@ -26,7 +26,7 @@ export default function Searchview() {
   return (
     <>
     <h1>Search for: {query}</h1>
-      <Imagegrid data={tmdbData.results} whenClicked={(id) => navigate(`/${chosen}/${id}`)}/>
+      <ImageGrid data={tmdbData.results} whenClicked={(id) => navigate(`/${chosen}/${id}`)}/>
       
       <Pagination setPage={setPage} page={page} totalPages={Math.min(500, tmdbData.total_pages)} />
         </>

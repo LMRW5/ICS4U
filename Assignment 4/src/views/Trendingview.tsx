@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
-import { Imagegrid } from "../components/ImageGrid";
-import { Navlink } from "../components/Navlink";
-import {  QueryButton } from "../components/Querybutton";
+import { ImageGrid } from "../components/ImageGrid";
 import { useTmdb } from "../hooks/useTMDBdata";
+import LinkGroup from "../components/LinkGroup";
+import ButtonGroup from "../components/ButtonGroup";
 
 type Media = {
   id: number;
@@ -42,26 +42,10 @@ export default function TrendingView() {
   return (
     <div>
       <div className="flex items-center justify-between">
-        <div className="flex gap-6">
-      <Navlink to={`/trending/movie?interval=${interval}`}>
-      Movies
-      </Navlink>
-
-      <Navlink to={`/trending/tv?interval=${interval}`}>
-        TV
-      </Navlink>
+      <LinkGroup links={[{label: "Movies", to:`/trending/movie?interval=${interval}`}, {label: "TV", to:`/trending/tv?interval=${interval}`}]}/>
+      <ButtonGroup buttons={[{label: "Today", to:`/trending/${activeChoice}?interval=day`, matchParams: { interval: "day" }}, {label: "Week", to:`/trending/${activeChoice}?interval=week`, matchParams: { interval: "week" }}]}/>
       </div>
-      <div className="flex gap-3">
-      <QueryButton to={`/trending/${activeChoice}?interval=day`} matchParams={{ interval: "day" }}>
-        Today
-      </QueryButton>
-
-      <QueryButton to={`/trending/${activeChoice}?interval=week`} matchParams={{ interval: "week" }}>
-        Week
-      </QueryButton>
-      </div>
-      </div>
-      {mediaData && <Imagegrid data={mediaData?.results} whenClicked={(id)=>{navigate(`/${chosen}/${id}`)}}/>}
+      {mediaData && <ImageGrid data={mediaData?.results} whenClicked={(id)=>{navigate(`/${chosen}/${id}`)}}/>}
     </div>
   );
 }

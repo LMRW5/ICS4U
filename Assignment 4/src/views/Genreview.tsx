@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Imagegrid } from "../components/ImageGrid";
-import { Navlink } from "../components/Navlink";
+import { ImageGrid } from "../components/ImageGrid";
+import LinkGroup from "../components/LinkGroup";
 import Pagination from "../components/Pagination";
 import { useTmdb } from "../hooks/useTMDBdata";
 
@@ -19,8 +19,8 @@ export default function Genreview() {
   const params = useParams();
   const activeChoice = params.type;
   const activeGenre = params.mediaGenre;
-  const chosen = activeChoice == "movie" ? "movies" : "tv"
-  const navigate = useNavigate()
+  const chosen = activeChoice == "movie" ? "movies" : "tv";
+  const navigate = useNavigate();
 
   const MOVIE_GENRES = [
     { name: "Action", id: 28 },
@@ -51,7 +51,7 @@ export default function Genreview() {
   const genreID = genres.find((g) => {
     return g.name.toLowerCase() === activeGenre?.toLowerCase();
   })?.id;
-  const tmdbData = useTmdb<MediaGenres>(`https://api.themoviedb.org/3/discover/${activeChoice}`, { with_genres: genreID, page:page }, [
+  const tmdbData = useTmdb<MediaGenres>(`https://api.themoviedb.org/3/discover/${activeChoice}`, { with_genres: genreID, page: page }, [
     activeChoice,
     activeGenre,
     page,
@@ -59,28 +59,40 @@ export default function Genreview() {
 
   return (
     <div>
-      <div>
-        <Navlink to={"/genre/movie/action"} match="/genre/movie/*" whenClicked={()=>setPage(1)}>
-          Movies
-        </Navlink>
-
-        <Navlink to={"/genre/tv/action"} match="/genre/tv/*" whenClicked={()=>setPage(1)}>
-          TV
-        </Navlink>
-      </div>
-      <div>
-        {genres &&
-          genres.map((genre) => {
-            return (
-              <Navlink key={genre.id} to={`/genre/${activeChoice}/${genre.name}`} whenClicked={()=>setPage(1)}>
-                {genre.name}
-              </Navlink>
-            );
-          })}
-      </div>
+      <LinkGroup
+        links={[
+          {
+            label: "Movies",
+            to: "/genre/movie/action",
+            match: "/genre/movie/*",
+            whenClicked: () => {
+              setPage(1);
+            },
+          },
+          {
+            label: "TV",
+            to: "/genre/tv/action",
+            match: "/genre/tv/*",
+            whenClicked: () => {
+              setPage(1);
+            },
+          },
+        ]}
+      />
+      <LinkGroup
+        links={
+          genres &&
+          genres.map((genre) => ({ label: genre.name, to: `/genre/${activeChoice}/${genre.name}`, whenClicked: () => setPage(1) }))
+        }
+      />
       {tmdbData && (
         <>
-          <Imagegrid data={tmdbData.results} whenClicked={(id)=>{navigate(`/${chosen}/${id}`)}}/>
+          <ImageGrid
+            data={tmdbData.results}
+            whenClicked={(id) => {
+              navigate(`/${chosen}/${id}`);
+            }}
+          />
           <Pagination setPage={setPage} page={page} totalPages={Math.min(500, tmdbData.total_pages)} />
         </>
       )}

@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useTmdb } from "../../hooks/useTMDBdata";
+import { ImageGrid } from "../../components/ImageGrid";
 
 type CareerProps = {
   cast: {
@@ -23,6 +24,7 @@ export default function CareerView() {
   if (tmdbData && tmdbData.length != 0) {
     return (
       <>
+      <ImageGrid data={tmdbData}/>
         {tmdbData.map((movie) => {
           return (
             <div key={movie.id} onClick={() => navigate(`/movies/${movie.id}`)}>
