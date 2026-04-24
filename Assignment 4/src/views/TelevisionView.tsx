@@ -37,7 +37,7 @@ export default function TelevisionView() {
   ).data;
 
   return (
-    <div>
+    <section className="max-w-[1200px] mx-auto p-5 space-y-3">
       <LinkGroup
         links={[
           { label: "Airing Today", to: "/tv/category/airing_today" },
@@ -53,6 +53,6 @@ export default function TelevisionView() {
           <Pagination setPage={setPage} page={page} totalPages={Math.min(500, TVData.total_pages)} />
         </>
       )}
-    </div>
+    </section>
   );
 }

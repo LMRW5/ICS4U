@@ -40,12 +40,12 @@ export default function TrendingView() {
   ).data;
 
   return (
-    <div>
+    <section className="max-w-[1200px] mx-auto p-5 space-y-3">
       <div className="flex items-center justify-between">
       <LinkGroup links={[{label: "Movies", to:`/trending/movie?interval=${interval}`}, {label: "TV", to:`/trending/tv?interval=${interval}`}]}/>
       <ButtonGroup buttons={[{label: "Today", to:`/trending/${activeChoice}?interval=day`, matchParams: { interval: "day" }}, {label: "Week", to:`/trending/${activeChoice}?interval=week`, matchParams: { interval: "week" }}]}/>
       </div>
       {mediaData && <ImageGrid data={mediaData?.results} whenClicked={(id)=>{navigate(`/${chosen}/${id}`)}}/>}
-    </div>
+    </section>
   );
 }

@@ -19,11 +19,17 @@ export default function Creditsview() {
   const tmdbData = useTmdb<CreditsProps>(`https://api.themoviedb.org/3/${mediaType}/${id}/credits`, {}, []).data?.cast;
   if (tmdbData && tmdbData.length != 0) {
     return (
-      <>
+      <section className="px-2 space-y-4">
+        <h2 className="text-2xl font-bold">Credits</h2>
         <ImageGrid data={tmdbData} />
-      </>
+      </section>
     );
   } else {
-    return <h2>No Credits Found</h2>;
+    return (
+      <section className="px-2 space-y-4">
+        <h2 className="text-2xl font-bold">Credits</h2>
+        <h2 className="text-gray-400 text-center">No Credits Found</h2>
+      </section>
+    );
   }
 }

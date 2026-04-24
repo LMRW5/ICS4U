@@ -27,18 +27,27 @@ export default function Trailersview() {
     });
   if (trailerVideos && trailerVideos.length != 0) {
     return (
-      <>
+      <section className="px-2 space-y-4">
+        <h2 className="text-2xl font-bold">Trailers</h2>
+
         {trailerVideos.map((video) => {
           return (
-            <div key={video.id}>
-              <iframe src={`https://www.youtube.com/embed/${video.key}`} title={video.name} allowFullScreen></iframe>
+            <div key={video.id} className="aspect-video">
+              <iframe
+                className="w-full h-full rounded-xl"
+                src={`https://www.youtube.com/embed/${video.key}`}
+                title={video.name}
+                allowFullScreen
+              ></iframe>
             </div>
           );
         })}
-      </>
+      </section>
     );
   } else {
-    return <h2>No Trailers Found</h2>
+    return <section className="px-2 space-y-4">
+    <h2 className="text-2xl font-bold">Trailers</h2>
+  <h2 className="text-gray-400 text-center">No Trailers Found</h2>
+  </section>
   }
-
 }

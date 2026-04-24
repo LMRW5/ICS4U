@@ -24,11 +24,11 @@ export default function Searchview() {
   }
 
   return (
-    <>
+    <section className="max-w-[1200px] mx-auto p-5 space-y-3">
     <h1>Search for: {query}</h1>
       <ImageGrid data={tmdbData.results} whenClicked={(id) => navigate(`/${chosen}/${id}`)}/>
       
       <Pagination setPage={setPage} page={page} totalPages={Math.min(500, tmdbData.total_pages)} />
-        </>
+        </section>
   );
 }

@@ -1,5 +1,8 @@
 import { useNavigate, useParams } from "react-router-dom"
 import { useTmdb } from "../../hooks/useTMDBdata";
+import { ImageGrid } from "../../components/ImageGrid";
+import { Button } from "../../components/Button";
+import { FaCalendarAlt } from "react-icons/fa";
 
 type EpisodeProps = {
  air_date: string;
@@ -9,7 +12,7 @@ type EpisodeProps = {
     episode_number: number;
     name: string;
     still_path: string;
-    id: string;
+    id: number;
  }[]
 }
 
@@ -26,21 +29,14 @@ export default function EpisodeView(){
         return <p>Loading...</p>;
       }   
 
-    return <>
-    <h1>Season {seasonNumber}</h1>
-    <p>{tmdbData.air_date}</p>
-    <p>{tmdbData.overview}</p>
-    <button onClick={()=>navigate(-1)}>Return</button>
-    <h1>Episodes:</h1>
-    {tmdbData.episodes.map((episode) => {
-      return (
+    return <section className="px-2 space-y-4">
+    <h1 className="text-2xl font-bold">Season {seasonNumber}</h1>
+    <p className="text-gray-400 flex items-center gap-2">
+      <FaCalendarAlt/>{tmdbData.air_date}</p>
+    <p className="text-gray-300 leading-relaxed">{tmdbData.overview}</p>
+    <Button onClick={()=>navigate(-1)}>Back</Button>
+    <h2 className="text-xl font-bold">Episodes:</h2>
+    <ImageGrid data={tmdbData.episodes}/>
 
-          <div key={episode.id}>
-            <img src={`https://image.tmdb.org/t/p/w500/${episode.still_path}`}></img>
-            <p>{episode.name}</p>
-            <p>{episode.air_date}</p>
-          </div>
-        );
-    })}
-  </>
+  </section>
 }
