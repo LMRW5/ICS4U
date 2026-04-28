@@ -1,4 +1,4 @@
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { ImageGrid } from "../../components/ImageGrid";
 import { useTmdb } from "../../hooks/useTMDBdata";
 
@@ -13,6 +13,7 @@ type CreditsProps = {
 
 export default function Creditsview() {
   const params = useParams();
+  const navigate = useNavigate();
   const id = params.id;
   const location = useLocation();
   const mediaType = location.pathname.startsWith("/tv") ? "tv" : "movie";
@@ -21,7 +22,7 @@ export default function Creditsview() {
     return (
       <section className="px-2 space-y-4">
         <h2 className="text-2xl font-bold">Credits</h2>
-        <ImageGrid data={tmdbData} />
+        <ImageGrid data={tmdbData} whenClicked={(id) => { navigate(`/person/${id}`); }} />
       </section>
     );
   } else {

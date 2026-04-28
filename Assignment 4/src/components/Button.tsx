@@ -6,7 +6,7 @@ type ButtonProps = {
   disabled?: boolean;
   onClick: () => void;
 };
-const baseStyles = 'inline-block px-6 py-3 rounded-2xl transition font-medium shadow-lg';
+const baseStyles = 'inline-block px-6 py-3 rounded-2xl transition font-medium shadow-lg cursor-pointer disabled:cursor-not-allowed disabled:opacity-50';
 const variants = {
   primary: 'bg-blue-600 hover:bg-blue-500 text-white',
   grey: 'bg-gray-700 hover:bg-gray-600 text-white',

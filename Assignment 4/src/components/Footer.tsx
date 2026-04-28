@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className="w-full border-t border-gray-800 bg-gray-900 text-gray-500">
       <div className="max-w-5xl mx-auto px-4 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-l">
-          <p>Made with React</p>
+          <p>TMDB explorer Assignment 4 ICS4U</p>
           <div className="flex items-center gap-4">
             <a
               href="https://github.com/LMRW5"

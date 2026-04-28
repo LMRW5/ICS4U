@@ -2,6 +2,9 @@ import { Outlet, useNavigate, useParams } from "react-router-dom";
 import { Button } from "../../components/Button";
 import LinkGroup from "../../components/LinkGroup";
 import { useTmdb } from "../../hooks/useTMDBdata";
+import { FaBirthdayCake } from "react-icons/fa";
+import { FaLocationArrow } from "react-icons/fa";
+
 
 type personProps = {
   birthday: string;
@@ -9,6 +12,7 @@ type personProps = {
   id: number;
   name: string;
   profile_path: string;
+  place_of_birth: string;
 };
 
 export default function Personview() {
@@ -17,19 +21,24 @@ export default function Personview() {
   const personID = params.id;
   const tmdbData = useTmdb<personProps>(`https://api.themoviedb.org/3/person/${personID}`, {}, []).data;
   return (
-    <>
-      <h2>{tmdbData?.name}</h2>
-      <p>{tmdbData?.birthday}</p>
-      <p>{tmdbData?.biography}</p>
-      <img src={`https://image.tmdb.org/t/p/w200${tmdbData?.profile_path}`}></img>
-      <Button onClick={() => navigate(-1)}>Back</Button>
-      <LinkGroup
-        links={[
-          { label: "Career", to: `/person/${personID}/career`, replace: true },
-          { label: "Images", to: `/person/${personID}/images`, replace: true },
-        ]}
-      />
+    <section className="max-w-[1200px] mx-auto p-5 space-y-3 ml-75 mr-75">
+      <div className="flex p-5 gap-8 ml-auto mr-auto">
+        <img className = "rounded-lg"src={`https://image.tmdb.org/t/p/w200${tmdbData?.profile_path}`}></img>
+        <div className="block">
+          <Button onClick={() => navigate(-1)}>Back</Button>
+          <h2 className="text-3xl font-bold p-2">{tmdbData?.name}</h2>
+          <p className="text-gray-400 flex items-center gap-2 p-2"><FaLocationArrow /> {tmdbData?.place_of_birth}</p>
+          <p className="text-gray-400 flex items-center gap-2 p-2"><FaBirthdayCake /> {tmdbData?.birthday}</p>
+          <p className="p-2 text-gray-300">{tmdbData?.biography || "No biography available."}</p>
+          <LinkGroup
+            links={[
+              { label: "Career", to: `/person/${personID}/career`, replace: true },
+              { label: "Images", to: `/person/${personID}/images`, replace: true },
+            ]}
+          />
+        </div>
+      </div>
       <Outlet />
-    </>
+    </section>
   );
 }

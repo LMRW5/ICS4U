@@ -1,6 +1,6 @@
 type ImagegridProps = {
   data: {
-    id?: number;
+    id?: number ;
     title?: string;
     name?: string;
     poster_path?: string;

@@ -40,7 +40,7 @@ export default function Navbar() {
             <ButtonGroup
               buttons={[
                 {
-                  label: "Movie",
+                  label: "Movies",
                   matchParams: { type: "movie" },
                   active: type === "movie",
                   whenClicked: () => {

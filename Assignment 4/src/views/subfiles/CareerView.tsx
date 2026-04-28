@@ -13,8 +13,8 @@ type CareerProps = {
 
 export default function CareerView() {
   const params = useParams();
+  const navigate = useNavigate();
   const id = params.id;
-  const navigate = useNavigate()
   const tmdbData = useTmdb<CareerProps>(
     `https://api.themoviedb.org/3/person/${id}/movie_credits
 `,
@@ -23,18 +23,9 @@ export default function CareerView() {
   ).data?.cast;
   if (tmdbData && tmdbData.length != 0) {
     return (
-      <>
-      <ImageGrid data={tmdbData}/>
-        {tmdbData.map((movie) => {
-          return (
-            <div key={movie.id} onClick={() => navigate(`/movies/${movie.id}`)}>
-              <img src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}></img>
-              <h2>{movie.title}</h2>
-              <p>{movie.character}</p>
-            </div>
-          );
-        })}
-      </>
+      <section className="max-w-[1200px] mx-auto p-5 space-y-3">
+      <ImageGrid data={tmdbData} whenClicked={(id)=>{navigate(`/movies/${id}`)}}/>
+      </section>
     );
   } else {
     return <h2>No Movies Found</h2>;

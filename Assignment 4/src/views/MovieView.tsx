@@ -6,6 +6,7 @@ import { useTmdb } from "../hooks/useTMDBdata";
 
 type movieData = {
   title: string;
+  name: string;
   poster_path: string;
   backdrop_path: string;
   overview: string;
@@ -40,7 +41,7 @@ export default function MovieView() {
           <div className="flex gap-8">
             <img className="w-[220px] h-[330px] object-cover rounded-xl" src={`https://image.tmdb.org/t/p/w300/${tmdbData.poster_path}`} />
             <div className="flex-1 space-y-4">
-              <h1 className="text-3xl font-bold">{tmdbData.title}</h1>
+              <h1 className="text-3xl font-bold">{tmdbData.title || tmdbData.name}</h1>
               <p className="text-gray-400 flex items-center gap-2">
                 <FaCalendarAlt />
                 {tmdbData.release_date || tmdbData.first_air_date}
