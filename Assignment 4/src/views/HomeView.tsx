@@ -1,9 +1,12 @@
-import Navbar from "../components/Navbar"
+import { useNavigate } from "react-router-dom";
+import { Button } from "../components/Button";
 
 export default function HomeView(){
-    return (<>
-    <Navbar />
-    <h1>ICS4U assignment 4</h1>
-    <button>Hi</button>
-    </>)
+    const navigate = useNavigate();
+    return (<section className='min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center gap-8'>
+    <h1 className="text-xl">ICS4U assignment 4</h1>
+        <h1 className="text-4xl font-bold">TMDB Explorer</h1>
+
+    <Button onClick={()=>{navigate("/movies")}}>Enter</Button>
+    </section>)
 }

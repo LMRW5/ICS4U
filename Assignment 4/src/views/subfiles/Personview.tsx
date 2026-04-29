@@ -23,7 +23,11 @@ export default function Personview() {
   return (
     <section className="max-w-[1200px] mx-auto p-5 space-y-3 ml-75 mr-75">
       <div className="flex p-5 gap-8 ml-auto mr-auto">
-        <img className = "rounded-lg"src={`https://image.tmdb.org/t/p/w200${tmdbData?.profile_path}`}></img>
+        <img
+          className="rounded-lg w-[250px] h-[350px] object-cover"
+          src={`https://image.tmdb.org/t/p/w200${tmdbData?.profile_path}`}
+          alt={tmdbData?.name ?? "Person image"}
+        />
         <div className="block">
           <Button onClick={() => navigate(-1)}>Back</Button>
           <h2 className="text-3xl font-bold p-2">{tmdbData?.name}</h2>
