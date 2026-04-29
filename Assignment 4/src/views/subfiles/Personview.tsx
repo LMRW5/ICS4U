@@ -21,17 +21,17 @@ export default function Personview() {
   const personID = params.id;
   const tmdbData = useTmdb<personProps>(`https://api.themoviedb.org/3/person/${personID}`, {}, []).data;
   return (
-    <section className="max-w-[1200px] mx-auto p-5 space-y-3 ml-75 mr-75">
-      <div className="flex p-5 gap-8 ml-auto mr-auto">
+    <section className="max-w-4xl mx-auto p-5">
+      <div className="flex gap-8 py-10">
         <img
-          className="rounded-lg w-[250px] h-[350px] object-cover"
+          className="w-[220px] h-[330px] object-cover rounded-xl shadow-lg flex-shrink-0"
           src={`https://image.tmdb.org/t/p/w200${tmdbData?.profile_path}`}
           alt={tmdbData?.name ?? "Person image"}
         />
-        <div className="block">
+        <div className="space-y-4">
           <Button onClick={() => navigate(-1)}>Back</Button>
-          <h2 className="text-3xl font-bold p-2">{tmdbData?.name}</h2>
-          <p className="text-gray-400 flex items-center gap-2 p-2"><FaLocationArrow /> {tmdbData?.place_of_birth}</p>
+          <h1 className="text-4xl font-bold">{tmdbData?.name}</h1>
+          <p className="text-gray-400 flex items-center gap-2"><FaLocationArrow /> {tmdbData?.place_of_birth}</p>
           <p className="text-gray-400 flex items-center gap-2 p-2"><FaBirthdayCake /> {tmdbData?.birthday}</p>
           <p className="p-2 text-gray-300">{tmdbData?.biography || "No biography available."}</p>
           <LinkGroup
