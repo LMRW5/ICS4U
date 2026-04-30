@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import ButtonGroup from "./ButtonGroup";
 import LinkGroup from "./LinkGroup";
+import { FaSearch } from "react-icons/fa";
+
 
 export default function Navbar() {
   const [searchParams, _setSearchParams] = useSearchParams();
@@ -12,7 +14,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="relative flex items-center p-4 bg-gray-800">
+      <nav className="flex items-center p-4 bg-gray-800">
         <div className="flex items-center gap-6">
           <h1 className="text-2xl font-bold text-white-900">TMDB Explorer</h1>
 
@@ -27,6 +29,9 @@ export default function Navbar() {
         </div>
         <div className="ml-auto">
           <div className="flex w-full max-w-2xl gap-3 items-center">
+            <div className="flex items-center">
+          <FaSearch />
+
             <input
               type="search"
               placeholder="Search..."
@@ -37,6 +42,7 @@ export default function Navbar() {
               }}
               className="ml-4 px-2 py-1 bg-gray-800 text-white border border-gray-600 rounded"
             />
+            </div>
             <ButtonGroup
               buttons={[
                 {

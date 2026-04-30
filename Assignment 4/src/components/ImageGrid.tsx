@@ -25,10 +25,9 @@ export function ImageGrid({ data, whenClicked }: ImagegridProps) {
               alt={media.primaryText}
             />
             <div className="p-3 text-center">
-              {media.primaryText &&
-            <p className="text-sm font-semibold truncate">{media.primaryText}</p>
-            {media.secondaryText && (<p className="text-gray-400 font-semibold text-sm truncate">{media.secondaryText}</p>)}}
-          </div>
+              {media.primaryText && <p className="text-sm font-semibold truncate">{media.primaryText}</p>}
+              {media.secondaryText && <p className="text-gray-400 font-semibold text-sm truncate">{media.secondaryText}</p>}
+            </div>
           </div>
         ))}
     </div>

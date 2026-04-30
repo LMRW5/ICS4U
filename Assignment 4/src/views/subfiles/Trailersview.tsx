@@ -29,19 +29,22 @@ export default function Trailersview() {
     return (
       <section className="px-2 space-y-4">
         <h2 className="text-2xl font-bold">Trailers</h2>
-
+        <div className="grid gap-6 grid-cols-2">
         {trailerVideos.map((video) => {
           return (
-            <div key={video.id} className="aspect-video padding-bottom-56.25% relative">
+            <div key={video.id} className="aspect-video">
               <iframe
                 className="w-full h-full rounded-xl"
                 src={`https://www.youtube.com/embed/${video.key}`}
                 title={video.name}
                 allowFullScreen
               ></iframe>
+              <p className="mt-2 text-sm text-gray-300">{video.name}</p>
             </div>
+            
           );
         })}
+        </div>
       </section>
     );
   } else {
