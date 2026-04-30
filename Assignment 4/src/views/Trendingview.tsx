@@ -38,6 +38,11 @@ export default function TrendingView() {
     },
     [activeChoice, interval]
   ).data;
+  const gridData = mediaData?.results.map((media) => ({
+    id: media.id,
+    primaryText: media.title || media.name,
+    imagePath: media.poster_path,
+  }));
 
   return (
     <section className="max-w-[1200px] mx-auto p-5 space-y-3">
@@ -45,7 +50,7 @@ export default function TrendingView() {
       <LinkGroup links={[{label: "Movies", to:`/trending/movie?interval=${interval}`}, {label: "TV", to:`/trending/tv?interval=${interval}`}]}/>
       <ButtonGroup buttons={[{label: "Today", to:`/trending/${activeChoice}?interval=day`, matchParams: { interval: "day" }}, {label: "Week", to:`/trending/${activeChoice}?interval=week`, matchParams: { interval: "week" }}]}/>
       </div>
-      {mediaData && <ImageGrid data={mediaData?.results} whenClicked={(id)=>{navigate(`/${chosen}/${id}`)}}/>}
+      {gridData && mediaData && <ImageGrid data={gridData} whenClicked={(id)=>{navigate(`/${chosen}/${id}`)}}/>}
     </section>
   );
 }

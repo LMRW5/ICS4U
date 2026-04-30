@@ -34,7 +34,11 @@ export default function MoviesView() {
     },
     [page, activeChoice]
   ).data;
-
+  const gridData = movieData?.results.map((movie) => ({
+    id: movie.id,
+    primaryText: movie.title,
+    imagePath: movie.poster_path,
+  }));
   return (
     <section className="max-w-[1200px] mx-auto p-5 space-y-3">
       <LinkGroup
@@ -46,9 +50,9 @@ export default function MoviesView() {
         ]}
       />
 
-      {movieData && (
+      {gridData && movieData && (
         <>
-          <ImageGrid data={movieData?.results} whenClicked={(id) => navigate(`/movies/${id}`)} />
+          <ImageGrid data={gridData} whenClicked={(id) => navigate(`/movies/${id}`)} />
           <Pagination setPage={setPage} page={page} totalPages={Math.min(500, movieData.total_pages)} />
         </>
       )}

@@ -18,11 +18,17 @@ export default function Creditsview() {
   const location = useLocation();
   const mediaType = location.pathname.startsWith("/tv") ? "tv" : "movie";
   const tmdbData = useTmdb<CreditsProps>(`https://api.themoviedb.org/3/${mediaType}/${id}/credits`, {}, []).data?.cast;
-  if (tmdbData && tmdbData.length != 0) {
+  const gridData = tmdbData?.map((credit) => ({
+    id: credit.id,
+    primaryText: credit.name,
+    secondaryText: credit.character,
+    imagePath: credit.profile_path,
+  }));
+  if (gridData && gridData.length != 0) {
     return (
       <section className="px-2 space-y-4">
         <h2 className="text-2xl font-bold">Credits</h2>
-        <ImageGrid data={tmdbData} whenClicked={(id) => { navigate(`/person/${id}`); }} />
+        <ImageGrid data={gridData} whenClicked={(id) => { navigate(`/person/${id}`); }} />
       </section>
     );
   } else {

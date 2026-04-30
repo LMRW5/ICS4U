@@ -9,6 +9,7 @@ type MediaGenres = {
   results: {
     id: number;
     title: string;
+    name: string;
     poster_path: string;
   }[];
   total_pages: number;
@@ -56,6 +57,11 @@ export default function Genreview() {
     activeGenre,
     page,
   ]).data;
+  const gridData = tmdbData?.results.map((media) => ({
+    id: media.id,
+    primaryText: media.title || media.name,
+    imagePath: media.poster_path,
+  }));
 
   return (
     <section className="max-w-[1200px] mx-auto p-5 space-y-3">
@@ -85,10 +91,10 @@ export default function Genreview() {
           genres.map((genre) => ({ label: genre.name, to: `/genre/${activeChoice}/${genre.name}`, whenClicked: () => setPage(1) }))
         }
       />
-      {tmdbData && (
+      {tmdbData && gridData && (
         <>
           <ImageGrid
-            data={tmdbData.results}
+            data={gridData}
             whenClicked={(id) => {
               navigate(`/${chosen}/${id}`);
             }}

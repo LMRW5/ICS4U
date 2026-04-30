@@ -17,10 +17,14 @@ export default function ImagesView() {
     {},
     []
   ).data;
-  if (tmdbData && tmdbData.profiles.length != 0) {
+  const gridData = tmdbData?.profiles.map((profile) => ({
+    id: profile.file_path,
+    imagePath: profile.file_path,
+  }));
+  if (gridData && gridData.length != 0) {
     return (
       <section className="max-w-[1200px] mx-auto p-5 space-y-3">
-        <ImageGrid data={tmdbData.profiles} />
+        <ImageGrid data={gridData} />
       </section>
     );
   } else {

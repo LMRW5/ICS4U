@@ -29,11 +29,11 @@ export default function Personview() {
           alt={tmdbData?.name ?? "Person image"}
         />
         <div className="space-y-4">
-          <Button onClick={() => navigate(-1)}>Back</Button>
+          <Button onClick={() => navigate(-1)}>← Back</Button>
           <h1 className="text-4xl font-bold">{tmdbData?.name}</h1>
-          <p className="text-gray-400 flex items-center gap-2"><FaLocationArrow /> {tmdbData?.place_of_birth}</p>
-          <p className="text-gray-400 flex items-center gap-2 p-2"><FaBirthdayCake /> {tmdbData?.birthday}</p>
-          <p className="p-2 text-gray-300">{tmdbData?.biography || "No biography available."}</p>
+          <p className="text-gray-400 flex items-center gap-2 pl-2"><FaLocationArrow /> {tmdbData?.place_of_birth}</p>
+          <p className="text-gray-400 flex items-center gap-2 pl-2"><FaBirthdayCake /> {tmdbData?.birthday}</p>
+          <p className="pl-2 text-gray-300">{tmdbData?.biography || "No biography available."}</p>
           <LinkGroup
             links={[
               { label: "Career", to: `/person/${personID}/career`, replace: true },

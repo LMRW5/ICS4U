@@ -32,7 +32,7 @@ export default function Trailersview() {
 
         {trailerVideos.map((video) => {
           return (
-            <div key={video.id} className="aspect-video">
+            <div key={video.id} className="aspect-video padding-bottom-56.25% relative">
               <iframe
                 className="w-full h-full rounded-xl"
                 src={`https://www.youtube.com/embed/${video.key}`}

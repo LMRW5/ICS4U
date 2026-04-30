@@ -35,6 +35,11 @@ export default function TelevisionView() {
     },
     [page, activeChoice]
   ).data;
+  const gridData = TVData?.results.map((tv) => ({
+    id: tv.id,
+    primaryText: tv.name,
+    imagePath: tv.poster_path,
+  }));
 
   return (
     <section className="max-w-[1200px] mx-auto p-5 space-y-3">
@@ -47,9 +52,9 @@ export default function TelevisionView() {
         ]}
       />
 
-      {TVData && (
+      {gridData && TVData && (
         <>
-          <ImageGrid data={TVData?.results} whenClicked={(id) => navigate(`/tv/${id}`)} />
+          <ImageGrid data={gridData} whenClicked={(id) => navigate(`/tv/${id}`)} />
           <Pagination setPage={setPage} page={page} totalPages={Math.min(500, TVData.total_pages)} />
         </>
       )}

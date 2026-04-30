@@ -20,12 +20,19 @@ export default function SeasonsView() {
   if (!tmdbData) {
     return <p>Loading...</p>;
   }
+  const gridData = tmdbData.seasons.map((season) => ({
+    id: season.id,
+    primaryText: season.name,
+    imagePath: season.poster_path,
+    season_number: season.season_number,
+    air_date: season.air_date,
+  }));
   return (
     <section className="px-2 space-y-4">
       <h2 className="text-2xl font-bold">Seasons</h2>
 
       <ImageGrid
-        data={tmdbData.seasons}
+        data={gridData}
         whenClicked={(clickedId) => {
           const season = tmdbData.seasons.find((s) => s.id === clickedId);
           if (season) {

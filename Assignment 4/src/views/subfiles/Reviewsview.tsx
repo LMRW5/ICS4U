@@ -19,6 +19,7 @@ export default function Reviewsview() {
   const location = useLocation();
   const mediaType = location.pathname.startsWith("/tv") ? "tv" : "movie";
   const tmdbData = useTmdb<ReviewsProps>(`https://api.themoviedb.org/3/${mediaType}/${id}/reviews`, {}, []).data;
+  
   if (tmdbData && tmdbData.total_pages != 0) {
     return (
       <section className="px-2 space-y-4">

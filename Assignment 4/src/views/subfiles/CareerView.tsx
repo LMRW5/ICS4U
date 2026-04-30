@@ -21,10 +21,16 @@ export default function CareerView() {
     {},
     []
   ).data?.cast;
-  if (tmdbData && tmdbData.length != 0) {
+  const gridData = tmdbData?.map((credit) => ({
+    id: credit.id,
+    primaryText: credit.title,
+    secondaryText: credit.character,
+    imagePath: credit.poster_path,
+  }));
+  if (gridData && gridData.length != 0) {
     return (
       <section className="max-w-[1200px] mx-auto p-5 space-y-3">
-      <ImageGrid data={tmdbData} whenClicked={(id)=>{navigate(`/movies/${id}`)}}/>
+      <ImageGrid data={gridData} whenClicked={(id)=>{navigate(`/movies/${id}`)}}/>
       </section>
     );
   } else {
