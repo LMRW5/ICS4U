@@ -1,22 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { ImageGrid } from "../components/ImageGrid";
-import LinkGroup from "../components/LinkGroup";
-import Pagination from "../components/Pagination";
-import { useTmdb } from "../hooks/useTMDBdata";
+import { ImageGrid, LinkGroup, Pagination } from "../../components";
+import { useTmdb } from "../../hooks/useTMDBdata";
+import type { MovieResponse } from "../types";
 
-type Movie = {
-  id: number;
-  title: string;
-  poster_path: string;
-};
 
-type MovieResponse = {
-  results: Movie[];
-  total_pages: number;
-};
-
-export default function MoviesView() {
+export function MoviesView() {
   const [page, setPage] = useState<number>(1);
   const navigate = useNavigate();
   const params = useParams();

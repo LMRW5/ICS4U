@@ -1,17 +1,9 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useTmdb } from "../../hooks/useTMDBdata";
-import { ImageGrid } from "../../components/ImageGrid";
+import { ImageGrid } from "../../components";
+import type { CareerProps } from "../types";
 
-type CareerProps = {
-  cast: {
-    poster_path: string;
-    title: string;
-    character: string;
-    id: number;
-  }[];
-};
-
-export default function CareerView() {
+export function CareerView() {
   const params = useParams();
   const navigate = useNavigate();
   const id = params.id;
@@ -30,7 +22,7 @@ export default function CareerView() {
   if (gridData && gridData.length != 0) {
     return (
       <section className="max-w-[1200px] mx-auto p-5 space-y-3">
-      <ImageGrid data={gridData} whenClicked={(id)=>{navigate(`/movies/${id}`)}}/>
+        <ImageGrid data={gridData} whenClicked={(id) => { navigate(`/movies/${id}`) }} />
       </section>
     );
   } else {

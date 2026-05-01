@@ -1,18 +1,8 @@
 import { useLocation, useParams } from "react-router-dom";
 import { useTmdb } from "../../hooks/useTMDBdata";
+import type { TrailerProps } from "../types";
 
-type TrailerProps = {
-  results: {
-    site: string;
-    official: boolean;
-    key: string;
-    type: string;
-    name: string;
-    id: string;
-  }[];
-};
-
-export default function Trailersview() {
+export function Trailersview() {
   const params = useParams();
   const id = params.id;
   const location = useLocation();
@@ -30,27 +20,27 @@ export default function Trailersview() {
       <section className="px-2 space-y-4">
         <h2 className="text-2xl font-bold">Trailers</h2>
         <div className="grid gap-6 grid-cols-2">
-        {trailerVideos.map((video) => {
-          return (
-            <div key={video.id} className="aspect-video">
-              <iframe
-                className="w-full h-full rounded-xl"
-                src={`https://www.youtube.com/embed/${video.key}`}
-                title={video.name}
-                allowFullScreen
-              ></iframe>
-              <p className="mt-2 text-sm text-gray-300">{video.name}</p>
-            </div>
-            
-          );
-        })}
+          {trailerVideos.map((video) => {
+            return (
+              <div key={video.id} className="aspect-video">
+                <iframe
+                  className="w-full h-full rounded-xl"
+                  src={`https://www.youtube.com/embed/${video.key}`}
+                  title={video.name}
+                  allowFullScreen
+                ></iframe>
+                <p className="mt-2 text-sm text-gray-300">{video.name}</p>
+              </div>
+
+            );
+          })}
         </div>
       </section>
     );
   } else {
     return <section className="px-2 space-y-4">
-    <h2 className="text-2xl font-bold">Trailers</h2>
-  <h2 className="text-gray-400 text-center">No Trailers Found</h2>
-  </section>
+      <h2 className="text-2xl font-bold">Trailers</h2>
+      <h2 className="text-gray-400 text-center">No Trailers Found</h2>
+    </section>
   }
 }

@@ -1,14 +1,10 @@
 import { useParams } from "react-router-dom";
-import { ImageGrid } from "../../components/ImageGrid";
+import { ImageGrid } from "../../components";
 import { useTmdb } from "../../hooks/useTMDBdata";
+import type { ImageProps } from "../types";
 
-type ImageProps = {
-  profiles: {
-    file_path: string;
-  }[];
-};
 
-export default function ImagesView() {
+export function ImagesView() {
   const params = useParams();
   const id = params.id;
   const tmdbData = useTmdb<ImageProps>(

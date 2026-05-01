@@ -1,23 +1,11 @@
 import { useNavigate, useParams } from "react-router-dom"
 import { useTmdb } from "../../hooks/useTMDBdata";
-import { ImageGrid } from "../../components/ImageGrid";
-import { Button } from "../../components/Button";
+import { ImageGrid, Button } from "../../components/";
 import { FaCalendarAlt } from "react-icons/fa";
-
-type EpisodeProps = {
-  air_date: string;
-  overview: string;
-  episodes: {
-    air_date: string;
-    episode_number: number;
-    name: string;
-    still_path: string;
-    id: number;
-  }[]
-}
+import type { EpisodeProps } from "../types";
 
 
-export default function EpisodeView() {
+export function EpisodeView() {
   const params = useParams()
   const navigate = useNavigate()
   const id = params.id
@@ -30,7 +18,7 @@ export default function EpisodeView() {
     air_date: episode.air_date,
   }));
 
-  if (!gridData || !tmdbData){
+  if (!gridData || !tmdbData) {
     return <p>Loading...</p>;
   }
 

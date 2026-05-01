@@ -1,21 +1,11 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { ImageGrid } from "../components/ImageGrid";
-import LinkGroup from "../components/LinkGroup";
-import Pagination from "../components/Pagination";
-import { useTmdb } from "../hooks/useTMDBdata";
+import { useTmdb } from "../../hooks/useTMDBdata";
+import { LinkGroup, Pagination, ImageGrid } from "../../components";
+import type{ MovieResponse, TVResponse } from "../types";
+type MediaGenres = MovieResponse | TVResponse
 
-type MediaGenres = {
-  results: {
-    id: number;
-    title: string;
-    name: string;
-    poster_path: string;
-  }[];
-  total_pages: number;
-};
-
-export default function Genreview() {
+export function Genreview() {
   const [page, setPage] = useState<number>(1);
   const params = useParams();
   const activeChoice = params.type;
@@ -59,7 +49,7 @@ export default function Genreview() {
   ]).data;
   const gridData = tmdbData?.results.map((media) => ({
     id: media.id,
-    primaryText: media.title || media.name,
+    primaryText: 'title' in media ? media.title : media.name,
     imagePath: media.poster_path,
   }));
 

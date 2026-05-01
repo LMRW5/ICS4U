@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
-import ButtonGroup from "./ButtonGroup";
-import LinkGroup from "./LinkGroup";
 import { FaSearch } from "react-icons/fa";
+import { ButtonGroup, LinkGroup } from "./index";
 
 
-export default function Navbar() {
+export function Navbar() {
   const [searchParams, _setSearchParams] = useSearchParams();
   const [query, setQuery] = useState(searchParams.get("q") || "");
   const [type, setType] = useState(searchParams.get("type") || "movie");
@@ -30,18 +29,18 @@ export default function Navbar() {
         <div className="ml-auto">
           <div className="flex w-full max-w-2xl gap-3 items-center">
             <div className="flex items-center">
-          <FaSearch />
+              <FaSearch />
 
-            <input
-              type="search"
-              placeholder="Search..."
-              value={query}
-              onChange={(e) => {
-                setQuery(e.target.value);
-                navigate(`/search?q=${e.target.value}&type=${type}`);
-              }}
-              className="ml-4 px-2 py-1 bg-gray-800 text-white border border-gray-600 rounded"
-            />
+              <input
+                type="search"
+                placeholder="Search..."
+                value={query}
+                onChange={(e) => {
+                  setQuery(e.target.value);
+                  navigate(`/search?q=${e.target.value}&type=${type}`);
+                }}
+                className="ml-4 px-2 py-1 bg-gray-800 text-white border border-gray-600 rounded"
+              />
             </div>
             <ButtonGroup
               buttons={[

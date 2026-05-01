@@ -1,18 +1,9 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { ImageGrid } from "../../components/ImageGrid";
+import { ImageGrid } from "../../components";
 import { useTmdb } from "../../hooks/useTMDBdata";
+import type { SeasonsProps } from "../types";
 
-type SeasonsProps = {
-  number_of_seasons: number;
-  seasons: {
-    id: number;
-    name: string;
-    poster_path: string;
-    season_number: number;
-    air_date: string;
-  }[];
-};
-export default function SeasonsView() {
+export function SeasonsView() {
   const params = useParams();
   const navigate = useNavigate();
   const id = params.id;

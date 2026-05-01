@@ -10,7 +10,7 @@ type LinkGroupProps = {
   }[];
 };
 
-export default function LinkGroup({ links }: LinkGroupProps) {
+export function LinkGroup({ links }: LinkGroupProps) {
   return (
     <div className="flex gap-6">
       {links.map((link) => (

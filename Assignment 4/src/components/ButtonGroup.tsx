@@ -10,7 +10,7 @@ type ButtonGroupProps = {
   }[];
 };
 
-export default function ButtonGroup({ buttons }: ButtonGroupProps) {
+export function ButtonGroup({ buttons }: ButtonGroupProps) {
   return (
     <div className="flex gap-3">
       {buttons.map((button) => (

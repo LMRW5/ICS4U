@@ -1,28 +1,19 @@
 import { Outlet, useNavigate, useParams } from "react-router-dom";
-import { Button } from "../../components/Button";
-import LinkGroup from "../../components/LinkGroup";
+import { Button, LinkGroup } from "../../components/";
 import { useTmdb } from "../../hooks/useTMDBdata";
-import { FaBirthdayCake } from "react-icons/fa";
-import { FaLocationArrow } from "react-icons/fa";
+import { FaBirthdayCake, FaLocationArrow } from "react-icons/fa";
+import type { PersonProps } from "../types";
 
 
-type personProps = {
-  birthday: string;
-  biography: string;
-  id: number;
-  name: string;
-  profile_path: string;
-  place_of_birth: string;
-};
 
-export default function Personview() {
+export function Personview() {
   const params = useParams();
   const navigate = useNavigate();
   const personID = params.id;
-  const tmdbData = useTmdb<personProps>(`https://api.themoviedb.org/3/person/${personID}`, {}, []).data;
+  const tmdbData = useTmdb<PersonProps>(`https://api.themoviedb.org/3/person/${personID}`, {}, []).data;
   return (
     <section className="max-w-4xl mx-auto p-5">
-      <div className="flex gap-8 py-10">
+      <div className="flex gap-8 py-10 ml-5 mr-5">
         <img
           className="w-[220px] h-[330px] object-cover rounded-xl shadow-lg flex-shrink-0"
           src={`https://image.tmdb.org/t/p/w200${tmdbData?.profile_path}`}

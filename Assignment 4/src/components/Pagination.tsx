@@ -5,7 +5,7 @@ type PaginationProps = {
   page: number;
 };
 
-export default function Pagination({ setPage, totalPages, page }: PaginationProps) {
+export function Pagination({ setPage, totalPages, page }: PaginationProps) {
   return (
     <div className="flex items-center justify-center gap-6">
       <Button onClick={() => setPage(1)} disabled={page === 1}>First</Button>

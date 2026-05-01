@@ -1,22 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { ImageGrid } from "../components/ImageGrid";
-import LinkGroup from "../components/LinkGroup";
-import Pagination from "../components/Pagination";
-import { useTmdb } from "../hooks/useTMDBdata";
+import { ImageGrid, LinkGroup, Pagination } from "../../components";
+import { useTmdb } from "../../hooks/useTMDBdata";
+import type { TVResponse } from "../types";
 
-type TV = {
-  id: number;
-  name: string;
-  poster_path: string;
-};
 
-type TVResponse = {
-  results: TV[];
-  total_pages: number;
-};
-
-export default function TelevisionView() {
+export function TelevisionView() {
   const [page, setPage] = useState<number>(1);
   const navigate = useNavigate();
 

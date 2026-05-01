@@ -1,32 +1,19 @@
 import { FaCalendarAlt } from "react-icons/fa";
 import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
-import LinkGroup from "../components/LinkGroup";
-import { Modal } from "../components/Modal";
-import { useTmdb } from "../hooks/useTMDBdata";
+import { Modal, LinkGroup } from "../../components/";
+import { useTmdb } from "../../hooks/useTMDBdata";
+import type { MovieData } from "../types";
 
 
-
-type movieData = {
-  title: string;
-  name: string;
-  poster_path: string;
-  backdrop_path: string;
-  overview: string;
-  release_date: string;
-  first_air_date: string;
-  vote_average: number;
-
-};
-
-export default function MovieView() {
+export function MovieView() {
   const params = useParams();
   const navigate = useNavigate();
   const mediaID = params.id;
   const location = useLocation();
   const mediaType = location.pathname.startsWith("/tv") ? "tv" : "movie";
 
-  const tmdbData = useTmdb<movieData>(`https://api.themoviedb.org/3/${mediaType}/${mediaID}`, {}, []).data;
-  
+  const tmdbData = useTmdb<MovieData>(`https://api.themoviedb.org/3/${mediaType}/${mediaID}`, {}, []).data;
+
 
   return (
     <Modal
@@ -53,7 +40,7 @@ export default function MovieView() {
                 </p>
                 <p className="text-yellow-400 font-bold flex items-center gap-2">
                   Rating: {tmdbData.vote_average.toFixed(1)}/10
-                </p>              
+                </p>
                 <p className="text-gray-300">{tmdbData.overview}</p>
                 <LinkGroup
                   links={[

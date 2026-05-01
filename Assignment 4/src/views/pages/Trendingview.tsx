@@ -1,23 +1,12 @@
 import { useEffect } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
-import { ImageGrid } from "../components/ImageGrid";
-import { useTmdb } from "../hooks/useTMDBdata";
-import LinkGroup from "../components/LinkGroup";
-import ButtonGroup from "../components/ButtonGroup";
+import { ImageGrid, LinkGroup, ButtonGroup } from "../../components";
+import { useTmdb } from "../../hooks/useTMDBdata";
+import type { MovieResponse, TVResponse } from "../types";
 
-type Media = {
-  id: number;
-  title?: string;
-  name?: string;
-  poster_path: string;
-};
+type MediaResponse = MovieResponse | TVResponse;
 
-type MediaResponse = {
-  results: Media[];
-  total_pages: number;
-};
-
-export default function TrendingView() {
+export function TrendingView() {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate()
   const params = useParams();
@@ -40,17 +29,17 @@ export default function TrendingView() {
   ).data;
   const gridData = mediaData?.results.map((media) => ({
     id: media.id,
-    primaryText: media.title || media.name,
+    primaryText: 'title' in media ? media.title : media.name,
     imagePath: media.poster_path,
   }));
 
   return (
     <section className="max-w-[1200px] mx-auto p-5 space-y-3">
       <div className="flex items-center justify-between">
-      <LinkGroup links={[{label: "Movies", to:`/trending/movie?interval=${interval}`}, {label: "TV", to:`/trending/tv?interval=${interval}`}]}/>
-      <ButtonGroup buttons={[{label: "Today", to:`/trending/${activeChoice}?interval=day`, matchParams: { interval: "day" }}, {label: "Week", to:`/trending/${activeChoice}?interval=week`, matchParams: { interval: "week" }}]}/>
+        <LinkGroup links={[{ label: "Movies", to: `/trending/movie?interval=${interval}` }, { label: "TV", to: `/trending/tv?interval=${interval}` }]} />
+        <ButtonGroup buttons={[{ label: "Today", to: `/trending/${activeChoice}?interval=day`, matchParams: { interval: "day" } }, { label: "Week", to: `/trending/${activeChoice}?interval=week`, matchParams: { interval: "week" } }]} />
       </div>
-      {gridData && mediaData && <ImageGrid data={gridData} whenClicked={(id)=>{navigate(`/${chosen}/${id}`)}}/>}
+      {gridData && mediaData && <ImageGrid data={gridData} whenClicked={(id) => { navigate(`/${chosen}/${id}`) }} />}
     </section>
   );
 }
