@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
-import { Pagination } from "../../components";
-import { useTmdb } from "../../hooks/useTMDBdata";
-import type { ReviewsProps } from "../types";
+import { Pagination } from "@/components";
+import { useTmdb } from "@/hooks/useTMDBdata";
+import type { ReviewsProps } from "@/views/types";
 
 
 export function Reviewsview() {

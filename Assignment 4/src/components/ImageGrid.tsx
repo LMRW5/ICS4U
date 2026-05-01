@@ -1,3 +1,5 @@
+import { MdOutlineImageNotSupported  } from "react-icons/md";
+
 type ImagegridProps = {
   data: {
     id?: number | string;
@@ -19,11 +21,18 @@ export function ImageGrid({ data, whenClicked }: ImagegridProps) {
             key={media.id}
             onClick={() => media.id !== undefined && whenClicked?.(media.id)}
           >
-            <img
-              className="w-full h-[280px] object-cover"
-              src={`https://image.tmdb.org/t/p/w500${media.imagePath}`}
-              alt={media.primaryText}
-            />
+            {media.imagePath ? (
+              <img
+                className="w-full h-[280px] object-cover"
+                src={`https://image.tmdb.org/t/p/w500${media.imagePath}`}
+                alt={media.primaryText}
+              />
+            ) : (
+              <div className="flex h-[280px] items-center justify-center gap-2">
+                <MdOutlineImageNotSupported  />
+                <p className="text-gray-500">No Image</p>
+              </div>
+            )}
             {media.primaryText && (
               <div className="p-3 text-center">
                 <p className="text-sm font-semibold truncate">{media.primaryText}</p>

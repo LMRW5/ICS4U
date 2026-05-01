@@ -1,7 +1,7 @@
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { ImageGrid } from "../../components";
-import { useTmdb } from "../../hooks/useTMDBdata";
-import type { CreditsProps } from "../types";
+import { ImageGrid } from "@/components";
+import { useTmdb } from "@/hooks/useTMDBdata";
+import type { CreditsProps } from "@/views/types";
 
 export function Creditsview() {
   const params = useParams();

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { ImageGrid, LinkGroup, Pagination } from "../../components";
-import { useTmdb } from "../../hooks/useTMDBdata";
-import type { TVResponse } from "../types";
+import { ImageGrid, LinkGroup, Pagination } from "@/components";
+import { useTmdb } from "@/hooks/useTMDBdata";
+import type { TVResponse } from "@/views/types";
 
 
 export function TelevisionView() {

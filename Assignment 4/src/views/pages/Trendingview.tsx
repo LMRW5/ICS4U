@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
-import { ImageGrid, LinkGroup, ButtonGroup } from "../../components";
-import { useTmdb } from "../../hooks/useTMDBdata";
-import type { MovieResponse, TVResponse } from "../types";
+import { ImageGrid, LinkGroup, ButtonGroup } from "@/components";
+import { useTmdb } from "@/hooks/useTMDBdata";
+import type { MovieResponse, TVResponse } from "@/views/types";
 
 type MediaResponse = MovieResponse | TVResponse;
 

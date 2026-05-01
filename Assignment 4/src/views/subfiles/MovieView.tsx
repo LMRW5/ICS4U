@@ -1,8 +1,8 @@
 import { FaCalendarAlt } from "react-icons/fa";
 import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
-import { Modal, LinkGroup } from "../../components/";
-import { useTmdb } from "../../hooks/useTMDBdata";
-import type { MovieData } from "../types";
+import { Modal, LinkGroup } from "@/components";
+import { useTmdb } from "@/hooks/useTMDBdata";
+import type { MovieData } from "@/views/types";
 
 
 export function MovieView() {
@@ -39,7 +39,7 @@ export function MovieView() {
                   {tmdbData.release_date || tmdbData.first_air_date}
                 </p>
                 <p className="text-yellow-400 font-bold flex items-center gap-2">
-                  Rating: {tmdbData.vote_average.toFixed(1)}/10
+                  Rating: {tmdbData.vote_average>0 ? `${tmdbData.vote_average.toFixed(1)}/10` : "N/A"}
                 </p>
                 <p className="text-gray-300">{tmdbData.overview}</p>
                 <LinkGroup

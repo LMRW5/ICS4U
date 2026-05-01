@@ -1,8 +1,8 @@
 import { Outlet, useNavigate, useParams } from "react-router-dom";
-import { Button, LinkGroup } from "../../components";
-import { useTmdb } from "../../hooks/useTMDBdata";
+import { Button, LinkGroup } from "@/components";
+import { useTmdb } from "@/hooks/useTMDBdata";
 import { FaBirthdayCake, FaLocationArrow } from "react-icons/fa";
-import type { PersonProps } from "../types";
+import type { PersonProps } from "@/views/types";
 
 export function Personview() {
   const params = useParams();

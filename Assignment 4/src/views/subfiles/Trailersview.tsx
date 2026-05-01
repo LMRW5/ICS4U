@@ -1,6 +1,6 @@
 import { useLocation, useParams } from "react-router-dom";
-import { useTmdb } from "../../hooks/useTMDBdata";
-import type { TrailerProps } from "../types";
+import { useTmdb } from "@/hooks/useTMDBdata";
+import type { TrailerProps } from "@/views/types";
 
 export function Trailersview() {
   const params = useParams();

@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useTmdb } from "../../hooks/useTMDBdata";
-import { ImageGrid } from "../../components";
-import type { CareerProps } from "../types";
+import { useTmdb } from "@/hooks/useTMDBdata";
+import { ImageGrid } from "@/components";
+import type { CareerProps } from "@/views/types";
 
 export function CareerView() {
   const params = useParams();

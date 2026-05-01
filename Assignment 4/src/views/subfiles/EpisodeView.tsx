@@ -1,8 +1,8 @@
 import { useNavigate, useParams } from "react-router-dom"
-import { useTmdb } from "../../hooks/useTMDBdata";
-import { ImageGrid, Button } from "../../components/";
+import { useTmdb } from "@/hooks/useTMDBdata";
+import { ImageGrid, Button } from "@/components";
 import { FaCalendarAlt } from "react-icons/fa";
-import type { EpisodeProps } from "../types";
+import type { EpisodeProps } from "@/views/types";
 
 
 export function EpisodeView() {
