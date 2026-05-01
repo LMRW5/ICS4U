@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { ImageGrid, Pagination } from "../../components/";
+import { ImageGrid, Pagination } from "../../components";
 import { useDebounce } from "../../hooks/useDebounce";
 import { useTmdb } from "../../hooks/useTMDBdata";
 import type { SearchProps } from "../types";
