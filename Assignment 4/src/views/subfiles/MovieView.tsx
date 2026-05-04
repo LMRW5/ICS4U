@@ -1,9 +1,8 @@
+import { LinkGroup, Modal } from "@/components";
+import type { MovieData } from "@/core/types";
+import { useTmdb } from "@/hooks/useTMDBdata";
 import { FaCalendarAlt } from "react-icons/fa";
 import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
-import { Modal, LinkGroup } from "@/components";
-import { useTmdb } from "@/hooks/useTMDBdata";
-import type { MovieData } from "@/views/types";
-
 
 export function MovieView() {
   const params = useParams();
@@ -13,7 +12,6 @@ export function MovieView() {
   const mediaType = location.pathname.startsWith("/tv") ? "tv" : "movie";
 
   const tmdbData = useTmdb<MovieData>(`https://api.themoviedb.org/3/${mediaType}/${mediaID}`, {}, []).data;
-
 
   return (
     <Modal
@@ -31,7 +29,10 @@ export function MovieView() {
               }}
             />
             <div className="flex gap-8">
-              <img className="w-[220px] h-[330px] object-cover rounded-xl" src={`https://image.tmdb.org/t/p/w300/${tmdbData.poster_path}`} />
+              <img
+                className="w-[220px] h-[330px] object-cover rounded-xl"
+                src={`https://image.tmdb.org/t/p/w300/${tmdbData.poster_path}`}
+              />
               <div className="flex-1 space-y-4">
                 <h1 className="text-3xl font-bold">{tmdbData.title || tmdbData.name}</h1>
                 <p className="text-gray-400 flex items-center gap-2">
@@ -39,7 +40,7 @@ export function MovieView() {
                   {tmdbData.release_date || tmdbData.first_air_date}
                 </p>
                 <p className="text-yellow-400 font-bold flex items-center gap-2">
-                  Rating: {tmdbData.vote_average>0 ? `${tmdbData.vote_average.toFixed(1)}/10` : "N/A"}
+                  Rating: {tmdbData.vote_average > 0 ? `${tmdbData.vote_average.toFixed(1)}/10` : "N/A"}
                 </p>
                 <p className="text-gray-300">{tmdbData.overview}</p>
                 <LinkGroup
@@ -55,7 +56,6 @@ export function MovieView() {
 
             <Outlet />
           </div>
-
         </>
       )}
     </Modal>

@@ -1,8 +1,8 @@
-import { Outlet, useNavigate, useParams } from "react-router-dom";
 import { Button, LinkGroup } from "@/components";
+import type { PersonProps } from "@/core/types";
 import { useTmdb } from "@/hooks/useTMDBdata";
 import { FaBirthdayCake, FaLocationArrow } from "react-icons/fa";
-import type { PersonProps } from "@/views/types";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
 
 export function Personview() {
   const params = useParams();
@@ -20,8 +20,12 @@ export function Personview() {
         <div className="space-y-4">
           <Button onClick={() => navigate(-1)}>← Back</Button>
           <h1 className="text-4xl font-bold">{tmdbData?.name}</h1>
-          <p className="text-gray-400 flex items-center gap-2 pl-2"><FaLocationArrow /> {tmdbData?.place_of_birth}</p>
-          <p className="text-gray-400 flex items-center gap-2 pl-2"><FaBirthdayCake /> {tmdbData?.birthday}</p>
+          <p className="text-gray-400 flex items-center gap-2 pl-2">
+            <FaLocationArrow /> {tmdbData?.place_of_birth}
+          </p>
+          <p className="text-gray-400 flex items-center gap-2 pl-2">
+            <FaBirthdayCake /> {tmdbData?.birthday}
+          </p>
           <p className="pl-2 text-gray-300">{tmdbData?.biography || "No biography available."}</p>
           <LinkGroup
             links={[

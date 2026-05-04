@@ -1,6 +1,6 @@
-import { useLocation, useParams } from "react-router-dom";
+import type { TrailerProps } from "@/core/types";
 import { useTmdb } from "@/hooks/useTMDBdata";
-import type { TrailerProps } from "@/views/types";
+import { useLocation, useParams } from "react-router-dom";
 
 export function Trailersview() {
   const params = useParams();
@@ -31,16 +31,17 @@ export function Trailersview() {
                 ></iframe>
                 <p className="mt-2 text-sm text-gray-300">{video.name}</p>
               </div>
-
             );
           })}
         </div>
       </section>
     );
   } else {
-    return <section className="px-2 space-y-4">
-      <h2 className="text-2xl font-bold">Trailers</h2>
-      <h2 className="text-gray-400 text-center">No Trailers Found</h2>
-    </section>
+    return (
+      <section className="px-2 space-y-4">
+        <h2 className="text-2xl font-bold">Trailers</h2>
+        <h2 className="text-gray-400 text-center">No Trailers Found</h2>
+      </section>
+    );
   }
 }

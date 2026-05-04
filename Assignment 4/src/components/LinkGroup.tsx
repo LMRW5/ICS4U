@@ -1,14 +1,6 @@
+import type { LinkGroupProps } from "@/core/types";
 import { Navlink } from "./Navlink";
 
-type LinkGroupProps = {
-  links: {
-    label: string;
-    to: string;
-    match?: string;
-    whenClicked?: () => void;
-    replace?: boolean;
-  }[];
-};
 
 export function LinkGroup({ links }: LinkGroupProps) {
   return (

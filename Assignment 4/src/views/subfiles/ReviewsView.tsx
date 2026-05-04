@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { Pagination } from "@/components";
 import { useTmdb } from "@/hooks/useTMDBdata";
-import type { ReviewsProps } from "@/views/types";
+import type { ReviewsProps } from "@/core/types";
 
 
 export function Reviewsview() {

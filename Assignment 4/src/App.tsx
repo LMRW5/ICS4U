@@ -1,6 +1,23 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { MainLayout } from "./layouts/Mainlayout";
-import { CareerView, Creditsview, EpisodeView, ErrorView, Genreview, HomeView, ImagesView, MoviesView, MovieView, Personview, Reviewsview, Searchview, SeasonsView, TelevisionView, Trailersview, TrendingView } from "./views";
+import {
+  CareerView,
+  Creditsview,
+  EpisodeView,
+  ErrorView,
+  Genreview,
+  HomeView,
+  ImagesView,
+  MoviesView,
+  MovieView,
+  Personview,
+  Reviewsview,
+  Searchview,
+  SeasonsView,
+  TelevisionView,
+  Trailersview,
+  TrendingView,
+} from "./views";
 
 export default function App() {
   return (
@@ -18,7 +35,6 @@ export default function App() {
               <Route path="trailers" element={<Trailersview />} />
               <Route path="reviews" element={<Reviewsview />} />
             </Route>
-
           </Route>
           <Route path="/tv">
             <Route index element={<Navigate to="category/airing_today" replace />} />

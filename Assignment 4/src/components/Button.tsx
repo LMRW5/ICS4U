@@ -1,11 +1,4 @@
-import type { ReactNode } from 'react';
-
-type ButtonProps = {
-  children: ReactNode;
-  variant?: 'primary' | 'grey';
-  disabled?: boolean;
-  onClick: () => void;
-};
+import type { ButtonProps } from '@/core/types';
 const baseStyles = 'inline-block px-6 py-3 rounded-2xl transition font-medium shadow-lg cursor-pointer disabled:cursor-not-allowed disabled:opacity-50';
 const variants = {
   primary: 'bg-blue-600 hover:bg-blue-500 text-white',

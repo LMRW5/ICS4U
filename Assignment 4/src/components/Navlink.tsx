@@ -1,13 +1,7 @@
-import type { ReactNode } from "react";
+import type { LinkProps } from "@/core/types";
 import { NavLink, useMatch } from "react-router-dom";
 
-type LinkProps = {
-  children: ReactNode;
-  to: string;
-  match?: string;
-  whenClicked?: () => void;
-  replace?: boolean;
-};
+
 
 export const Navlink = ({ children, to, match, whenClicked, replace }: LinkProps) => {
   const matched = match ? useMatch(match) : null;

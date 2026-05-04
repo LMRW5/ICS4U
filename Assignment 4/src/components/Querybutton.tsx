@@ -1,13 +1,6 @@
-import type { ReactNode } from 'react';
+import type { QueryProps } from '@/core/types';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-type QueryProps = {
-  children: ReactNode;
-  to?: string;
-  matchParams?: Record<string, string>;
-  active?: boolean
-  whenClicked?: () => void;
-};
 
 export function QueryButton({ children, to, matchParams, whenClicked, active }: QueryProps) {
   const location = useLocation();

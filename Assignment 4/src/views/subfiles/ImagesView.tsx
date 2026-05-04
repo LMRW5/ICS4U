@@ -1,8 +1,7 @@
-import { useParams } from "react-router-dom";
 import { ImageGrid } from "@/components";
+import type { ImageProps } from "@/core/types";
 import { useTmdb } from "@/hooks/useTMDBdata";
-import type { ImageProps } from "@/views/types";
-
+import { useParams } from "react-router-dom";
 
 export function ImagesView() {
   const params = useParams();

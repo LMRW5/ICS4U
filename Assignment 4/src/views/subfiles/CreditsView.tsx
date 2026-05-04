@@ -1,7 +1,7 @@
-import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { ImageGrid } from "@/components";
+import type { CreditsProps } from "@/core/types";
 import { useTmdb } from "@/hooks/useTMDBdata";
-import type { CreditsProps } from "@/views/types";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 export function Creditsview() {
   const params = useParams();
@@ -20,7 +20,12 @@ export function Creditsview() {
     return (
       <section className="px-2 space-y-4">
         <h2 className="text-2xl font-bold">Credits</h2>
-        <ImageGrid data={gridData} whenClicked={(id) => { navigate(`/person/${id}`); }} />
+        <ImageGrid
+          data={gridData}
+          whenClicked={(id) => {
+            navigate(`/person/${id}`);
+          }}
+        />
       </section>
     );
   } else {

@@ -1,9 +1,4 @@
-import type { ReactNode } from 'react';
-
-type ModalProps = {
-  onClose: () => void;
-  children: ReactNode;
-};
+import type { ModalProps } from '@/core/types';
 
 export const Modal = ({ onClose, children }: ModalProps) => {
   return (

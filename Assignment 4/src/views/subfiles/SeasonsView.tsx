@@ -1,7 +1,7 @@
-import { useNavigate, useParams } from "react-router-dom";
 import { ImageGrid } from "@/components";
+import type { SeasonsProps } from "@/core/types";
 import { useTmdb } from "@/hooks/useTMDBdata";
-import type { SeasonsProps } from "@/views/types";
+import { useNavigate, useParams } from "react-router-dom";
 
 export function SeasonsView() {
   const params = useParams();

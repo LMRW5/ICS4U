@@ -1,9 +1,6 @@
+import type { PaginationProps } from "@/core/types";
 import { Button } from "./Button";
-type PaginationProps = {
-  setPage: (value: number) => void;
-  totalPages: number;
-  page: number;
-};
+
 
 export function Pagination({ setPage, totalPages, page }: PaginationProps) {
   return (

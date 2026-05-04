@@ -1,14 +1,6 @@
+import type { ButtonGroupProps } from "@/core/types";
 import { QueryButton } from "./Querybutton";
 
-type ButtonGroupProps = {
-  buttons: {
-    to?: string;
-    matchParams?: Record<string, string>;
-    active?: boolean;
-    whenClicked?: () => void;
-    label: string;
-  }[];
-};
 
 export function ButtonGroup({ buttons }: ButtonGroupProps) {
   return (

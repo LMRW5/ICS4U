@@ -1,9 +1,8 @@
+import { ImageGrid, LinkGroup, Pagination } from "@/components";
+import type { MovieResponse } from "@/core/types";
+import { useTmdb } from "@/hooks/useTMDBdata";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { ImageGrid, LinkGroup, Pagination } from "@/components";
-import { useTmdb } from "@/hooks/useTMDBdata";
-import type { MovieResponse } from "@/views/types";
-
 
 export function MoviesView() {
   const [page, setPage] = useState<number>(1);

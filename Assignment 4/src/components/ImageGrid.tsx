@@ -1,15 +1,7 @@
+import type { ImagegridProps } from "@/core/types";
 import { MdOutlineImageNotSupported  } from "react-icons/md";
 
-type ImagegridProps = {
-  data: {
-    id?: number | string;
-    primaryText?: string;
-    imagePath?: string;
-    secondaryText?: string;
-    episode_number?: number;
-  }[];
-  whenClicked?: (id: number | string) => void;
-};
+
 
 export function ImageGrid({ data, whenClicked }: ImagegridProps) {
   return (

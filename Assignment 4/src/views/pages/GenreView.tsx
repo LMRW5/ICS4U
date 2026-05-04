@@ -1,9 +1,9 @@
+import { ImageGrid, LinkGroup, Pagination } from "@/components";
+import type { MovieResponse, TVResponse } from "@/core/types";
+import { useTmdb } from "@/hooks/useTMDBdata";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useTmdb } from "@/hooks/useTMDBdata";
-import { LinkGroup, Pagination, ImageGrid } from "@/components";
-import type{ MovieResponse, TVResponse } from "@/views/types";
-type MediaGenres = MovieResponse | TVResponse
+type MediaGenres = MovieResponse | TVResponse;
 
 export function Genreview() {
   const [page, setPage] = useState<number>(1);
@@ -49,7 +49,7 @@ export function Genreview() {
   ]).data;
   const gridData = tmdbData?.results.map((media) => ({
     id: media.id,
-    primaryText: 'title' in media ? media.title : media.name,
+    primaryText: "title" in media ? media.title : media.name,
     imagePath: media.poster_path,
   }));
 

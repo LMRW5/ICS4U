@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 export type MovieResponse = {
     results: {
         id: number;
@@ -109,3 +111,67 @@ export type CareerProps = {
         id: number;
     }[];
 };
+
+export type ButtonProps = {
+  children: ReactNode;
+  variant?: 'primary' | 'grey';
+  disabled?: boolean;
+  onClick: () => void;
+};
+
+export type ButtonGroupProps = {
+  buttons: {
+    to?: string;
+    matchParams?: Record<string, string>;
+    active?: boolean;
+    whenClicked?: () => void;
+    label: string;
+  }[];
+};
+
+export type ImagegridProps = {
+    data: {
+      id?: number | string;
+      primaryText?: string;
+      imagePath?: string;
+      secondaryText?: string;
+      episode_number?: number;
+    }[];
+    whenClicked?: (id: number | string) => void;
+  };
+
+export type LinkGroupProps = {
+    links: {
+      label: string;
+      to: string;
+      match?: string;
+      whenClicked?: () => void;
+      replace?: boolean;
+    }[];
+  };
+  
+export type ModalProps = {
+    onClose: () => void;
+    children: ReactNode;
+  };
+
+export type LinkProps = {
+    children: ReactNode;
+    to: string;
+    match?: string;
+    whenClicked?: () => void;
+    replace?: boolean;
+  };
+export type PaginationProps = {
+    setPage: (value: number) => void;
+    totalPages: number;
+    page: number;
+  };
+
+export type QueryProps = {
+    children: ReactNode;
+    to?: string;
+    matchParams?: Record<string, string>;
+    active?: boolean
+    whenClicked?: () => void;
+  };
